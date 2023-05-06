@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
+use yii\helpers\Url;
 ?>
 <!doctype html>
 <html lang="en">
@@ -251,7 +252,13 @@ use yii\grid\ActionColumn;
           <div class="col-lg-8 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">System Permissions</h5>
+                <h5 class="card-title fw-semibold mb-2">System Permissions</h5>
+                <?php
+                echo Html::a('<i class="fas fa-plus"></i> Create', 
+                    ['auth-item/create', 'type' => 2], 
+                    ['class' => 'btn btn-primary']
+                );
+                ?>
                 <div style="max-height: 500px;">
                   <?php
                   echo \yii\grid\GridView::widget([
