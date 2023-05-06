@@ -176,7 +176,7 @@ use yii\helpers\Url;
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['authItem/index']) ?>" aria-expanded="false">
                 <span>
-                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-lock"></i>
                 </span>
                 <span class="hide-menu">Role | Permissions</span>
               </a>
