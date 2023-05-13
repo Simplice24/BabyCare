@@ -163,6 +163,14 @@ use yii\helpers\Html;
                 <span class="hide-menu">Favorites</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['auth-item/index']) ?>" aria-expanded="false">
+                <span>
+                  <i class="fas fa-lock"></i>
+                </span>
+                <span class="hide-menu">Role | Permissions</span>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- End Sidebar navigation -->
