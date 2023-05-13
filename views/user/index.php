@@ -105,7 +105,7 @@ use yii\grid\ActionColumn;
                 <span>
                   <i class="fas fa-users"></i>
                 </span>
-                <span class="hide-menu">User/Role management</span>
+                <span class="hide-menu">User management</span>
               </a>
             </li>
             <li class="sidebar-item">
