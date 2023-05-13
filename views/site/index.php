@@ -396,11 +396,7 @@
       </div>
       <!--client section end -->
       <!--copyright section start -->
-      <div class="copyright_section">
-         <div class="container">
-            <p class="copyright_text">Copyright 2023 All Right Reserved By <a href="https://html.design">Free Html Templates</a> Distributed by: <a href="https://themewagon.com">ThemeWagon</a></p>
-         </div>
-      </div>
+      
       <!--copyright section end -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
