@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\base\Model;
 use app\models\AuthItem;
 
@@ -48,6 +49,9 @@ class UserController extends Controller
         $userProfileImage = $userDetails->profile;
         $permissions = AuthItem::find()->where(['type' => 2])->all();
         $roles = AuthItem::find()->where(['type' => 1])->all();
+        $authItemsDataProvider = new ActiveDataProvider([
+            'query' => AuthItem::find(),
+        ]);
 
         $recentRegistrations = User::find()
         ->orderBy(['id' => SORT_DESC])
@@ -62,6 +66,7 @@ class UserController extends Controller
             'recentRegistrations' => $recentRegistrations,
             'roles' => $roles,
             'permissions' => $permissions,
+            'authItemsDataProvider' => $authItemsDataProvider,
         ]);
     }
 

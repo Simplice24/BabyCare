@@ -245,7 +245,7 @@ use yii\grid\ActionColumn;
                 <div class="mb-4">
                   <h5 class="card-title fw-semibold">Recent Bookings</h5>
                 </div>
-                <div class="table-responsive" style="max-height: 550px;">
+                <div class="table-responsive">
                 <ul class="timeline-widget mb-0 position-relative mb-n5">
                     <?php foreach ($recentBookings as $booking) : ?>
                         <li class="timeline-item d-flex position-relative overflow-hidden">
@@ -277,7 +277,7 @@ use yii\grid\ActionColumn;
                           </tr>
                           </tbody>
                         </table> -->
-                        <div class="table-responsive" style="max-height: 450px;">
+                        
                           <?php
                           echo \yii\grid\GridView::widget([
                             'id' => 'my-gridview',
@@ -370,7 +370,6 @@ use yii\grid\ActionColumn;
                             ],
                           ]);
                           ?>
-                        </div>
                       </div>
                     </div>
                 </div>
@@ -456,9 +455,6 @@ use yii\grid\ActionColumn;
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="py-6 px-6 text-center">
-                <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
               </div>
             </div>
           </div>

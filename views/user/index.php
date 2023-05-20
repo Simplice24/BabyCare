@@ -238,139 +238,137 @@ use yii\grid\ActionColumn;
       </header>
       <!--  Header End -->
       <div class="container-fluid">
-          <div class="row">
-              <div class="col-lg-4 d-flex align-items-stretch">
-                <div class="card w-100">
-                  <div class="card-body p-4">
-                    <div class="mb-4">
-                      <h5 class="card-title fw-semibold">Recent Registrations</h5>
-                    </div>
-                    <div class="card-body p-4 table-responsive" style="max-height: 550px;">
-                    <ul class="timeline-widget mb-0 position-relative mb-n5">
-                        <?php foreach ($recentRegistrations as $registration) : ?>
-                            <li class="timeline-item d-flex position-relative overflow-hidden">
-                                <div class="timeline-time text-dark flex-shrink-0 text-end"><?php echo date('Y-m-d H:i', $registration['created_at']); ?></div>
-                                <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                    <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
-                                    <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                                </div>
-                                <div class="timeline-desc fs-3 text-dark mt-n1"><?php echo $registration['fullname']; ?> who is <?php echo $registration['role']; ?> is registered </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                    </div>
-                  </div>
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <h5 class="card-title fw-semibold">Recent Registrations</h5>
                 </div>
-              </div>
-              <div class="col-lg-8 d-flex align-items-stretch">
-                <div class="card w-100">
-                      <div class="card-body p-4">
-                        <h5 class="card-title fw-semibold mb-4">All System users</h5>
-                        <!-- <table class="inputs">
-                          <tbody><tr>
-                              <td>Starting date:</td>
-                              <td><input type="date" id="min" name="min"></td>
-                          </tr>
-                          <tr>
-                              <td>Ending date:</td>
-                              <td><input type="date" id="max" name="max"></td>
-                          </tr>
-                          </tbody>
-                        </table> -->
-                        <div class="table-responsive" style="max-height: 500px;">
-                          <?php
-                          echo \yii\grid\GridView::widget([
-                            'id' => 'my-gridview',
-                            'dataProvider' => $dataProvider,
-                            'filterModel' => $searchModel, // Add your search model here
-                            'options' => [
-                              'class' => 'table text-nowrap mb-0 align-middle table-height',
-                            ],
-                            'tableOptions' => [
-                              'class' => 'table text-nowrap mb-0 align-middle',
-                            ],
-                            'headerRowOptions' => [
-                              'class' => 'text-dark fs-4',
-                            ],
-                            'columns' => [
-                              [
-                                'class' => 'yii\grid\SerialColumn',
-                                'header' => '<h6 class="fw-semibold mb-0">#</h6>',
-                              ],
-                              [
-                                'attribute' => 'fullname',
-                                'header' => '<h6 class="fw-semibold mb-0">Fullname</h6>',
-                                'value' => function ($model) {
-                                  // Modify this to return the appropriate value for the 'date' attribute of your model
-                                  return $model->fullname. '<br><span>' . $model->role . '</span>';
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'attribute' => 'username',
-                                'header' => '<h6 class="fw-semibold mb-0">Username</h6>',
-                                'value' => function ($model) {
-                                  // Modify this to return the appropriate value for the 'babysitters' attribute of your model
-                                  return $model->username;
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'attribute' => 'email',
-                                'header' => '<h6 class="fw-semibold mb-0">Email</h6>',
-                                'value' => function ($model) {
-                                    // Modify this to return the appropriate value for the 'age_range' attribute of your model
-                                    return $model->email;
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'class' => 'yii\grid\ActionColumn',
-                                'template' => '{view} {ban} {delete}',
-                                'buttons' => [
-                                  'view' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
-                                  },
-                                  'delete' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
-                                      'class' => 'btn-icon',
-                                      'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
-                                        'method' => 'post',
-                                      ],
-                                    ]);
-                                  },
-                                  'ban' => function ($url, $model, $key) {
-                                    $iconClass = ($model->status === 10) ? 'fas fa-ban text-danger' : 'fas fa-ban text-success';
-                                    $confirmMessage = ($model->status === 10) ? 'Are you sure you want to ban this user account?' : 'Are you sure you want to perform this action?';
-                                
-                                    return Html::a('<i class="' . $iconClass . '"></i>', ['user/ban', 'id' => $model->id,'status' => $model->status], [
-                                        'class' => 'btn-icon',
-                                        'data' => [
-                                            'confirm' => $confirmMessage,
-                                            'method' => 'post',
-                                        ],
-                                    ]);
-                                },
-                                
-                                
-                                ],
-                              ],
-                            ],
-                          ]);
-                          ?>
+                <div class="card-body p-4" style="max-height: 550px;">
+                  <ul class="timeline-widget mb-0 position-relative mb-n5">
+                    <?php foreach ($recentRegistrations as $registration) : ?>
+                      <li class="timeline-item d-flex position-relative overflow-hidden">
+                        <div class="timeline-time text-dark flex-shrink-0 text-end">
+                          <?php echo date('Y-m-d H:i', $registration['created_at']); ?>
                         </div>
-                      </div>
-                    </div>
+                        <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                          <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+                          <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                        </div>
+                        <div class="timeline-desc fs-3 text-dark mt-n1">
+                          <?php echo $registration['fullname']; ?> who is <?php echo $registration['role']; ?> is registered
+                        </div>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
                 </div>
-              </div>
-
-              <div class="py-6 px-6 text-center">
-                <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
               </div>
             </div>
           </div>
-  </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">All System users</h5>
+                <!-- <table class="inputs">
+                  <tbody>
+                    <tr>
+                      <td>Starting date:</td>
+                      <td><input type="date" id="min" name="min"></td>
+                    </tr>
+                    <tr>
+                      <td>Ending date:</td>
+                      <td><input type="date" id="max" name="max"></td>
+                    </tr>
+                  </tbody>
+                </table> -->
+                <div style="max-height: 500px;">
+                  <?php
+                  echo \yii\grid\GridView::widget([
+                    'id' => 'my-gridview',
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel, // Add your search model here
+                    'options' => [
+                      'class' => 'table text-nowrap mb-0 align-middle table-height',
+                    ],
+                    'tableOptions' => [
+                      'class' => 'table text-nowrap mb-0 align-middle',
+                    ],
+                    'headerRowOptions' => [
+                      'class' => 'text-dark fs-4',
+                    ],
+                    'columns' => [
+                      [
+                        'class' => 'yii\grid\SerialColumn',
+                        'header' => '<h6 class="fw-semibold mb-0">#</h6>',
+                      ],
+                      [
+                        'attribute' => 'fullname',
+                        'header' => '<h6 class="fw-semibold mb-0">Fullname</h6>',
+                        'value' => function ($model) {
+                          // Modify this to return the appropriate value for the 'date' attribute of your model
+                          return $model->fullname. '<br><span>' . $model->role . '</span>';
+                        },
+                        'format' => 'raw',
+                      ],
+                      [
+                        'attribute' => 'username',
+                        'header' => '<h6 class="fw-semibold mb-0">Username</h6>',
+                        'value' => function ($model) {
+                          // Modify this to return the appropriate value for the 'babysitters' attribute of your model
+                          return $model->username;
+                        },
+                        'format' => 'raw',
+                      ],
+                      [
+                        'attribute' => 'email',
+                        'header' => '<h6 class="fw-semibold mb-0">Email</h6>',
+                        'value' => function ($model) {
+                          // Modify this to return the appropriate value for the 'age_range' attribute of your model
+                          return $model->email;
+                        },
+                        'format' => 'raw',
+                      ],
+                      [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {ban} {delete}',
+                        'buttons' => [
+                          'view' => function ($url, $model) {
+                            return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
+                          },
+                          'delete' => function ($url, $model) {
+                            return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
+                              'class' => 'btn-icon',
+                              'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
+                              ],
+                            ]);
+                          },
+                          'ban' => function ($url, $model, $key) {
+                            $iconClass = ($model->status === 10) ? 'fas fa-ban text-danger' : 'fas fa-ban text-success';
+                            $confirmMessage = ($model->status === 10) ? 'Are you sure you want to ban this user account?' : 'Are you sure you want to perform this action?';
+
+                            return Html::a('<i class="' . $iconClass . '"></i>', ['user/ban', 'id' => $model->id,'status' => $model->status], [
+                              'class' => 'btn-icon',
+                              'data' => [
+                                'confirm' => $confirmMessage,
+                                'method' => 'post',
+                              ],
+                            ]);
+                          },
+                        ],
+                      ],
+                    ],
+                  ]);
+                  ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="Dash/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>

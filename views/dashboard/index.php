@@ -723,9 +723,6 @@ use yii\helpers\Html;
             </div>
           </div>
         </div>
-        <div class="py-6 px-6 text-center">
-          <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
-        </div>
       </div>
     </div>
   </div>
