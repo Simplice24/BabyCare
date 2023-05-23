@@ -68,11 +68,15 @@ class AuthItemController extends Controller
     public function actionView($name)
     {
         $authItems = AuthItem::find()->where(['type' => 1])->all();
+        $authItemChildren = AuthItemChild::find()->where(['parent' => $name])->all();
+
         return $this->render('view', [
             'model' => $this->findModel($name),
             'authItems' => $authItems,
+            'authItemChildren' => $authItemChildren,
         ]);
     }
+
 
     public function actionAssign()
     {
