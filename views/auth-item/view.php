@@ -312,34 +312,41 @@ use yii\helpers\Url;
             </div>
         </div>
         <?php if ($model->type == 1): ?>
-  <div class="row">
-    <div class="col-lg-12 d-flex align-items-stretch">
-      <div class="card w-100">
-        <div class="card-body p-4">
-          <div style="max-height: 500px;">
-            <?= GridView::widget([
-              'dataProvider' => new \yii\data\ArrayDataProvider([
-                'allModels' => $authItemChildren,
-              ]),
-              'columns' => [
-                'child',
-                [
-                  'class' => 'yii\grid\ActionColumn',
-                  'template' => '{revoke}',
-                  'buttons' => [
-                    'revoke' => function ($url, $model, $key) {
-                      return Html::a('<i class="fas fa-times"></i>', ['revoke', 'name' => $model->child], ['class' => 'btn btn-danger']);
-                    },
-                  ],
-                ],
-              ],
-            ]) ?>
+          <div class="row">
+            <div class="col-lg-12 d-flex align-items-stretch">
+              <div class="card w-100">
+                <div class="card-body p-4">
+                  <div style="max-height: 500px;">
+                    <?= GridView::widget([
+                      'dataProvider' => new \yii\data\ArrayDataProvider([
+                        'allModels' => $authItemChildren,
+                      ]),
+                      'columns' => [
+                        [
+                            'attribute' => 'child',
+                            'label' => 'Permissions',
+                        ],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '{revoke}',
+                            'buttons' => [
+                                'revoke' => function ($url, $model, $key) {
+                                    return Html::a(
+                                        Html::tag('i', '', ['class' => 'fas fa-times text-danger', 'title' => 'Revoke']),
+                                        ['revoke', 'name' => $model->child],
+                                        ['class' => 'btn-icon']
+                                    );
+                                },
+                            ],
+                        ],
+                    ],            
+                    ]) ?>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<?php endif; ?>
+        <?php endif; ?>
 
       </div>            
 

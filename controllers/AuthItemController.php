@@ -77,6 +77,19 @@ class AuthItemController extends Controller
         ]);
     }
 
+    public function actionRevoke($name)
+    {
+        $authItemChild = AuthItemChild::findOne(['child' => $name]);
+        
+        if ($authItemChild !== null) {
+            $authItemChild->delete();
+            return $this->redirect(Yii::$app->request->referrer);
+
+        } 
+        
+    }
+
+
 
     public function actionAssign()
     {
