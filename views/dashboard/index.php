@@ -186,7 +186,7 @@ use yii\helpers\Html;
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
             <div class="dropdown">
-                <button class="dropbtn">Language</button>
+                <button class="dropbtn">Languages</button>
                 <div class="dropdown-content">
                 <a href="#">English</a>
                 <a href="#">French</a>
