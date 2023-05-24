@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\AuthItem;
+use app\models\AuthItemChild;
 use app\models\AuthItemSearch;
 use app\models\User;
 use yii\web\Controller;
@@ -66,10 +67,29 @@ class AuthItemController extends Controller
      */
     public function actionView($name)
     {
+        $authItems = AuthItem::find()->where(['type' => 1])->all();
         return $this->render('view', [
             'model' => $this->findModel($name),
+            'authItems' => $authItems,
         ]);
     }
+
+    public function actionAssign()
+    {
+        $request = Yii::$app->request;
+
+        // Retrieve the submitted role and permission values
+        $role = $request->post('role');
+        $permission = $request->post('permission');
+
+        // Create a new AuthItemChild model and assign the values
+        $authItemChild = new AuthItemChild();
+        $authItemChild->parent = $role;
+        $authItemChild->child = $permission;
+        $authItemChild->save();
+        return $this->redirect(['index']);
+        
+    }    
 
     /**
      * Creates a new AuthItem model.

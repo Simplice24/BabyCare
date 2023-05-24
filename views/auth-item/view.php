@@ -259,7 +259,7 @@ use yii\helpers\Url;
                 <p>
                     <?= Html::a('Update', ['update', 'name' => $model->name], ['class' => 'btn btn-primary']) ?>
                     <?php if ($model->type == 2): ?>
-                        <?= Html::a('Assign', ['assign', 'name' => $model->name], ['class' => 'btn btn-warning']) ?>
+                    <button class="btn btn-warning" id="assign">Assign</button>
                     <?php endif; ?>
                     <?= Html::a('Delete', ['delete', 'name' => $model->name], [
                         'class' => 'btn btn-danger',
@@ -286,7 +286,31 @@ use yii\helpers\Url;
             </div>
           </div>
         </div>
-      </div>
+        <div class="row" id="role" style="display: none;">
+            <div class="col-lg-12 d-flex align-items-stretch">
+              <div class="card w-100">
+                <div class="card-body">
+                  <form action="<?= Yii::$app->urlManager->createUrl(['auth-item/assign']) ?>" method="post">
+                    <!-- CSRF token -->
+                    <input type="hidden" name="<?= Yii::$app->request->csrfParam ?>" value="<?= Yii::$app->request->getCsrfToken() ?>">
+
+                    <div class="mb-3">
+                      <label for="disabledSelect" class="form-label">Select Role</label>
+                      <select id="disabledSelect" class="form-select" name="role">
+                        <option>Select a role to get privileges of <?= $model->name ?> permission</option>
+                        <?php foreach ($authItems as $authItem): ?>
+                          <option value="<?= $authItem->name ?>"><?= $authItem->name ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <input type="hidden" name="permission" value="<?= $model->name ?>">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>            
 
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="Dash/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -296,6 +320,14 @@ use yii\helpers\Url;
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('#assign').click(function() {
+      $('#role').css('display', 'block');
+    });
+  });
+  </script>
 </body>
 <script>
 // Optional: Close the dropdown menu if the user clicks outside of it
