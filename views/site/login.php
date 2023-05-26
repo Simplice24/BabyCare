@@ -41,7 +41,7 @@ use yii\widgets\ActiveForm;
                   </div>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <?= $form->field($model, 'password')->passwordInput(['autofocus' => true,'class'=>'form-control form-control-lg','placeholder'=>'Password']) ?>
+                    <?= $form->field($model, 'password')->label(false)->passwordInput(['class'=>'form-control' , 'aria-describedBy' => 'textHelp']) ?>
                   </div>
                   <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="form-check">
