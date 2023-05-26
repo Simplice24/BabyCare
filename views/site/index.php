@@ -1,8 +1,3 @@
-<?php
-
-use yii\helpers\Html;
-
-?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -56,12 +51,6 @@ use yii\helpers\Html;
                      <li class="nav-item">
                         <a class="nav-link" href="">Services</a>
                      </li>
-                     <?= Html::a('Logout', ['site/logout'], [
-                        'class' => 'nav-link',
-                        'data' => [
-                           'method' => 'post',
-                        ],
-                     ]) ?>
                      <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>">Login</a>
                      </li>

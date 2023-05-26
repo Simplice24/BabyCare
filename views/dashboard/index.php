@@ -1,5 +1,6 @@
 <?php
 /** @var yii\web\View $this */
+use yii\helpers\Html;
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,6 +11,11 @@
   <title>Baby Care</title>
   <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
   <link rel="stylesheet" href="css/styles.min.css" />
+  <style>
+    .username {
+        margin-top: 15px; /* Adjust the value as per your requirements */
+    }
+  </style>
 </head>
 
 <body>
@@ -165,7 +171,10 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
+              <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a> -->
+              <?php if (!Yii::$app->user->isGuest): ?>
+                <p class="username"><?= Yii::$app->user->identity->username ?></p>
+              <?php endif; ?>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -185,7 +194,7 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <?= Html::a('Logout', ['site/logout'], ['class' => 'btn btn-outline-primary mx-3 mt-2 d-block', 'data' => ['method' => 'post']]) ?>
                   </div>
                 </div>
               </li>
