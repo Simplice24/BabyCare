@@ -77,7 +77,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $this->redirect('?r=dashboard');
+            return $this->redirect(['/dashboard/index']);
         }
 
         $model->password = '';
