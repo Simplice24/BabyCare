@@ -10,10 +10,55 @@ use yii\helpers\Html;
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Baby Care</title>
   <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...your-integrity-hash...==" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/styles.min.css" />
   <style>
     .username {
         margin-top: 15px; /* Adjust the value as per your requirements */
+    }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    }
+
+    .dropbtn {
+    background-color: transparent;
+    color: gray;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    }
+
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    width: 200px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 8px;
+    z-index: 1;
+    }
+
+    .dropdown-content a {
+    color: gray;
+    display: block;
+    padding: 6px 0;
+    text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+    background-color: rgba(135, 206, 250, 0.1);;
+    width: 100%;
+    }
+
+    .dropdown:hover .dropdown-content {
+    display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+    background-color: transparent;
     }
   </style>
 </head>
@@ -46,105 +91,74 @@ use yii\helpers\Html;
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
-                <span class="hide-menu">Dashboard</span>
+                <span class="hide-menu">Home</span>
               </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">UI COMPONENTS</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-article"></i>
+                  <i class="fas fa-book"></i>
                 </span>
-                <span class="hide-menu">Buttons</span>
+                <span class="hide-menu">Bookings</span>
               </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-alert-circle"></i>
+                  <i class="fas fa-child"></i>
                 </span>
-                <span class="hide-menu">Alerts</span>
+                <span class="hide-menu">Babysitters</span>
               </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-cards"></i>
+                  <i class="fas fa-bell"></i>
                 </span>
-                <span class="hide-menu">Card</span>
+                <span class="hide-menu">Notifications</span>
               </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-file-description"></i>
+                   <i class="fas fa-comments"></i>
                 </span>
-                <span class="hide-menu">Forms</span>
+                <span class="hide-menu">Reviews</span>
               </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="fas fa-undo"></i>
                 </span>
-                <span class="hide-menu">Typography</span>
+                <span class="hide-menu">Cancellation/Refund</span>
               </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">AUTH</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-login"></i>
+                   <i class="fas fa-comment"></i>
                 </span>
-                <span class="hide-menu">Login</span>
+                <span class="hide-menu">Feedback/Support</span>
               </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-user-plus"></i>
+                   <i class="fas fa-calendar-alt"></i>
                 </span>
-                <span class="hide-menu">Register</span>
+                <span class="hide-menu">Availability Calendar</span>
               </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">EXTRA</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-mood-happy"></i>
+                  <i class="fas fa-heart"></i>
                 </span>
-                <span class="hide-menu">Icons</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-aperture"></i>
-                </span>
-                <span class="hide-menu">Sample Page</span>
+                <span class="hide-menu">Favorites</span>
               </a>
             </li>
           </ul>
-          <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
-            <div class="d-flex">
-              <div class="unlimited-access-title me-3">
-                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
-                <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
-              </div>
-              <div class="unlimited-access-img">
-                <img src="Dash/assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
         </nav>
         <!-- End Sidebar navigation -->
       </div>
@@ -171,7 +185,13 @@ use yii\helpers\Html;
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a> -->
+            <div class="dropdown">
+                <button class="dropbtn">Language</button>
+                <div class="dropdown-content">
+                <a href="#">English</a>
+                <a href="#">French</a>
+                </div>
+            </div>  
               <?php if (!Yii::$app->user->isGuest): ?>
                 <p class="username"><?= Yii::$app->user->identity->username ?></p>
               <?php endif; ?>
@@ -549,7 +569,7 @@ use yii\helpers\Html;
           </div>
         </div>
         <div class="py-6 px-6 text-center">
-          <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank" class="pe-1 text-primary text-decoration-underline">AdminMart.com</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
+          <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
         </div>
       </div>
     </div>
@@ -562,5 +582,19 @@ use yii\helpers\Html;
   <script src="Dash/assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="Dash/assets/js/dashboard.js"></script>
 </body>
-
+<script>
+// Optional: Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.style.display === 'block') {
+        openDropdown.style.display = 'none';
+      }
+    }
+  }
+};
+</script>
 </html>
