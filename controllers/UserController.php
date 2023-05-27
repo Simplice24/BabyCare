@@ -68,7 +68,7 @@ class UserController extends Controller
     public function actionBan($id, $status)
     {
         $user = User::findOne($id);
-        if ($status === 10) {
+        if ($status == 10) {
             $user->status = 11; // Set the banned status code
         } else {
             $user->status = 10; // Set the unbanned status code
