@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
 use yii\base\Model;
+use app\models\AuthItem;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -45,6 +46,8 @@ class UserController extends Controller
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
+        $permissions = AuthItem::find()->where(['type' => 2])->all();
+        $roles = AuthItem::find()->where(['type' => 1])->all();
 
         $recentRegistrations = User::find()
         ->orderBy(['id' => SORT_DESC])
@@ -57,6 +60,8 @@ class UserController extends Controller
             'dataProvider' => $dataProvider,
             'userProfileImage' => $userProfileImage,
             'recentRegistrations' => $recentRegistrations,
+            'roles' => $roles,
+            'permissions' => $permissions,
         ]);
     }
 

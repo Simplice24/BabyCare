@@ -238,30 +238,30 @@ use yii\grid\ActionColumn;
       </header>
       <!--  Header End -->
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch">
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <div class="mb-4">
-                  <h5 class="card-title fw-semibold">Recent Registrations</h5>
-                </div>
-                <div class="card-body p-4 table-responsive" style="max-height: 550px;">
-                <ul class="timeline-widget mb-0 position-relative mb-n5">
-                    <?php foreach ($recentRegistrations as $registration) : ?>
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time text-dark flex-shrink-0 text-end"><?php echo date('Y-m-d H:i', $registration['created_at']); ?></div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
-                                <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n1"><?php echo $registration['fullname']; ?> who is <?php echo $registration['role']; ?> is registered </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+          <div class="row">
+              <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="card w-100">
+                  <div class="card-body p-4">
+                    <div class="mb-4">
+                      <h5 class="card-title fw-semibold">Recent Registrations</h5>
+                    </div>
+                    <div class="card-body p-4 table-responsive" style="max-height: 550px;">
+                    <ul class="timeline-widget mb-0 position-relative mb-n5">
+                        <?php foreach ($recentRegistrations as $registration) : ?>
+                            <li class="timeline-item d-flex position-relative overflow-hidden">
+                                <div class="timeline-time text-dark flex-shrink-0 text-end"><?php echo date('Y-m-d H:i', $registration['created_at']); ?></div>
+                                <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                                    <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+                                    <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                                </div>
+                                <div class="timeline-desc fs-3 text-dark mt-n1"><?php echo $registration['fullname']; ?> who is <?php echo $registration['role']; ?> is registered </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
               <div class="col-lg-8 d-flex align-items-stretch">
                 <div class="card w-100">
                       <div class="card-body p-4">
@@ -364,6 +364,7 @@ use yii\grid\ActionColumn;
                     </div>
                 </div>
               </div>
+
               <div class="py-6 px-6 text-center">
                 <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
               </div>
