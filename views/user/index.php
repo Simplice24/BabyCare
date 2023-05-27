@@ -341,14 +341,19 @@ use yii\grid\ActionColumn;
                                     ]);
                                   },
                                   'ban' => function ($url, $model, $key) {
-                                    return Html::a('<i class="fas fa-ban"></i>', ['user/ban', 'id' => $model->id], [
+                                    $iconClass = ($model->status === 10) ? 'fas fa-ban text-danger' : 'fas fa-ban text-success';
+                                    $confirmMessage = ($model->status === 10) ? 'Are you sure you want to ban this user account?' : 'Are you sure you want to perform this action?';
+                                
+                                    return Html::a('<i class="' . $iconClass . '"></i>', ['user/ban', 'id' => $model->id,'status' => $model->status], [
                                         'class' => 'btn-icon',
                                         'data' => [
-                                            'confirm' => 'Are you sure you want to burn this user account?',
+                                            'confirm' => $confirmMessage,
                                             'method' => 'post',
                                         ],
                                     ]);
-                                  },
+                                },
+                                
+                                
                                 ],
                               ],
                             ],

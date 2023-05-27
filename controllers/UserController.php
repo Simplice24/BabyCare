@@ -60,13 +60,20 @@ class UserController extends Controller
         ]);
     }
 
-    public function actionBan($id)
+    public function actionBan($id, $status)
     {
         $user = User::findOne($id);
-        $user->status = 11; // Set the banned status code
-        $user->updateAttributes(['status']);
+        if ($status === 10) {
+            $user->status = 11; // Set the banned status code
+        } else {
+            $user->status = 10; // Set the unbanned status code
+        }
+        
+        $user->updateAttributes(['status' => $user->status]);
+        
         return $this->redirect(['index']);
     }
+
 
 
     /**
