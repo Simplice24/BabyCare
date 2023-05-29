@@ -43,10 +43,10 @@
             <div class="collapse navbar-collapse" id="navbarsExample01">
                <ul class="navbar-nav mr-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="#">For parents</a>
+                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['user/create', 'role' => 'Parent']) ?>">For parents</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">For babysitters</a>
+                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['user/create', 'role' => 'Babysitter']) ?>">For babysitters</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="#">About us</a>
@@ -54,9 +54,9 @@
                      <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                      </li>
-                     <li class="nav-item">
+                     <!-- <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['user/create'])?>">Register</a>
-                     </li>
+                     </li> -->
                      <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>">Login</a>
                      </li>

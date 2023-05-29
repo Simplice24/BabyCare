@@ -63,7 +63,7 @@ use yii\widgets\ActiveForm;
                     <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
                     <a class="text-primary fw-bold ms-2" href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>">Sign In</a>
                   </div>
-                  <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
               </div>
             </div>
           </div>

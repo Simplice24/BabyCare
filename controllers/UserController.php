@@ -92,14 +92,14 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-
+        $role = Yii::$app->request->get('role');
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) ) {
                 if ($this->isUsernameUnique($model->username) && $this->isEmailUnique($model->email)){
                 $model->auth_key = Yii::$app->security->generateRandomString();
                 $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
-                $model->role = "Guest";
+                $model->role = $role;
                 $model->status = 10;
                 if ($model->password_hash === $model->confirm_password) {
                     $model->password_hash = Yii::$app->security->generatePasswordHash($model->password_hash);
