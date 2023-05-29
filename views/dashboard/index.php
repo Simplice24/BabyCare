@@ -469,7 +469,7 @@ use yii\helpers\Html;
             <div class="card w-100">
               <div class="card-body p-4">
                 <div class="mb-4">
-                  <h5 class="card-title fw-semibold">Recent Transactions</h5>
+                  <h5 class="card-title fw-semibold">Recent Notifications</h5>
                 </div>
                 <ul class="timeline-widget mb-0 position-relative mb-n5">
                   <li class="timeline-item d-flex position-relative overflow-hidden">
