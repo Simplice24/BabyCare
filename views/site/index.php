@@ -55,7 +55,7 @@
                         <a class="nav-link" href="#">Contact Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['site/register'])?>">Register</a>
+                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['user/create'])?>">Register</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>">Login</a>
