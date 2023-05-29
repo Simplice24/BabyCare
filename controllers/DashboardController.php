@@ -3,6 +3,7 @@
 namespace app\controllers;
 use yii\filters\AccessControl;
 use Yii;
+use app\models\User;
 
 class DashboardController extends \yii\web\Controller
 {
@@ -28,7 +29,10 @@ class DashboardController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
+        return $this->render('index',['userProfileImage' => $userProfileImage]);
     }
 
 }
