@@ -43,24 +43,26 @@
             <div class="collapse navbar-collapse" id="navbarsExample01">
                <ul class="navbar-nav mr-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="">Home</a>
+                        <a class="nav-link" href="#">For parents</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="">About</a>
+                        <a class="nav-link" href="#">For babysitters</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="">Services</a>
+                        <a class="nav-link" href="#">About us</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['site/register'])?>">Register</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>">Login</a>
                      </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                     </li>
                </ul>
             </div>
          </nav>
-
          </div>
          <!--banner section start -->
          <div class="banner_section layout_padding">
@@ -71,7 +73,7 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="taital_main">
-                                 <h4 class="banner_taital">Web Agency</h4>
+                                 <h4 class="banner_taital">Baby Care</h4>
                                  <p class="banner_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem I</p>
                                  <div class="read_bt"><a href="#">Read More</a></div>
                               </div>

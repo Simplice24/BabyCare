@@ -31,6 +31,7 @@ class AppAsset extends AssetBundle
         'Dash/assets/css/styles.css',
         'Dash/assets/css/styles.min.css',
         'Dash/assets/css/icons/tabler-icons/tabler-icons.css',
+
     ];
     public $js = [
         'bootstrap.js',

@@ -12,6 +12,7 @@ use yii\helpers\Html;
   <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...your-integrity-hash...==" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/styles.min.css" />
+  <link rel="stylesheet" href="Dash/assets/css/styles.min.css" />
   <style>
     .username {
         margin-top: 15px; /* Adjust the value as per your requirements */
@@ -722,11 +723,11 @@ use yii\helpers\Html;
   </div>
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="Dash/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="Dash/assets/js/sidebarmenu.js"></script>
-  <script src="Dash/assets/js/app.min.js"></script>
+  <script src="../assets/js/sidebarmenu.js"></script>
+  <script src="../assets/js/app.min.js"></script>
   <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="Dash/assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="Dash/assets/js/dashboard.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
 </body>
 <script>
 // Optional: Close the dropdown menu if the user clicks outside of it
