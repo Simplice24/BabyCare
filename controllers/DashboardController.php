@@ -32,7 +32,9 @@ class DashboardController extends \yii\web\Controller
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
-        return $this->render('index',['userProfileImage' => $userProfileImage]);
+        $parents= User::find()->where(['role' => 'Parent'])->count();
+        $babysitters= User::find()->where(['role' => 'Babysitter'])->count();
+        return $this->render('index',['userProfileImage' => $userProfileImage, 'babysitters' => $babysitters,'parents' => $parents]);
     }
 
 }
