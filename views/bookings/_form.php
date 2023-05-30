@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
       <div class="header_section">
          <div class="container">
          <nav class="navbar navbar-dark bg-dark">
-            <a class="logo" href="index.html"><img src="images/favicon.png"></a>
+            <a class="logo" href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>"><img src="images/favicon.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
             </button>
@@ -83,7 +83,7 @@ use yii\widgets\ActiveForm;
                         <a class="nav-link" id="book-link" href="#">Book a babysitter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="register-link" href="#">Register</a>
+                        <a class="nav-link"  href="<?= Yii::$app->urlManager->createUrl(['user/create', 'role' => 'Parent'])?>">Register</a>
                     </li>
                     </ul>
                 </div>
@@ -97,16 +97,16 @@ use yii\widgets\ActiveForm;
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Age range</label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-5 col-form-label">Age range</label>
+                                            <div class="col-sm-7">
                                                 <?= $form->field($model, 'babysitter_age_range')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                             </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Languages spoken</label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-5 col-form-label">Languages spoken</label>
+                                            <div class="col-sm-7">
                                                 <?= $form->field($model, 'languages_spoken')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                             </div>
                                             </div>
@@ -115,16 +115,16 @@ use yii\widgets\ActiveForm;
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Number of babysitters</label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-5 col-form-label">Number of babysitters</label>
+                                            <div class="col-sm-7">
                                                 <?= $form->field($model, 'number_of_babysitters')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                             </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Email</label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-5 col-form-label">Email</label>
+                                            <div class="col-sm-7">
                                                 <?= $form->field($model, 'email')->label(false)->label(false)->textInput(['type' => 'email','class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                             </div>
                                             </div>
@@ -133,16 +133,16 @@ use yii\widgets\ActiveForm;
                                     <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Gender</label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-5 col-form-label">Gender</label>
+                                            <div class="col-sm-7">
                                                 <?= $form->field($model, 'gender')->label(false)->dropDownList(['' => '--Select gender--', 'Male' => 'Male', 'Female' => 'Female'], ['class' => 'form-control','aria-describedby' => 'textHelp']) ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                        <label class="col-sm-6 col-form-label">Starting time</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-sm-5 col-form-label">Starting time</label>
+                                        <div class="col-sm-7">
                                             <?= $form->field($model, 'starting_time')->label(false)->textInput(['type' => 'time', 'class' => 'form-control','aria-describedby' => 'textHelp']) ?>
                                         </div>
                                         </div>
@@ -151,16 +151,16 @@ use yii\widgets\ActiveForm;
                                     <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                        <label class="col-sm-6 col-form-label">Date</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-sm-5 col-form-label">Date</label>
+                                        <div class="col-sm-7">
                                             <?= $form->field($model, 'date')->label(false)->textInput(['type' => 'date', 'class' => 'form-control','aria-describedby' => 'textHelp']) ?>
                                         </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                        <label class="col-sm-6 col-form-label">Ending time</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-sm-5 col-form-label">Ending time</label>
+                                        <div class="col-sm-7">
                                             <?= $form->field($model, 'ending_time')->label(false)->textInput(['type' => 'time', 'class' => 'form-control','aria-describedby' => 'textHelp']) ?>
                                         </div>
                                         </div>
@@ -169,16 +169,16 @@ use yii\widgets\ActiveForm;
                                     <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                        <label class="col-sm-6 col-form-label">Address</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-sm-5 col-form-label">Address</label>
+                                        <div class="col-sm-7">
                                             <?= $form->field($model, 'address')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                         </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                        <label class="col-sm-6 col-form-label">Phone</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-sm-5 col-form-label">Phone</label>
+                                        <div class="col-sm-7">
                                             <?= $form->field($model, 'phone_number')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                         </div>
                                         </div>
@@ -195,7 +195,6 @@ use yii\widgets\ActiveForm;
                     </div>
                     <div id="registration-form" style="display: none;">
                     <!-- Registration form content here -->
-                    <h3>Registration Form</h3>
                     <form>
                         <!-- Your registration form fields go here -->
                     </form>
