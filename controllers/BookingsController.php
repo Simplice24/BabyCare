@@ -76,8 +76,7 @@ class BookingsController extends Controller
                 $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->save();
                 Yii::$app->session->setFlash('success', 'Your request is successfully submitted!');
-                return $this->redirect(Yii::$app->request->referrer);
-
+                return $this->redirect(['create']);
             }
         } else {
             $model->loadDefaultValues();
