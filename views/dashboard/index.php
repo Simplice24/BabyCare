@@ -92,7 +92,7 @@ use yii\helpers\Html;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['bookings/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-book"></i>
                 </span>
@@ -250,7 +250,7 @@ use yii\helpers\Html;
                     <h5 class="card-title mb-9 fw-semibold">Bookings</h5>
                     <div class="row align-items-center">
                       <div class="col-8">
-                        <h4 class="fw-semibold mb-3">0</h4>
+                        <h4 class="fw-semibold mb-3"><?= $bookings; ?></h4>
                         <div class="d-flex align-items-center mb-3">
                           <span
                             class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
