@@ -7,6 +7,7 @@ use app\models\BookingsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * BookingsController implements the CRUD actions for Bookings model.
@@ -70,8 +71,13 @@ class BookingsController extends Controller
         $model = new Bookings();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->save();
+                Yii::$app->session->setFlash('success', 'Your request is successfully submitted!');
+                return $this->redirect(Yii::$app->request->referrer);
+
             }
         } else {
             $model->loadDefaultValues();

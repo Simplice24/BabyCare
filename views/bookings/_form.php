@@ -90,6 +90,11 @@ use yii\widgets\ActiveForm;
                 <div class="card-body">
                     <div id="booking-form">
                     <!-- Booking form content here -->
+                    <?php if (Yii::$app->session->hasFlash('success')): ?>
+                        <div class="alert alert-success">
+                            <?= Yii::$app->session->getFlash('success') ?>
+                        </div>
+                    <?php endif; ?>
                     <?php $form = ActiveForm::begin(); ?>
                         <div class="col-12 grid-margin">
                                 <div class="card-body">
