@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarsExample01">
                <ul class="navbar-nav mr-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['user/create', 'role' => 'Parent']) ?>">For parents</a>
+                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['bookings/create', 'role' => 'Parent']) ?>">For parents</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['user/create', 'role' => 'Babysitter']) ?>">For babysitters</a>
