@@ -66,6 +66,9 @@ use yii\grid\ActionColumn;
     .table-height {
     height: 100%;
     }
+    table.inputs td {
+    padding: 5px;
+    }
   </style>
 </head>
 
@@ -294,10 +297,22 @@ use yii\grid\ActionColumn;
                 <div class="card w-100">
                       <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">All Bookings</h5>
+                        <table class="inputs">
+                          <tbody><tr>
+                              <td>Starting date:</td>
+                              <td><input type="date" id="min" name="min"></td>
+                          </tr>
+                          <tr>
+                              <td>Ending date:</td>
+                              <td><input type="date" id="max" name="max"></td>
+                          </tr>
+                          </tbody>
+                        </table>
                         <div class="table-responsive" style="max-height: 450px;">
                           <?php
                           echo \yii\grid\GridView::widget([
                             'dataProvider' => $dataProvider,
+                            'filterModel' => $searchModel, // Add your search model here
                             'options' => [
                               'class' => 'table text-nowrap mb-0 align-middle table-height',
                             ],
@@ -482,6 +497,8 @@ use yii\grid\ActionColumn;
   <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> 
 </body>
 <script>
 // Optional: Close the dropdown menu if the user clicks outside of it
