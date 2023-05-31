@@ -44,14 +44,22 @@ class BookingsController extends Controller
     $user_id = Yii::$app->user->id;
     $userDetails = User::findOne($user_id);
     $userProfileImage = $userDetails->profile;
+
+    // Fetch the last five bookings
+    $recentBookings = Bookings::find()
+    ->orderBy(['id' => SORT_DESC])
+    ->select(['created_at', 'number_of_babysitters','languages_spoken','babysitter_age_range'])
+    ->limit(6)
+    ->all();
     
     $dataProvider = $searchModel->search($this->request->queryParams);
     $dataProvider->pagination->pageSize = 10; // Customize the number of records per page
-
+    
     return $this->render('index', [
         'searchModel' => $searchModel,
         'dataProvider' => $dataProvider,
         'userProfileImage' => $userProfileImage,
+        'recentBookings' => $recentBookings,
     ]);
 }
 
