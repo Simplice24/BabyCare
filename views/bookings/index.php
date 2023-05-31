@@ -15,6 +15,7 @@ use yii\grid\ActionColumn;
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...your-integrity-hash...==" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/styles.min.css" />
   <link rel="stylesheet" href="Dash/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
   <style>
     .username {
         margin-top: 15px; /* Adjust the value as per your requirements */
@@ -311,6 +312,7 @@ use yii\grid\ActionColumn;
                         <div class="table-responsive" style="max-height: 450px;">
                           <?php
                           echo \yii\grid\GridView::widget([
+                            'id' => 'my-gridview',
                             'dataProvider' => $dataProvider,
                             'filterModel' => $searchModel, // Add your search model here
                             'options' => [
@@ -500,8 +502,7 @@ use yii\grid\ActionColumn;
   <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> 
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 <script>
 // Optional: Close the dropdown menu if the user clicks outside of it
