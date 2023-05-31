@@ -297,7 +297,7 @@ use yii\grid\ActionColumn;
                 <div class="card w-100">
                       <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">All Bookings</h5>
-                        <table class="inputs">
+                        <!-- <table class="inputs">
                           <tbody><tr>
                               <td>Starting date:</td>
                               <td><input type="date" id="min" name="min"></td>
@@ -307,7 +307,7 @@ use yii\grid\ActionColumn;
                               <td><input type="date" id="max" name="max"></td>
                           </tr>
                           </tbody>
-                        </table>
+                        </table> -->
                         <div class="table-responsive" style="max-height: 450px;">
                           <?php
                           echo \yii\grid\GridView::widget([
@@ -337,7 +337,8 @@ use yii\grid\ActionColumn;
                                 'format' => 'raw',
                               ],
                               [
-                                'attribute' => 'babysitters',
+                                'attribute' => 'number_of_babysitters',
+                                'header' => 'babysitters',
                                 'header' => '<h6 class="fw-semibold mb-0">Babysitters</h6>',
                                 'value' => function ($model) {
                                   // Modify this to return the appropriate value for the 'babysitters' attribute of your model
@@ -346,7 +347,8 @@ use yii\grid\ActionColumn;
                                 'format' => 'raw',
                               ],
                               [
-                                'attribute' => 'languages',
+                                'attribute' => 'languages_spoken',
+                                'header' => 'languages',
                                 'header' => '<h6 class="fw-semibold mb-0">Languages</h6>',
                                 'value' => function ($model) {
                                   // Modify this to return the appropriate value for the 'languages' attribute of your model
@@ -355,7 +357,8 @@ use yii\grid\ActionColumn;
                                 'format' => 'raw',
                               ],
                               [
-                                'attribute' => 'age_range',
+                                'attribute' => 'babysitter_age_range',
+                                'header' => 'Age range',
                                 'header' => '<h6 class="fw-semibold mb-0">Age range</h6>',
                                 'value' => function ($model) {
                                   // Modify this to return the appropriate value for the 'age_range' attribute of your model
