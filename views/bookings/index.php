@@ -97,7 +97,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['bookings/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-book"></i>
                 </span>
@@ -105,7 +105,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['babysitters/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-child"></i>
                 </span>
@@ -113,7 +113,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['notifications/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-bell"></i>
                 </span>
@@ -121,7 +121,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['reviews/index']) ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-comments"></i>
                 </span>
@@ -129,7 +129,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['cancellations/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-undo"></i>
                 </span>
@@ -137,7 +137,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['feedback/index']) ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-comment"></i>
                 </span>
@@ -145,7 +145,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['availability/index']) ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-calendar-alt"></i>
                 </span>
@@ -153,7 +153,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['favorites/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-heart"></i>
                 </span>
@@ -290,190 +290,190 @@ use yii\grid\ActionColumn;
               </div>
             </div>
           </div>
-          <div class="col-lg-9 d-flex align-items-stretch">
-    <div class="card w-100">
-        <div class="card-body p-4">
-            <h5 class="card-title fw-semibold mb-4">All Bookings</h5>
-            <div class="table-responsive" style="height: 100%;">
-                <?php
-                echo GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'options' => [
-                        'class' => 'table text-nowrap mb-0 align-middle table-height',
-                    ],
-                    'tableOptions' => [
-                        'class' => 'table text-nowrap mb-0 align-middle',
-                    ],
-                    'headerRowOptions' => [
-                        'class' => 'text-dark fs-4',
-                    ],
-                    'columns' => [
-                        [
-                            'class' => 'yii\grid\SerialColumn',
-                            'header' => '<h6 class="fw-semibold mb-0">#</h6>',
-                        ],
-                        [
-                            'attribute' => 'date',
-                            'header' => '<h6 class="fw-semibold mb-0">Date</h6>',
-                            'value' => function ($model) {
-                                // Modify this to return the appropriate value for the 'date' attribute of your model
-                                return $model->date;
-                            },
-                            'format' => 'raw',
-                        ],
-                        [
-                            'attribute' => 'babysitters',
-                            'header' => '<h6 class="fw-semibold mb-0">Babysitters</h6>',
-                            'value' => function ($model) {
-                                // Modify this to return the appropriate value for the 'babysitters' attribute of your model
-                                return $model->number_of_babysitters;
-                            },
-                            'format' => 'raw',
-                        ],
-                        [
-                            'attribute' => 'languages',
-                            'header' => '<h6 class="fw-semibold mb-0">Languages</h6>',
-                            'value' => function ($model) {
-                                // Modify this to return the appropriate value for the 'languages' attribute of your model
-                                return $model->languages_spoken;
-                            },
-                            'format' => 'raw',
-                        ],
-                        [
-                            'attribute' => 'age_range',
-                            'header' => '<h6 class="fw-semibold mb-0">Age range</h6>',
-                            'value' => function ($model) {
-                                // Modify this to return the appropriate value for the 'age_range' attribute of your model
-                                return $model->babysitter_age_range;
-                            },
-                            'format' => 'raw',
-                        ],
-                        [
-                            'attribute' => 'gender',
-                            'header' => '<h6 class="fw-semibold mb-0">Gender</h6>',
-                            'value' => function ($model) {
-                                // Modify this to return the appropriate value for the 'gender' attribute of your model
-                                return $model->gender;
-                            },
-                            'format' => 'raw',
-                        ],
-                        [
-                            'class' => 'yii\grid\ActionColumn',
-                            'header' => '',
-                            'template' => '{view} {update} {delete}',
-                            'buttons' => [
-                                'view' => function ($url, $model) {
-                                    return Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
-                                },
-                                'update' => function ($url, $model) {
-                                    return Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn-icon']);
-                                },
-                                'delete' => function ($url, $model) {
-                                    return Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
-                                        'class' => 'btn-icon',
-                                        'data' => [
-                                            'confirm' => 'Are you sure you want to delete this item?',
-                                            'method' => 'post',
-                                        ],
-                                    ]);
-                                },
+              <div class="col-lg-9 d-flex align-items-stretch">
+                <div class="card w-100">
+                      <div class="card-body p-4">
+                        <h5 class="card-title fw-semibold mb-4">All Bookings</h5>
+                        <div class="table-responsive" style="max-height: 450px;">
+                          <?php
+                          echo \yii\grid\GridView::widget([
+                            'dataProvider' => $dataProvider,
+                            'options' => [
+                              'class' => 'table text-nowrap mb-0 align-middle table-height',
                             ],
-                        ],
-                    ],
-                ]);
-                ?>  
+                            'tableOptions' => [
+                              'class' => 'table text-nowrap mb-0 align-middle',
+                            ],
+                            'headerRowOptions' => [
+                              'class' => 'text-dark fs-4',
+                            ],
+                            'columns' => [
+                              [
+                                'class' => 'yii\grid\SerialColumn',
+                                'header' => '<h6 class="fw-semibold mb-0">#</h6>',
+                              ],
+                              [
+                                'attribute' => 'date',
+                                'header' => '<h6 class="fw-semibold mb-0">Date</h6>',
+                                'value' => function ($model) {
+                                  // Modify this to return the appropriate value for the 'date' attribute of your model
+                                  return $model->date;
+                                },
+                                'format' => 'raw',
+                              ],
+                              [
+                                'attribute' => 'babysitters',
+                                'header' => '<h6 class="fw-semibold mb-0">Babysitters</h6>',
+                                'value' => function ($model) {
+                                  // Modify this to return the appropriate value for the 'babysitters' attribute of your model
+                                  return $model->number_of_babysitters;
+                                },
+                                'format' => 'raw',
+                              ],
+                              [
+                                'attribute' => 'languages',
+                                'header' => '<h6 class="fw-semibold mb-0">Languages</h6>',
+                                'value' => function ($model) {
+                                  // Modify this to return the appropriate value for the 'languages' attribute of your model
+                                  return $model->languages_spoken;
+                                },
+                                'format' => 'raw',
+                              ],
+                              [
+                                'attribute' => 'age_range',
+                                'header' => '<h6 class="fw-semibold mb-0">Age range</h6>',
+                                'value' => function ($model) {
+                                  // Modify this to return the appropriate value for the 'age_range' attribute of your model
+                                  return $model->babysitter_age_range;
+                                },
+                                'format' => 'raw',
+                              ],
+                              [
+                                'attribute' => 'gender',
+                                'header' => '<h6 class="fw-semibold mb-0">Gender</h6>',
+                                'value' => function ($model) {
+                                  // Modify this to return the appropriate value for the 'gender' attribute of your model
+                                  return $model->gender;
+                                },
+                                'format' => 'raw',
+                              ],
+                              [
+                                'class' => 'yii\grid\ActionColumn',
+                                'header' => '',
+                                'template' => '{view} {update} {delete}',
+                                'buttons' => [
+                                  'view' => function ($url, $model) {
+                                    return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
+                                  },
+                                  'update' => function ($url, $model) {
+                                    return \yii\helpers\Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn-icon']);
+                                  },
+                                  'delete' => function ($url, $model) {
+                                    return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
+                                      'class' => 'btn-icon',
+                                      'data' => [
+                                        'confirm' => 'Are you sure you want to delete this item?',
+                                        'method' => 'post',
+                                      ],
+                                    ]);
+                                  },
+                                ],
+                              ],
+                            ],
+                          ]);
+                          ?>
+                        </div>
+                      </div>
+                    </div>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                      <a href="javascript:void(0)"><img src="Dash/assets/images/products/s4.jpg" class="card-img-top rounded-0" alt="..."></a>
+                      <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+                    <div class="card-body pt-3 p-4">
+                      <h6 class="fw-semibold fs-4">Boat Headphone</h6>
+                      <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
+                        <ul class="list-unstyled d-flex align-items-center mb-0">
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                      <a href="javascript:void(0)"><img src="Dash/assets/images/products/s5.jpg" class="card-img-top rounded-0" alt="..."></a>
+                      <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+                    <div class="card-body pt-3 p-4">
+                      <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
+                      <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
+                        <ul class="list-unstyled d-flex align-items-center mb-0">
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                      <a href="javascript:void(0)"><img src="Dash/assets/images/products/s7.jpg" class="card-img-top rounded-0" alt="..."></a>
+                      <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+                    <div class="card-body pt-3 p-4">
+                      <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
+                      <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="fw-semibold fs-4 mb-0">$150 <span class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span></h6>
+                        <ul class="list-unstyled d-flex align-items-center mb-0">
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                      <a href="javascript:void(0)"><img src="Dash/assets/images/products/s11.jpg" class="card-img-top rounded-0" alt="..."></a>
+                      <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+                    <div class="card-body pt-3 p-4">
+                      <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
+                      <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="fw-semibold fs-4 mb-0">$285 <span class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>
+                        <ul class="list-unstyled d-flex align-items-center mb-0">
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                          <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="py-6 px-6 text-center">
+                <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="Dash/assets/images/products/s4.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="Dash/assets/images/products/s5.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="Dash/assets/images/products/s7.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$150 <span class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="Dash/assets/images/products/s11.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$285 <span class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="py-6 px-6 text-center">
-          <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
-        </div>
-      </div>
-    </div>
   </div>
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="Dash/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -39,19 +39,22 @@ class BookingsController extends Controller
      * @return string
      */
     public function actionIndex()
-    {
-        $searchModel = new BookingsSearch();
-        $user_id = Yii::$app->user->id;
-        $userDetails = User::findOne($user_id);
-        $userProfileImage = $userDetails->profile;
-        $dataProvider = $searchModel->search($this->request->queryParams);
+{
+    $searchModel = new BookingsSearch();
+    $user_id = Yii::$app->user->id;
+    $userDetails = User::findOne($user_id);
+    $userProfileImage = $userDetails->profile;
+    
+    $dataProvider = $searchModel->search($this->request->queryParams);
+    $dataProvider->pagination->pageSize = 10; // Customize the number of records per page
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'userProfileImage' => $userProfileImage,
-        ]);
-    }
+    return $this->render('index', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+        'userProfileImage' => $userProfileImage,
+    ]);
+}
+
 
     /**
      * Displays a single Bookings model.
