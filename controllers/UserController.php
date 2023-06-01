@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
+use yii\base\Model;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -105,6 +106,10 @@ class UserController extends Controller
                     $model->password_hash = Yii::$app->security->generatePasswordHash($model->password_hash);
                     $model->profile = 'profiles/userImage.jpg';
                     $model->save();
+                    // Assign role to the user
+                    $authManager = Yii::$app->authManager;
+                    $roleObject = $authManager->getRole($role);
+                    $authManager->assign($roleObject, $model->id);
                     return $this->redirect(['site/login']); // Redirect to the login page
                 } else {
                     $model->addError('confirm_password', 'Passwords do not match.');
