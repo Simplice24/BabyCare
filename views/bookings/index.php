@@ -248,7 +248,7 @@ use yii\grid\ActionColumn;
                 <ul class="timeline-widget mb-0 position-relative mb-n5">
                     <?php foreach ($recentBookings as $booking) : ?>
                         <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time text-dark flex-shrink-0 text-end"><?php echo $booking['created_at']; ?></div>
+                            <div class="timeline-time text-dark flex-shrink-0 text-end"><?php echo date('Y-m-d H:i', $booking['created_at']); ?></div>
                             <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                 <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
                                 <span class="timeline-badge-border d-block flex-shrink-0"></span>
