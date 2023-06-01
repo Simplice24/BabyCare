@@ -241,10 +241,11 @@ use yii\grid\ActionColumn;
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="card w-100">
-              <div class="card-body p-4 table-responsive" style="max-height: 550px;">
+              <div class="card-body p-4 " >
                 <div class="mb-4">
                   <h5 class="card-title fw-semibold">Recent Bookings</h5>
                 </div>
+                <div class="table-responsive" style="max-height: 550px;">
                 <ul class="timeline-widget mb-0 position-relative mb-n5">
                     <?php foreach ($recentBookings as $booking) : ?>
                         <li class="timeline-item d-flex position-relative overflow-hidden">
@@ -257,6 +258,7 @@ use yii\grid\ActionColumn;
                         </li>
                     <?php endforeach; ?>
                 </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -346,7 +348,7 @@ use yii\grid\ActionColumn;
                               [
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => '',
-                                'template' => '{view} {update} {delete}',
+                                'template' => '{view} {delete}',
                                 'buttons' => [
                                   'view' => function ($url, $model) {
                                     return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);

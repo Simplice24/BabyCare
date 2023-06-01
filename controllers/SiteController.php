@@ -82,6 +82,11 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if (Yii::$app->user->identity->status === 11) { // Assuming 11 represents the banned status
+                Yii::$app->user->logout();
+                Yii::$app->session->setFlash('error', 'Your account has been suspended. Please contact the administrator.');
+                return $this->refresh();
+            }
             return $this->redirect(['/dashboard/index']);
         }
 

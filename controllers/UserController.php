@@ -60,6 +60,15 @@ class UserController extends Controller
         ]);
     }
 
+    public function actionBan($id)
+    {
+        $user = User::findOne($id);
+        $user->status = 11; // Set the banned status code
+        $user->updateAttributes(['status']);
+        return $this->redirect(['index']);
+    }
+
+
     /**
      * Displays a single User model.
      * @param int $id ID
