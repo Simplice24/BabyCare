@@ -101,6 +101,14 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['user/index']) ?>" aria-expanded="false">
+                <span>
+                  <i class="fas fa-users"></i>
+                </span>
+                <span class="hide-menu">User/Role management</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['bookings/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-book"></i>
@@ -233,7 +241,7 @@ use yii\grid\ActionColumn;
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="card w-100">
-              <div class="card-body p-4">
+              <div class="card-body p-4 table-responsive" style="max-height: 550px;">
                 <div class="mb-4">
                   <h5 class="card-title fw-semibold">Recent Bookings</h5>
                 </div>

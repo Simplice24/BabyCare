@@ -42,10 +42,21 @@ class UserController extends Controller
     {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
+
+        $recentRegistrations = User::find()
+        ->orderBy(['id' => SORT_DESC])
+        ->select(['created_at', 'fullname','role'])
+        ->limit(6)
+        ->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'userProfileImage' => $userProfileImage,
+            'recentRegistrations' => $recentRegistrations,
         ]);
     }
 
