@@ -78,7 +78,7 @@ class AuthItemController extends Controller
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
         $type = Yii::$app->request->get('type');
-
+        
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->type= $type;
