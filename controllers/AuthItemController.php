@@ -77,9 +77,14 @@ class AuthItemController extends Controller
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
+        $type = Yii::$app->request->get('type');
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $model->type= $type;
+                $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->save();
                 return $this->redirect(['view', 'name' => $model->name,'userProfileImage' => $userProfileImage]);
             }
         } else {
