@@ -249,6 +249,30 @@ use yii\widgets\ActiveForm;
         </nav>
       </header>
       <!--  Header End -->
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Permission details</h5>
+              <div class="card">
+                <div class="card-body">
+                  <?php $form = ActiveForm::begin(); ?>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Permission name</label>
+                      <?= $form->field($model, 'name')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Description</label>
+                      <?= $form->field($model, 'description')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-10 py-8 fs-4 mb-4 rounded-2">
+                        <?= Html::encode('Save') ?>
+                    </button>
+                  <?php ActiveForm::end(); ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="Dash/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -276,29 +300,3 @@ window.onclick = function(event) {
 </script>
 </html>
 
-
-<div class="auth-item-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'type')->textInput() ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'rule_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'data')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
