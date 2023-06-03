@@ -255,7 +255,10 @@ use yii\widgets\ActiveForm;
               <h5 class="card-title fw-semibold mb-4">Permission details</h5>
               <div class="card">
                 <div class="card-body">
-                  <?php $form = ActiveForm::begin(); ?>
+                  <?php $form = ActiveForm::begin([
+                        'action' => ['auth-item/create', 'type' => 2],
+                        'method' => 'post',
+                    ]); ?>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Permission name</label>
                       <?= $form->field($model, 'name')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
@@ -264,9 +267,7 @@ use yii\widgets\ActiveForm;
                       <label for="exampleInputPassword1" class="form-label">Description</label>
                       <?= $form->field($model, 'description')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                     </div>
-                    <button type="submit" class="btn btn-primary w-10 py-8 fs-4 mb-4 rounded-2">
-                        <?= Html::encode('Save') ?>
-                    </button>
+                    <?= Html::submitButton('Save', ['class' => 'btn btn-primary w-10 py-8 fs-4 mb-4 rounded-2']) ?>
                   <?php ActiveForm::end(); ?>
                 </div>
               </div>

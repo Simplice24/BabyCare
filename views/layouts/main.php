@@ -55,7 +55,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <footer id="footer" class="mt-auto py-3 bg-light">
         <div class="py-6 px-6 text-center">
-            <p class="mb-0 fs-4">Design and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
+            <p class="mb-0 fs-4">Designed and Developed by &copy; LAP Ltd <?= date('Y') ?></p>
         </div>
 </footer>
 

@@ -255,7 +255,7 @@ use yii\helpers\Url;
                 <h5 class="card-title fw-semibold mb-2">System Permissions</h5>
                 <?php
                 echo Html::a('<i class="fas fa-plus"></i> Create', 
-                    ['auth-item/create', 'type' => 2], 
+                    ['auth-item/create'], 
                     ['class' => 'btn btn-primary']
                 );
                 ?>
