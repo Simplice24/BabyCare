@@ -25,6 +25,13 @@ class AuthItem extends \yii\db\ActiveRecord
         return 'auth_item';
     }
 
+    public function beforeValidate()
+    {
+    $this->name = str_replace(' ', '_', $this->name);
+    return parent::beforeValidate();
+    }
+
+
     /**
      * {@inheritdoc}
      */
