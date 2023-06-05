@@ -177,6 +177,7 @@ class AuthItemController extends Controller
      */
     public function actionDelete($name)
     {
+        AuthItemChild::deleteAll(['child' => $name]);
         $this->findModel($name)->delete();
 
         return $this->redirect(['index']);
