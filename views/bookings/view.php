@@ -259,7 +259,7 @@ use yii\helpers\Url;
               <div class="card-body p-4">
                 <div style="max-height: 700px;">
                 <p>
-                    <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>                
+                    <!-- <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>                 -->
                     <?= Html::a('Delete', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-danger',
                         'data' => [
