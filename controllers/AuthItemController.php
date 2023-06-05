@@ -42,6 +42,7 @@ class AuthItemController extends Controller
     {
         $searchModel = new AuthItemSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->pagination->pageSize = 5;
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
