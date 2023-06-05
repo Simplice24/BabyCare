@@ -114,15 +114,22 @@ class AuthItemController extends Controller
     public function actionUpdate($name)
     {
         $model = $this->findModel($name);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
+        $type = $model->type; // Assign the 'type' attribute value to the $type variable
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'name' => $model->name]);
         }
-
+        
         return $this->render('update', [
             'model' => $model,
+            'type' => $type, // Pass the $type variable to the view
         ]);
     }
+    
+
 
     /**
      * Deletes an existing AuthItem model.

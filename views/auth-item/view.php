@@ -25,12 +25,12 @@ use yii\widgets\DetailView;
         'model' => $model,
         'attributes' => [
             'name',
-            'type',
+            // 'type',
             'description:ntext',
-            'rule_name',
-            'data',
-            'created_at',
-            'updated_at',
+            // 'rule_name',
+            // 'data',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 
