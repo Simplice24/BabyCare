@@ -253,6 +253,10 @@ use yii\helpers\Url;
               <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-2">System Permissions</h5>
                 <?php
+                use app\models\AuthItemSearch;
+
+                $searchModel1 = new AuthItemSearch();
+                $searchModel2 = new AuthItemSearch();
                 echo Html::a('<i class="fas fa-plus"></i> Create', 
                     ['auth-item/create','type' => 2], 
                     ['class' => 'btn btn-primary']
@@ -263,7 +267,7 @@ use yii\helpers\Url;
                   echo \yii\grid\GridView::widget([
                     'id' => 'my-gridview',
                     'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel, // Add your search model here
+                    'filterModel' => $searchModel1, // Add your search model here
                     'options' => [
                       'class' => 'table text-nowrap mb-0 align-middle table-height',
                     ],
@@ -337,9 +341,9 @@ use yii\helpers\Url;
                 <div style="max-height: 500px;">
                   <?php
                   echo \yii\grid\GridView::widget([
-                    'id' => 'my-gridview',
+                    'id' => 'my-gridview-2',
                     'dataProvider' => $roles,
-                    'filterModel' => $searchModel, // Add your search model here
+                    'filterModel' => $searchModel2, // Add your search model here
                     'options' => [
                       'class' => 'table text-nowrap mb-0 align-middle table-height',
                     ],
