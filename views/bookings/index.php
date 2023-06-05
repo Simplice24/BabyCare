@@ -173,7 +173,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['authItem/index']) ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['auth-item/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-lock"></i>
                 </span>
