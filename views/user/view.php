@@ -108,7 +108,7 @@ use yii\helpers\Url;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['user/management']) ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['user/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-users"></i>
                 </span>
@@ -259,7 +259,11 @@ use yii\helpers\Url;
               <div class="card-body p-4">
                 <div style="max-height: 700px;">
                 <p>
-                    <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>                
+                    <?php
+                    if($model->status == 10){
+                        echo Html::a('Ban', ['ban', 'id' => $model->id,'status' => $model->status], ['class' => 'btn btn-warning']);
+                    }
+                    ?>              
                     <?= Html::a('Delete', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-danger',
                         'data' => [

@@ -105,7 +105,7 @@ use yii\widgets\ActiveForm;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['user/management']) ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['user/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-users"></i>
                 </span>
