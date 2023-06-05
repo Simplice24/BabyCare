@@ -360,7 +360,7 @@ use yii\helpers\Url;
                       ],
                       [
                         'attribute' => 'name',
-                        'header' => '<h6 class="fw-semibold mb-0">Permission name</h6>',
+                        'header' => '<h6 class="fw-semibold mb-0">Role name</h6>',
                         'value' => function ($model) {
                           // Modify this to return the appropriate value for the 'date' attribute of your model
                           return $model->name;

@@ -129,8 +129,6 @@ class AuthItemController extends Controller
         ]);
     }
     
-
-
     /**
      * Deletes an existing AuthItem model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
