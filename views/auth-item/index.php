@@ -248,13 +248,13 @@ use yii\helpers\Url;
       <!--  Header End -->
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-8 d-flex align-items-stretch">
+          <div class="col-lg-6 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-2">System Permissions</h5>
                 <?php
                 echo Html::a('<i class="fas fa-plus"></i> Create', 
-                    ['auth-item/create'], 
+                    ['auth-item/create','type' => 2], 
                     ['class' => 'btn btn-primary']
                 );
                 ?>
@@ -297,15 +297,81 @@ use yii\helpers\Url;
                         'format' => 'raw',
                       ],
                       [
-                        'attribute' => 'created_at',
-                        'header' => '<h6 class="fw-semibold mb-0">Created</h6>',
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {update} {delete}',
+                        'buttons' => [
+                          'view' => function ($url, $model) {
+                            return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'name' => $model->name], ['class' => 'btn-icon']);
+                          },
+                          'update' => function ($url, $model) {
+                            return \yii\helpers\Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'name' => $model->name], ['class' => 'btn-icon']);
+                          },
+                          'delete' => function ($url, $model) {
+                            return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'name' => $model->name], [
+                              'class' => 'btn-icon',
+                              'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
+                              ],
+                            ]);
+                          },
+                        ],
+                      ],
+                    ],
+                  ]);
+                  ?>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-2">System Roles</h5>
+                <?php
+                echo Html::a('<i class="fas fa-plus"></i> Create', 
+                    ['auth-item/create','type' => 1], 
+                    ['class' => 'btn btn-primary']
+                );
+                ?>
+                <div style="max-height: 500px;">
+                  <?php
+                  echo \yii\grid\GridView::widget([
+                    'id' => 'my-gridview',
+                    'dataProvider' => $roles,
+                    'filterModel' => $searchModel, // Add your search model here
+                    'options' => [
+                      'class' => 'table text-nowrap mb-0 align-middle table-height',
+                    ],
+                    'tableOptions' => [
+                      'class' => 'table text-nowrap mb-0 align-middle',
+                    ],
+                    'headerRowOptions' => [
+                      'class' => 'text-dark fs-4',
+                    ],
+                    'columns' => [
+                      [
+                        'class' => 'yii\grid\SerialColumn',
+                        'header' => '<h6 class="fw-semibold mb-0">#</h6>',
+                      ],
+                      [
+                        'attribute' => 'name',
+                        'header' => '<h6 class="fw-semibold mb-0">Permission name</h6>',
                         'value' => function ($model) {
-                            // Convert Unix timestamp to a formatted date
-                            return Yii::$app->formatter->asDatetime($model->created_at, 'php:M-d-Y H:i:s');
+                          // Modify this to return the appropriate value for the 'date' attribute of your model
+                          return $model->name;
                         },
                         'format' => 'raw',
                       ],
-                    
+                      [
+                        'attribute' => 'description',
+                        'header' => '<h6 class="fw-semibold mb-0">Description</h6>',
+                        'value' => function ($model) {
+                          // Modify this to return the appropriate value for the 'babysitters' attribute of your model
+                          return $model->description;
+                        },
+                        'format' => 'raw',
+                      ],
                       [
                         'class' => 'yii\grid\ActionColumn',
                         'template' => '{view} {update} {delete}',

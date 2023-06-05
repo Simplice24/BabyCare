@@ -42,6 +42,9 @@ class AuthItemController extends Controller
     {
         $searchModel = new AuthItemSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->query->andWhere(['type' => 2]);
+        $roles = $searchModel->search($this->request->queryParams);
+        $roles->query->andWhere(['type' => 1]); 
         $dataProvider->pagination->pageSize = 5;
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
@@ -51,6 +54,7 @@ class AuthItemController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'userProfileImage' => $userProfileImage,
+            'roles' => $roles,
         ]);
     }
 
@@ -78,12 +82,12 @@ class AuthItemController extends Controller
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
-        $type = Yii::$app->request->get('type');
+        // $type = Yii::$app->request->get('type');
         $name= Yii::$app->request->get('name');
         
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->type= $type;
+                // $model->type= $type;
                 $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->save();
@@ -96,6 +100,7 @@ class AuthItemController extends Controller
         return $this->render('create', [
             'model' => $model,
             'userProfileImage' => $userProfileImage,
+            'type' => Yii::$app->request->get('type'),
         ]);
     }
 

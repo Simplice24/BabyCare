@@ -256,13 +256,14 @@ use yii\widgets\ActiveForm;
               <div class="card">
                 <div class="card-body">
                   <?php $form = ActiveForm::begin([
-                        'action' => ['auth-item/create', 'type' => 2],
+                        'action' => ['auth-item/create'],
                         'method' => 'post',
                     ]); ?>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Permission name</label>
                       <?= $form->field($model, 'name')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                     </div>
+                    <?= $form->field($model, 'type')->hiddenInput(['value' => $type])->label(false) ?>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Description</label>
                       <?= $form->field($model, 'description')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
