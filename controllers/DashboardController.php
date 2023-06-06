@@ -63,7 +63,6 @@ class DashboardController extends \yii\web\Controller
             }
         }
 
-
         // Query to find the most frequent languages spoken
         $mostFrequentLanguages = Bookings::find()
         ->select('languages_spoken')
