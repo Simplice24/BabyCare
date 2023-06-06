@@ -470,7 +470,16 @@ use yii\helpers\Html;
             <div class="card w-100">
               <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">Bookings analytics</h5>
+                <div class="dropdown">
+                  <button class="btn btn-primary " type="button" id="downloadDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="float:right;">
+                    <span>&#x2261;</span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="downloadDropdown">
+                    <li><a class="dropdown-item" href="#" onclick="downloadChartAsPNG()">Download PNG</a></li>
+                  </ul>
+                </div>
                 <canvas id="myChart"></canvas>
+                </div>
               </div>
             </div>
           </div>
@@ -595,6 +604,18 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+function downloadChartAsPNG() {
+  var canvas = document.getElementById('myChart');
+  var url = canvas.toDataURL('image/png');
+  
+  // Create a temporary anchor element
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = 'Bookings_chart.png';
+  
+  // Trigger a click event to download the PNG image
+  link.click();
+}
 </script>
 </body>
 <script>
