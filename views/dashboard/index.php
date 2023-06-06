@@ -13,6 +13,7 @@ use yii\helpers\Html;
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...your-integrity-hash...==" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/styles.min.css" />
   <link rel="stylesheet" href="Dash/assets/css/styles.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .username {
         margin-top: 15px; /* Adjust the value as per your requirements */
@@ -50,7 +51,7 @@ use yii\helpers\Html;
     }
 
     .dropdown-content a:hover {
-    background-color: rgba(135, 206, 250, 0.1);;
+    background-color: rgba(135, 206, 250, 0.1);
     width: 100%;
     }
 
@@ -275,20 +276,9 @@ use yii\helpers\Html;
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
                           <p class="fs-3 mb-0">last year</p>
                         </div>
-                        <!-- <div class="d-flex align-items-center">
-                          <div class="me-4">
-                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                          <div>
-                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                        </div> -->
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-center">
-                          <div id="breakup"></div>
                         </div>
                       </div>
                     </div>
@@ -312,20 +302,10 @@ use yii\helpers\Html;
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
                           <p class="fs-3 mb-0">last year</p>
                         </div>
-                        <!-- <div class="d-flex align-items-center">
-                          <div class="me-4">
-                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                          <div>
-                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                        </div> -->
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-center">
-                          <div id="breakup"></div>
+                          <!-- <div id="breakup"></div> -->
                         </div>
                       </div>
                     </div>
@@ -349,20 +329,10 @@ use yii\helpers\Html;
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
                           <p class="fs-3 mb-0">last year</p>
                         </div>
-                        <!-- <div class="d-flex align-items-center">
-                          <div class="me-4">
-                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                          <div>
-                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                        </div> -->
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-center">
-                          <div id="breakup"></div>
+                          <!-- <div id="breakup"></div> -->
                         </div>
                       </div>
                     </div>
@@ -386,20 +356,10 @@ use yii\helpers\Html;
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
                           <p class="fs-3 mb-0">last year</p>
                         </div>
-                        <!-- <div class="d-flex align-items-center">
-                          <div class="me-4">
-                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                          <div>
-                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                        </div> -->
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-center">
-                          <div id="breakup"></div>
+                          <!-- <div id="breakup"></div> -->
                         </div>
                       </div>
                     </div>
@@ -426,20 +386,10 @@ use yii\helpers\Html;
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
                           <p class="fs-3 mb-0">last year</p>
                         </div>
-                        <!-- <div class="d-flex align-items-center">
-                          <div class="me-4">
-                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                          <div>
-                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                          </div>
-                        </div> -->
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-center">
-                          <div id="breakup"></div>
+                          <!-- <div id="breakup"></div> -->
                         </div>
                       </div>
                     </div>
@@ -474,7 +424,7 @@ use yii\helpers\Html;
                       </div>
                     </div>
                   </div>
-                  <div id="earning"></div>
+                  <!-- <div id="earning"></div> -->
                 </div>
               </div>
             </div>
@@ -519,109 +469,13 @@ use yii\helpers\Html;
           <div class="col-lg-8 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Recent Transactions</h5>
-                <div class="table-responsive">
-                  <table class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                      <tr>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Id</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Assigned</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Name</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Priority</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Budget</h6>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                            <span class="fw-normal">Web Designer</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Elite Admin</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                        </td>
-                      </tr> 
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">2</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Andrew McDownland</h6>
-                            <span class="fw-normal">Project Manager</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Real Homes WP Theme</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$24.5k</h6>
-                        </td>
-                      </tr> 
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">3</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Christopher Jamil</h6>
-                            <span class="fw-normal">Project Manager</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">MedicalPro WP Theme</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-danger rounded-3 fw-semibold">High</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$12.8k</h6>
-                        </td>
-                      </tr>      
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">4</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                            <span class="fw-normal">Frontend Engineer</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Hosting Press HTML</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                        </td>
-                      </tr>                       
-                    </tbody>
-                  </table>
-                </div>
+                <h5 class="card-title fw-semibold mb-4">Bookings analytics</h5>
+                <canvas id="myChart"></canvas>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-sm-6 col-xl-3">
             <div class="card overflow-hidden rounded-2">
               <div class="position-relative">
@@ -702,7 +556,7 @@ use yii\helpers\Html;
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -710,9 +564,38 @@ use yii\helpers\Html;
   <script src="Dash/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="Dash/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <?php echo json_encode($labels); ?>,
+        datasets: [{
+            label: 'Number of Bookings',
+            data: <?php echo json_encode($data); ?>,
+            backgroundColor: 'rgba(135, 206, 250, 0.9)',
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                stepSize :1,
+                ticks: {
+                    callback: function(value) {
+                        return value.toString();
+                    }
+                }
+            }
+        }
+    }
+});
+</script>
 </body>
 <script>
 // Optional: Close the dropdown menu if the user clicks outside of it
