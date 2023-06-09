@@ -1,0 +1,49 @@
+.container-calendar {
+    background-color: white;
+    padding: 20px;
+    margin-top: 50px;
+  }
+  
+  .calendar {
+    margin-bottom: 20px;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px; /* Adjust the grid gap as per your preference */
+    margin-top: 10px;
+  }
+  
+  .date {
+    color: gray;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .date.active {
+    background-color: lightgray;
+  }
+  
+  .date:hover {
+    background-color: lightblue;
+    color: white;
+  }
+
+  .modal-footer {
+    justify-content: flex-start;
+  }
+  
+  #setBtn {
+    margin-right: auto;
+  }
+  
+  
