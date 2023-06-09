@@ -245,7 +245,7 @@ use yii\helpers\Url;
       <div class="container-fluid">
         <div class="row">
         <div class="container-calendar">
-            <h1>Calendar</h1>
+            <h3>Availability Calendar</h3>
             <div class="row">
             <div class="col-12">
                 <div class="calendar">
@@ -286,38 +286,68 @@ use yii\helpers\Url;
             </div>
         </div>
         </div>
-        <div class="availability-index">
-
-            <h1><?= Html::encode($this->title) ?></h1>
-
-            <p>
-                <?= Html::a('Create Availability', ['create'], ['class' => 'btn btn-success']) ?>
-            </p>
-
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-            <?= GridView::widget([
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+            <?php
+            echo \yii\grid\GridView::widget([
+                'id' => 'my-gridview',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
+                'options' => [
+                    'class' => 'table text-nowrap mb-0 align-middle table-height',
+                ],
+                'tableOptions' => [
+                    'class' => 'table text-nowrap mb-0 align-middle',
+                ],
+                'headerRowOptions' => [
+                    'class' => 'text-dark fs-4',
+                ],
                 'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-
-                    'id',
-                    'user_id',
-                    'date',
-                    'time',
-                    'created_at',
-                    //'updated_at',
                     [
-                        'class' => ActionColumn::className(),
-                        'urlCreator' => function ($action, Availability $model, $key, $index, $column) {
-                            return Url::toRoute([$action, 'id' => $model->id]);
-                        }
+                        'class' => 'yii\grid\SerialColumn',
+                        'header' => '<h6 class="fw-semibold mb-0">#</h6>',
+                    ],
+                    [
+                        'attribute' => 'date',
+                        'header' => '<h6 class="fw-semibold mb-0">Date</h6>',
+                    ],
+                    [
+                        'attribute' => 'time',
+                        'header' => '<h6 class="fw-semibold mb-0">Time</h6>',
+                    ],
+                    [
+                        'attribute' => 'created_at',
+                        'header' => '<h6 class="fw-semibold mb-0">Created At</h6>',
+                        'format' => 'datetime',
+                    ],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {update} {delete}',
+                        'buttons' => [
+                            'view' => function ($url, $model) {
+                                return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
+                            },
+                            'update' => function ($url, $model) {
+                                return \yii\helpers\Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn-icon']);
+                            },
+                            'delete' => function ($url, $model) {
+                                return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
+                                    'class' => 'btn-icon',
+                                    'data' => [
+                                        'confirm' => 'Are you sure you want to delete this item?',
+                                        'method' => 'post',
+                                    ],
+                                ]);
+                            },
+                        ],
                     ],
                 ],
-            ]); ?>
-
-
+            ]);
+            ?>
+         </div>
+        </div>
+        </div>
         </div>
       </div>
 
