@@ -1,6 +1,7 @@
 <?php
 /** @var yii\web\View $this */
 use yii\helpers\Html;
+use app\models\Availability;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
 use yii\helpers\Url;
@@ -266,23 +267,57 @@ use yii\helpers\Url;
                 <h5 class="modal-title">Set Date and Time</h5>
                 </div>
                 <div class="modal-body">
-                <form id="form">
+                <form id="form" action="<?= Yii::$app->urlManager->createUrl(['availability/create']) ?>" method="post">
+                    <?= \yii\helpers\Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->getCsrfToken()) ?>
                     <div class="form-group">
-                    <label for="date">Date:</label>
-                    <input type="date" class="form-control" id="date">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" id="date" name="date">
                     </div>
                     <div class="form-group">
-                    <label for="time">Time:</label>
-                    <input type="time" class="form-control" id="time">
+                        <label for="time">Time:</label>
+                        <input type="time" class="form-control" id="time" name="time">
+                    </div>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="setBtn">Set</button>
                     </div>
                 </form>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="setBtn">Set</button>
                 </div>
             </div>
             </div>
         </div>
+        </div>
+        <div class="availability-index">
+
+            <h1><?= Html::encode($this->title) ?></h1>
+
+            <p>
+                <?= Html::a('Create Availability', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
+
+            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+
+                    'id',
+                    'user_id',
+                    'date',
+                    'time',
+                    'created_at',
+                    //'updated_at',
+                    [
+                        'class' => ActionColumn::className(),
+                        'urlCreator' => function ($action, Availability $model, $key, $index, $column) {
+                            return Url::toRoute([$action, 'id' => $model->id]);
+                        }
+                    ],
+                ],
+            ]); ?>
+
+
         </div>
       </div>
 

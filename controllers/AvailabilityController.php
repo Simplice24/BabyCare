@@ -41,12 +41,14 @@ class AvailabilityController extends Controller
     public function actionIndex()
     {
         $searchModel = new AvailabilitySearch();
+        $model =new Availability();
         $dataProvider = $searchModel->search($this->request->queryParams);
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
 
         return $this->render('index', [
+            'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'userProfileImage' => $userProfileImage,
@@ -75,10 +77,17 @@ class AvailabilityController extends Controller
     {
         $model = new Availability();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $date = $_POST['date'];
+            $time = $_POST['time'];
+            $model->user_id = Yii::$app->user->id;
+            $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+            $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+            $model->date = $date;
+            $model->time = $time;
+            $model->save();
+            return $this->redirect(['index']);
+            // Redirect or perform further actions
         } else {
             $model->loadDefaultValues();
         }

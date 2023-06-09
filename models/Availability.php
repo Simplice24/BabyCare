@@ -45,7 +45,7 @@ class Availability extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            // 'id' => 'ID',
             'user_id' => 'User ID',
             'date' => 'Date',
             'time' => 'Time',
