@@ -6,14 +6,10 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\Availability $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Availabilities', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="availability-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -29,12 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'user_id',
+            // 'id',
+            // 'user_id',
             'date',
-            'time',
-            'created_at',
-            'updated_at',
+            'starting_time',
+            'ending_time',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 
