@@ -63,8 +63,12 @@ class AvailabilityController extends Controller
      */
     public function actionView($id)
     {
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'userProfileImage' => $userProfileImage,
         ]);
     }
 
