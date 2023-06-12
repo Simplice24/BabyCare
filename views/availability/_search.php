@@ -21,7 +21,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date') ?>
 
-    <?= $form->field($model, 'time') ?>
+    <?= $form->field($model, 'starting_time') ?>
+
+    <?= $form->field($model, 'ending_time') ?>
 
     <?= $form->field($model, 'created_at') ?>
 

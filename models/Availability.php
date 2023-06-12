@@ -34,7 +34,7 @@ class Availability extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'required'],
             [['user_id', 'created_at', 'updated_at'], 'integer'],
-            [['date', 'time'], 'safe'],
+            [['date', 'starting_time','ending_time'], 'safe'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -48,7 +48,8 @@ class Availability extends \yii\db\ActiveRecord
             // 'id' => 'ID',
             'user_id' => 'User ID',
             'date' => 'Date',
-            'time' => 'Time',
+            'starting_time' => 'Starting Time',
+            'ending_time' => 'Ending Time',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

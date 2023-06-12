@@ -274,8 +274,12 @@ use yii\helpers\Url;
                         <input type="date" class="form-control" id="date" name="date">
                     </div>
                     <div class="form-group">
-                        <label for="time">Time:</label>
-                        <input type="time" class="form-control" id="time" name="time">
+                        <label for="time">Starting Time:</label>
+                        <input type="time" class="form-control" id="time" name="starting_time">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Ending Time:</label>
+                        <input type="time" class="form-control" id="time" name="ending_time">
                     </div>
                     <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="setBtn">Set</button>
@@ -313,8 +317,12 @@ use yii\helpers\Url;
                         'header' => '<h6 class="fw-semibold mb-0">Date</h6>',
                     ],
                     [
-                        'attribute' => 'time',
-                        'header' => '<h6 class="fw-semibold mb-0">Time</h6>',
+                        'attribute' => 'starting_time',
+                        'header' => '<h6 class="fw-semibold mb-0">Starting Time</h6>',
+                    ],
+                    [
+                      'attribute' => 'ending_time',
+                      'header' => '<h6 class="fw-semibold mb-0">Ending Time</h6>',
                     ],
                     [
                         'attribute' => 'created_at',

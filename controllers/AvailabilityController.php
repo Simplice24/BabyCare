@@ -79,12 +79,14 @@ class AvailabilityController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $date = $_POST['date'];
-            $time = $_POST['time'];
+            $starting_time = $_POST['starting_time'];
+            $ending_time = $_POST['ending_time'];
             $model->user_id = Yii::$app->user->id;
             $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
             $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
             $model->date = $date;
-            $model->time = $time;
+            $model->starting_time = $starting_time;
+            $model->ending_time = $ending_time;
             $model->save();
             return $this->redirect(['index']);
             // Redirect or perform further actions

@@ -16,7 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date')->textInput() ?>
 
-    <?= $form->field($model, 'time')->textInput() ?>
+    <?= $form->field($model, 'starting_time')->textInput() ?>
+
+    <?= $form->field($model, 'ending_time')->textInput() ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 

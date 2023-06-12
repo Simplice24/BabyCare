@@ -18,7 +18,7 @@ class AvailabilitySearch extends Availability
     {
         return [
             [['id', 'user_id', 'created_at', 'updated_at'], 'integer'],
-            [['date', 'time'], 'safe'],
+            [['date', 'starting_time','ending_time'], 'safe'],
         ];
     }
 
@@ -61,7 +61,8 @@ class AvailabilitySearch extends Availability
             'id' => $this->id,
             'user_id' => $this->user_id,
             'date' => $this->date,
-            'time' => $this->time,
+            'starting_time' => $this->starting_time,
+            'ending_time' => $this->ending_time,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
