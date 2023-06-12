@@ -224,10 +224,11 @@
                </div>
                <div class="col-md-6">
                   <div class="mail_bt_main">
-                     <input type="text" class="mail_text" placeholder="Enter Your Mail" name="email"><br><br><br>
-                     <textarea type="text" cols="5" rows="5" class="mail_text" placeholder="Write down your feedback" name="feedback"></textarea>
+                     <input type="text" class="mail_text mt-3" placeholder="Enter your name" name="name">
+                     <input type="text" class="mail_text mt-3" placeholder="Enter your E-mail" name="email">
+                     <textarea type="text" cols="5" rows="5" class="mail_text mt-3" placeholder="Write down your feedback" name="feedback"></textarea>
                   </div>
-                  <div class="subscribe_bt"><a href="#">Send</a></div>
+                  <div class="subscribe_bt mt-3"><a href="#">Send</a></div>
                </div>
             </div>
          </div>
