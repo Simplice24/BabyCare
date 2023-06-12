@@ -244,30 +244,43 @@ use yii\widgets\ActiveForm;
           </div>
         </nav>
       </header>
+      <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Availability details</h5>
 
-<div class="availability-form">
+                        <?php $form = ActiveForm::begin(); ?>
+                        <div class="mb-3">
+                          <?= $form->field($model, 'user_id')->label(false)->hiddenInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Date</label>
+                          <?= $form->field($model, 'date')->label(false)->textInput(['type' => 'date','class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                        </div>  
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Starting Time</label>
+                          <?= $form->field($model, 'starting_time')->label(false)->textInput(['type' => 'time','class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Ending Time</label>
+                          <?= $form->field($model, 'ending_time')->label(false)->textInput(['type' => 'time','class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                        </div>
+                        <div class="mb-3">
+                          <?= $form->field($model, 'created_at')->label(false)->hiddenInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                        </div>
+                        <div class="mb-3">
+                          <?= $form->field($model, 'updated_at')->label(false)->hiddenInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                        </div>
+                        <div class="form-group">
+                            <?= Html::submitButton('Save', ['class' => 'btn btn-primary w-10 py-8 fs-4 mb-4 rounded-2']) ?>
+                        </div>
 
-    <?php $form = ActiveForm::begin(); ?>
+                        <?php ActiveForm::end(); ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
-    <?= $form->field($model, 'date')->textInput() ?>
-
-    <?= $form->field($model, 'starting_time')->textInput() ?>
-
-    <?= $form->field($model, 'ending_time')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
+            </div>
+          </div>
+        </div>
+      </div>  
 
 
 

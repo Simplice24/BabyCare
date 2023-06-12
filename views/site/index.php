@@ -219,14 +219,15 @@
          <div class="container">
             <div class="row">
                <div class="col-md-6">
-                  <h1 class="newsletter_text">Subscribe Now </h1>
+                  <h1 class="newsletter_text">Send us your Feedback </h1>
                   <p class="tempor_text">dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </p>
                </div>
                <div class="col-md-6">
                   <div class="mail_bt_main">
-                     <input type="text" class="mail_text" placeholder="Enter Tour Mail" name="Enter Tour Mail">
-                     <div class="subscribe_bt"><a href="#">SUBSCRIBE</a></div>
+                     <input type="text" class="mail_text" placeholder="Enter Your Mail" name="email"><br><br><br>
+                     <textarea type="text" cols="5" rows="5" class="mail_text" placeholder="Write down your feedback" name="feedback"></textarea>
                   </div>
+                  <div class="subscribe_bt"><a href="#">Send</a></div>
                </div>
             </div>
          </div>

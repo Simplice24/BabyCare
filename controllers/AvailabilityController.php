@@ -117,7 +117,9 @@ class AvailabilityController extends Controller
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id,'userProfileImage' => $userProfileImage]);
         }
 
