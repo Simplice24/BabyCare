@@ -166,6 +166,7 @@ class DashboardController extends \yii\web\Controller
             // Handle the division by zero error
             $ParentspercentageIncrease = 100;
         }
+        
 
         
         return $this->render('index',['userProfileImage' => $userProfileImage,

@@ -243,12 +243,11 @@ use yii\helpers\Html;
                       <div class="col-8">
                         <h4 class="fw-semibold mb-3"><?= $bookings; ?></h4>
                         <div class="d-flex align-items-center mb-3">
-                          <span
-                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                          <span class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
                             <i class="ti ti-arrow-up-left text-success"></i>
                           </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
+                          <p class="text-dark me-1 fs-3 mb-0">9%</p>
+                          <p class="fs-3 mb-0">This year</p>
                         </div>
                       </div>
                       <div class="col-4">
@@ -273,7 +272,7 @@ use yii\helpers\Html;
                             <i class="ti ti-arrow-up-left text-success"></i>
                           </span>
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
+                          <p class="fs-3 mb-0">This year</p>
                         </div>
                       </div>
                       <div class="col-4">
@@ -355,7 +354,7 @@ use yii\helpers\Html;
                             <i class="ti ti-arrow-up-left text-success"></i>
                           </span>
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
+                          <p class="fs-3 mb-0">This year</p>
                         </div>
                       </div>
                       <div class="col-4">
@@ -381,7 +380,7 @@ use yii\helpers\Html;
                             <i class="ti ti-arrow-down-right text-danger"></i>
                           </span>
                           <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
+                          <p class="fs-3 mb-0">This month</p>
                         </div>
                       </div>
                       <div class="col-4">
