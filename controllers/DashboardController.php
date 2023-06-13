@@ -2,10 +2,11 @@
 
 namespace app\controllers;
 use yii\filters\AccessControl;
-use Yii;
 use app\models\User;
 use app\models\Bookings;
 use yii\db\Expression;
+use yii\db\Query;
+use Yii;
 
 class DashboardController extends \yii\web\Controller
 {
@@ -87,11 +88,92 @@ class DashboardController extends \yii\web\Controller
         ->limit(1)
         ->scalar();
 
+        //Percentage calculation
+        // Get the current year
+        $currentYear = date('Y');
+
+        // Get the previous year
+        $previousYear = $currentYear - 1;
+
+        // Calculate the start and end timestamps for the previous year
+        $previousYearStart = strtotime($previousYear . '-01-01 00:00:00');
+        $previousYearEnd = strtotime($previousYear . '-12-31 23:59:59');
+
+        // Calculate the start and end timestamps for the current year
+        $currentYearStart = strtotime($currentYear . '-01-01 00:00:00');
+        $currentYearEnd = strtotime($currentYear . '-12-31 23:59:59');
+
+        // Query the database to count the number of babysitters created in the previous year
+        $BabySitterspreviousYearCount = (new Query())
+        ->select('COUNT(*)')
+        ->from('user')
+        ->where([
+            'and',
+            ['between', 'created_at', $previousYearStart, $previousYearEnd],
+            ['role' => 'Babysitter']
+        ])
+        ->scalar();
+
+        // Query the database to count the number of babysitters created in the current year
+        $BabySitterscurrentYearCount = (new Query())
+        ->select('COUNT(*)')
+        ->from('user')
+        ->where([
+            'and',
+            ['between', 'created_at', $currentYearStart, $currentYearEnd],
+            ['role' => 'Babysitter']
+        ])
+        ->scalar();
+
+        // Calculate the percentage increase if the previous year's count is not zero
+        if ($BabySitterspreviousYearCount !== 0) {
+            // Calculate the percentage increase
+            $BabySitterspercentageIncrease = (($BabySitterscurrentYearCount - $BabySitterspreviousYearCount) / $BabySitterspreviousYearCount) * 100;
+
+        } else {
+            // Handle the division by zero error
+            $BabySitterspercentageIncrease = 100;
+        }
+
+        // Query the database to count the number of parents created in the previous year
+        $ParentspreviousYearCount = (new Query())
+        ->select('COUNT(*)')
+        ->from('user')
+        ->where([
+            'and',
+            ['between', 'created_at', $previousYearStart, $previousYearEnd],
+            ['role' => 'Parent']
+        ])
+        ->scalar();
+
+        // Query the database to count the number of babysitters created in the current year
+        $ParentscurrentYearCount = (new Query())
+        ->select('COUNT(*)')
+        ->from('user')
+        ->where([
+            'and',
+            ['between', 'created_at', $currentYearStart, $currentYearEnd],
+            ['role' => 'Parent']
+        ])
+        ->scalar();
+
+        // Calculate the percentage increase if the previous year's count is not zero
+        if ($ParentspreviousYearCount !== 0) {
+            // Calculate the percentage increase
+            $ParentspercentageIncrease = (($ParentscurrentYearCount - $ParentspreviousYearCount) / $ParentspreviousYearCount) * 100;
+
+        } else {
+            // Handle the division by zero error
+            $ParentspercentageIncrease = 100;
+        }
+
+        
         return $this->render('index',['userProfileImage' => $userProfileImage,
          'babysitters' => $babysitters,'parents' => $parents,
         'bookings' => $bookings,'mostFrequentAgeRange' => $mostFrequentAgeRange,
          'mostFrequentGender' => $mostFrequentGender, 'mostFrequentLanguages' => $mostFrequentLanguages,
-         'labels' => $labels, 'data' => $data]);
+         'labels' => $labels, 'data' => $data,'BabySitterspercentageIncrease' => $BabySitterspercentageIncrease,
+        'ParentspercentageIncrease' => $ParentspercentageIncrease]);
     }
 
 }

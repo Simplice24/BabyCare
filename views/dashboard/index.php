@@ -295,12 +295,11 @@ use yii\helpers\Html;
                       <div class="col-8">
                         <h4 class="fw-semibold mb-3"><?= $parents; ?></h4>
                         <div class="d-flex align-items-center mb-3">
-                          <span
-                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-up-left text-success"></i>
+                          <span class="me-1 rounded-circle <?= ($ParentspercentageIncrease >= 0) ? 'bg-light-success' : 'bg-light-danger' ?> round-20 d-flex align-items-center justify-content-center">
+                            <i class="<?= ($ParentspercentageIncrease >= 0) ? 'ti ti-arrow-up-left text-success' : 'ti ti-arrow-down-left text-danger' ?>"></i>
                           </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
+                          <p class="text-dark me-1 fs-3 mb-0"><?= $ParentspercentageIncrease ;?>%</p>
+                          <p class="fs-3 mb-0">This year</p>
                         </div>
                       </div>
                       <div class="col-4">
@@ -322,12 +321,11 @@ use yii\helpers\Html;
                       <div class="col-8">
                         <h4 class="fw-semibold mb-3"><?= $babysitters; ?></h4>
                         <div class="d-flex align-items-center mb-3">
-                          <span
-                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-up-left text-success"></i>
+                          <span class="me-1 rounded-circle <?= ($BabySitterspercentageIncrease >= 0) ? 'bg-light-success' : 'bg-light-danger' ?> round-20 d-flex align-items-center justify-content-center">
+                            <i class="<?= ($BabySitterspercentageIncrease >= 0) ? 'ti ti-arrow-up-left text-success' : 'ti ti-arrow-down-left text-danger' ?>"></i>
                           </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
+                          <p class="text-dark me-1 fs-3 mb-0"><?= $BabySitterspercentageIncrease ;?>%</p>
+                          <p class="fs-3 mb-0">This year</p>
                         </div>
                       </div>
                       <div class="col-4">
