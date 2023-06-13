@@ -28,7 +28,7 @@ class AuthItemController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','view','delete','update'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],

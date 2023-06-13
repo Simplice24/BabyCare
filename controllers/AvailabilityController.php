@@ -27,7 +27,7 @@ class AvailabilityController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','update','delete','view'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],

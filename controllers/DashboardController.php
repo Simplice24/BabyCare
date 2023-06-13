@@ -19,7 +19,7 @@ class DashboardController extends \yii\web\Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','view','delete','update'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],
