@@ -11,6 +11,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 use app\models\AuthItem;
+use yii\filters\AccessControl;
 
 /**
  * UserController implements the CRUD actions for User model.
