@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Bookings;
+use yii\filters\AccessControl;
 use app\models\BookingsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -20,17 +21,21 @@ class BookingsController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],
-            ]
-        );
+                'denyCallback' => function ($rule, $action) {
+                    return Yii::$app->response->redirect(['site/login']);
+                },
+            ],
+        ];
     }
 
     /**
