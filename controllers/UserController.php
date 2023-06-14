@@ -29,8 +29,13 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','update','delete','view'],
+                        'actions' => ['index','create','ban','update','delete','view'],
                         'roles' => ['@'], // '@' represents authenticated users
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['?'], // '?' represents unauthenticated users
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {

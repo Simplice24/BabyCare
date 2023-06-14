@@ -31,6 +31,11 @@ class BookingsController extends Controller
                         'actions' => ['index','create','view','delete','update'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['?'], // '?' represents unauthenticated users
+                    ],
                 ],
                 'denyCallback' => function ($rule, $action) {
                     return Yii::$app->response->redirect(['site/login']);
@@ -58,7 +63,7 @@ class BookingsController extends Controller
     ->limit(6)
     ->all();
 
-    $services = Services::find()->select('service')->orderBy('service')->column();
+   
     
     $dataProvider = $searchModel->search($this->request->queryParams);
     $dataProvider->pagination->pageSize = 10; // Customize the number of records per page
@@ -68,7 +73,6 @@ class BookingsController extends Controller
         'dataProvider' => $dataProvider,
         'userProfileImage' => $userProfileImage,
         'recentBookings' => $recentBookings,
-        'services' => $services,
     ]);
 }
 
@@ -94,6 +98,7 @@ class BookingsController extends Controller
     public function actionCreate()
     {
         $model = new Bookings();
+        $services = Services::find()->select('service')->orderBy('service')->column();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
@@ -108,6 +113,7 @@ class BookingsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'services' => $services,
         ]);
     }
 
