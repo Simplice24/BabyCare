@@ -74,10 +74,13 @@ class ServicesController extends Controller
     public function actionCreate()
     {
         $model = new Services();
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, 'userProfileImage' => $userProfileImage]);
             }
         } else {
             $model->loadDefaultValues();
@@ -85,6 +88,7 @@ class ServicesController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'userProfileImage' => $userProfileImage,
         ]);
     }
 

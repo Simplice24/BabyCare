@@ -29,7 +29,7 @@ class Services extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['service'], 'required'],
+            [['service','description'], 'required'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'integer'],
             [['service'], 'string', 'max' => 255],

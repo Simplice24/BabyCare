@@ -233,34 +233,86 @@ use yii\grid\GridView;
         </nav>
       </header>
       <!--  Header End -->
-      
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">      
       <div class="services-index">
             <p>
-                <?= Html::a('Create Services', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('<i class="fas fa-plus"></i> Create Service', ['create'], ['class' => 'btn btn-primary']) ?>
             </p>
-
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-
-                    'id',
-                    'service',
-                    'description:ntext',
-                    'created_at',
-                    'updated_at',
-                    [
-                        'class' => ActionColumn::className(),
-                        'urlCreator' => function ($action, Services $model, $key, $index, $column) {
-                            return Url::toRoute([$action, 'id' => $model->id]);
-                        }
+            <?php
+                echo \yii\grid\GridView::widget([
+                    'id' => 'my-gridview',
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'options' => [
+                        'class' => 'table text-nowrap mb-0 align-middle table-height',
                     ],
-                ],
-            ]); ?>
-
+                    'tableOptions' => [
+                        'class' => 'table text-nowrap mb-0 align-middle',
+                    ],
+                    'headerRowOptions' => [
+                        'class' => 'text-dark fs-4',
+                    ],
+                    'columns' => [
+                        [
+                            'class' => 'yii\grid\SerialColumn',
+                            'header' => '<h6 class="fw-semibold mb-0">#</h6>',
+                        ],
+                        [
+                            'attribute' => 'service',
+                            'header' => '<h6 class="fw-semibold mb-0">Service</h6>',
+                            'value' => function ($model) {
+                                return $model->service;
+                            },
+                            'format' => 'raw',
+                        ],
+                        [
+                            'attribute' => 'description',
+                            'header' => '<h6 class="fw-semibold mb-0">Description</h6>',
+                            'value' => function ($model) {
+                                return $model->description;
+                            },
+                            'format' => 'raw',
+                        ],
+                        [
+                            'attribute' => 'created_at',
+                            'header' => '<h6 class="fw-semibold mb-0">Created at</h6>',
+                            'value' => function ($model) {
+                                return $model->created_at;
+                            },
+                            'format' => 'raw',
+                        ],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '{view} {update} {delete}',
+                            'buttons' => [
+                                'view' => function ($url, $model) {
+                                    return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
+                                },
+                                'update' => function ($url, $model) {
+                                    return \yii\helpers\Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn-icon']);
+                                },
+                                'delete' => function ($url, $model) {
+                                    return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
+                                        'class' => 'btn-icon',
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to delete this item?',
+                                            'method' => 'post',
+                                        ],
+                                    ]);
+                                },
+                            ],
+                        ],
+                    ],
+                ]);
+                ?>
+              </div>
+            </div>
+          </div>
+      </div>
       </div>
     </div>
   </div>
