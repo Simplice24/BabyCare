@@ -240,7 +240,7 @@ use yii\widgets\ActiveForm
             <div class="card w-100">
               <div class="card-body p-4">      
                 <div class="services-form">
-
+                <h5 class="card-title fw-semibold mb-2">Fill the form to register new service</h5>
                     <?php $form = ActiveForm::begin(); ?>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Service</label>
