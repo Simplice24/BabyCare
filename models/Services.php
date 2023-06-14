@@ -33,6 +33,7 @@ class Services extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'integer'],
             [['service'], 'string', 'max' => 255],
+            
         ];
     }
 

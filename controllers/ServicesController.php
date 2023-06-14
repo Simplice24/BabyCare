@@ -79,7 +79,10 @@ class ServicesController extends Controller
         $userProfileImage = $userDetails->profile;
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->id, 'userProfileImage' => $userProfileImage]);
             }
         } else {
@@ -102,13 +105,20 @@ class ServicesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+            $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id,'userProfileImage' => $userProfileImage]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'userProfileImage' => $userProfileImage,
         ]);
     }
 
