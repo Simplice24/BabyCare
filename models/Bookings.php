@@ -39,7 +39,7 @@ class Bookings extends \yii\db\ActiveRecord
         return [
             [['babysitter_age_range', 'languages_spoken', 'gender','service', 'number_of_babysitters', 'date', 'starting_time', 'ending_time', 'email', 'phone_number', 'address', 'created_at', 'updated_at'], 'required'],
             [['number_of_babysitters', 'created_at', 'updated_at'], 'integer'],
-            [['date', 'starting_time', 'ending_time'], 'safe'],
+            [['date', 'starting_time', 'ending_time','service'], 'safe'],
             [['babysitter_age_range','service'], 'string', 'max' => 50],
             [['languages_spoken', 'email', 'address'], 'string', 'max' => 255],
             [['gender'], 'string', 'max' => 10],

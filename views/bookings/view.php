@@ -268,6 +268,7 @@ use yii\helpers\Url;
                         'gender',
                         'number_of_babysitters',
                         'date',
+                        'service',
                         'starting_time',
                         'ending_time',
                         'email:email',

@@ -7,6 +7,11 @@ use yii\helpers\ArrayHelper;
 /** @var yii\web\View $this */
 /** @var app\models\User $model */
 /** @var yii\widgets\ActiveForm $form */
+// Fetch the services from the database
+$services = \app\models\Services::find()->select('service')->orderBy('service')->all();
+
+// Populate the select dropdown options
+$serviceOptions = ArrayHelper::map($services, 'service', 'service');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -172,7 +177,10 @@ use yii\helpers\ArrayHelper;
                                         <div class="form-group row">
                                             <label class="col-sm-5 col-form-label">Service</label>
                                             <div class="col-sm-7">
-                                                <?= $form->field($model, 'service')->label(false)->dropDownList($services, ['class' => 'form-control','aria-describedby' => 'textHelp', 'prompt' => 'Select Service']) ?>
+                                                <?= $form->field($model, 'service')->label(false)->dropDownList(
+                                                    $serviceOptions,
+                                                    ['class' => 'form-control', 'aria-describedby' => 'textHelp', 'prompt' => 'Select Service']
+                                                ) ?>
                                             </div>
                                         </div>
                                     </div>
