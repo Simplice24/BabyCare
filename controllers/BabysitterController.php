@@ -25,7 +25,7 @@ class BabysitterController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','view','delete','update'],
+                        'actions' => ['index','create','view','delete','update'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],

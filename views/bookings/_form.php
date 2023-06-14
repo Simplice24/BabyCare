@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /** @var yii\web\View $this */
 /** @var app\models\User $model */
@@ -169,10 +170,10 @@ use yii\widgets\ActiveForm;
                                     <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                        <label class="col-sm-5 col-form-label">Service</label>
-                                        <div class="col-sm-7">
-                                            <?= $form->field($model, 'service')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
-                                        </div>
+                                            <label class="col-sm-5 col-form-label">Service</label>
+                                            <div class="col-sm-7">
+                                                <?= $form->field($model, 'service')->label(false)->dropDownList($services, ['class' => 'form-control','aria-describedby' => 'textHelp', 'prompt' => 'Select Service']) ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

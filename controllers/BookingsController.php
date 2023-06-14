@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\User;
+use app\models\Services;
 use Yii;
 
 /**
@@ -27,7 +28,7 @@ class BookingsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','view','delete','update'],
+                        'actions' => ['index','create','view','delete','update'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],
@@ -56,6 +57,8 @@ class BookingsController extends Controller
     ->select(['created_at', 'number_of_babysitters','languages_spoken','babysitter_age_range'])
     ->limit(6)
     ->all();
+
+    $services = Services::find()->select('service')->orderBy('service')->column();
     
     $dataProvider = $searchModel->search($this->request->queryParams);
     $dataProvider->pagination->pageSize = 10; // Customize the number of records per page
@@ -65,6 +68,7 @@ class BookingsController extends Controller
         'dataProvider' => $dataProvider,
         'userProfileImage' => $userProfileImage,
         'recentBookings' => $recentBookings,
+        'services' => $services,
     ]);
 }
 

@@ -29,7 +29,7 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','update','delete','view'],
+                        'actions' => ['index','create','update','delete','view'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],
