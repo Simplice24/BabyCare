@@ -18,7 +18,7 @@ class BookingsSearch extends Bookings
     {
         return [
             [['id', 'number_of_babysitters', 'created_at', 'updated_at'], 'integer'],
-            [['babysitter_age_range', 'languages_spoken', 'gender', 'date', 'starting_time', 'ending_time', 'email', 'phone_number', 'address'], 'safe'],
+            [['babysitter_age_range', 'languages_spoken', 'gender', 'date', 'service', 'starting_time', 'ending_time', 'email', 'phone_number', 'address'], 'safe'],
         ];
     }
 
@@ -61,6 +61,7 @@ class BookingsSearch extends Bookings
             'id' => $this->id,
             'number_of_babysitters' => $this->number_of_babysitters,
             'date' => $this->date,
+            'service' => $this->service,
             'starting_time' => $this->starting_time,
             'ending_time' => $this->ending_time,
             'created_at' => $this->created_at,
@@ -71,6 +72,8 @@ class BookingsSearch extends Bookings
             ->andFilterWhere(['like', 'languages_spoken', $this->languages_spoken])
             ->andFilterWhere(['like', 'gender', $this->gender])
             ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'date', $this->date])
+            ->andFilterWhere(['like', 'service', $this->service])
             ->andFilterWhere(['like', 'phone_number', $this->phone_number])
             ->andFilterWhere(['like', 'address', $this->address]);
 

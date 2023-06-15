@@ -169,17 +169,27 @@ use yii\widgets\ActiveForm;
                                     <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Service</label>
+                                        <div class="col-sm-7">
+                                            <?= $form->field($model, 'service')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
                                         <label class="col-sm-5 col-form-label">Address</label>
                                         <div class="col-sm-7">
                                             <?= $form->field($model, 'address')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                         </div>
                                         </div>
                                     </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                         <label class="col-sm-5 col-form-label">Phone</label>
                                         <div class="col-sm-7">
-                                            <?= $form->field($model, 'phone_number')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                                            <?= $form->field($model, 'phone_number')->label(false)->textInput(['type' => 'number','class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                                         </div>
                                         </div>
                                     </div>
