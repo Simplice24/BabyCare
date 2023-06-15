@@ -46,7 +46,12 @@ use yii\grid\GridView;
     padding: 8px;
     z-index: 1;
     }
-
+    .description-cell {
+    max-width: 700px;
+    overflow: hidden;
+    white-space: normal;
+    word-wrap: break-word;
+    }
     .dropdown-content a {
     color: gray;
     display: block;
@@ -270,12 +275,12 @@ use yii\grid\GridView;
                             'format' => 'raw',
                         ],
                         [
-                            'attribute' => 'description',
-                            'header' => '<h6 class="fw-semibold mb-0">Description</h6>',
-                            'value' => function ($model) {
-                                return $model->description;
-                            },
-                            'format' => 'raw',
+                          'attribute' => 'description',
+                          'header' => '<h6 class="fw-semibold mb-0">Description</h6>',
+                          'value' => function ($model) {
+                              return '<div class="description-cell">' . $model->description . '</div>';
+                          },
+                          'format' => 'raw',
                         ],
                         [
                             'attribute' => 'created_at',
@@ -283,7 +288,7 @@ use yii\grid\GridView;
                             'value' => function ($model) {
                                 return $model->created_at;
                             },
-                            'format' => 'raw',
+                            'format' => 'datetime',
                         ],
                         [
                             'class' => 'yii\grid\ActionColumn',
