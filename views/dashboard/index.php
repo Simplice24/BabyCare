@@ -117,7 +117,7 @@ use yii\helpers\Html;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['services/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-bell"></i>
                 </span>
