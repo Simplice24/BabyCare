@@ -166,6 +166,35 @@ class DashboardController extends \yii\web\Controller
             // Handle the division by zero error
             $ParentspercentageIncrease = 100;
         }
+
+        $currentYearStart = strtotime('first day of January');
+        $currentYearEnd = strtotime('last day of December');
+
+        // Get the previous year start and end timestamps
+        $previousYearStart = strtotime('-1 year', $currentYearStart);
+        $previousYearEnd = strtotime('-1 year', $currentYearEnd);
+
+        // Query the database to count the number of bookings in the previous year
+        $previousYearCount = (new Query())
+            ->from('bookings')
+            ->where(['between', 'created_at', $previousYearStart, $previousYearEnd])
+            ->count();
+
+        // Query the database to count the number of bookings in the current year
+        $currentYearCount = (new Query())
+            ->from('bookings')
+            ->where(['between', 'created_at', $currentYearStart, $currentYearEnd])
+            ->count();
+
+        // Calculate the percentage increase
+        if ($previousYearCount == 0 && $currentYearCount > 0) {
+            $bookingsPercentageIncrease = 100; // Set to 100% if previous year count is zero
+        } elseif ($previousYearCount > 0) {
+            $bookingsPercentageIncrease = (($currentYearCount - $previousYearCount) / $previousYearCount) * 100;
+        } else {
+            $bookingsPercentageIncrease = 0; // Set to 0% if both previous and current year counts are zero
+        }
+
         
 
         
@@ -174,7 +203,7 @@ class DashboardController extends \yii\web\Controller
         'bookings' => $bookings,'mostFrequentAgeRange' => $mostFrequentAgeRange,
          'mostFrequentGender' => $mostFrequentGender, 'mostFrequentLanguages' => $mostFrequentLanguages,
          'labels' => $labels, 'data' => $data,'BabySitterspercentageIncrease' => $BabySitterspercentageIncrease,
-        'ParentspercentageIncrease' => $ParentspercentageIncrease]);
+        'ParentspercentageIncrease' => $ParentspercentageIncrease, 'bookingsPercentageIncrease' => $bookingsPercentageIncrease]);
     }
 
 }
