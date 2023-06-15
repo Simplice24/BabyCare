@@ -130,11 +130,11 @@ use yii\helpers\Url;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['notifications/index']) ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['services/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-bell"></i>
                 </span>
-                <span class="hide-menu">Notifications</span>
+                <span class="hide-menu">Services</span>
               </a>
             </li>
             <li class="sidebar-item">
