@@ -7,6 +7,7 @@ use app\models\FeedbacksSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * FeedbacksController implements the CRUD actions for Feedbacks model.
@@ -70,7 +71,10 @@ class FeedbacksController extends Controller
         $model = new Feedbacks();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {

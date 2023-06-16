@@ -1,3 +1,13 @@
+<?php
+namespace app\controllers;
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use app\models\Feedbacks;
+use yii\web\Controller;
+use Yii;
+$model = new Feedbacks();
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -223,12 +233,14 @@
                   <p class="tempor_text">dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </p>
                </div>
                <div class="col-md-6">
+                  <?php $form = ActiveForm::begin(['action' => ['feedbacks/create']]); ?>
                   <div class="mail_bt_main">
-                     <input type="text" class="mail_text mt-3" placeholder="Enter your name" name="name">
-                     <input type="text" class="mail_text mt-3" placeholder="Enter your E-mail" name="email">
-                     <textarea type="text" cols="5" rows="5" class="mail_text mt-3" placeholder="Write down your feedback" name="feedback"></textarea>
+                     <?= $form->field($model, 'names')->label(false)->textInput(['type' =>'text', 'class' =>'mail_text mt-3','placeholder' => 'Enter your name','maxlength' => true]) ?>
+                     <?= $form->field($model, 'email')->label(false)->textInput(['type' =>'text', 'class' =>'mail_text mt-3','placeholder' => 'Enter your E-mail','maxlength' => true]) ?>
+                     <?= $form->field($model, 'message')->label(false)->textarea(['type' => 'text','class' =>'mail_text mt-3','rows' => 5, 'cols' => 5,'placeholder' => 'Write down your feedback']) ?>
                   </div>
-                  <div class="subscribe_bt mt-3"><a href="#">Send</a></div>
+                  <?= Html::submitButton('Send', ['class' => 'subscribe_bt mt-3']) ?>
+                  <?php ActiveForm::end(); ?>
                </div>
             </div>
          </div>
