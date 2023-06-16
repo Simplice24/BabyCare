@@ -305,13 +305,10 @@ use yii\helpers\Url;
                         ],
                         [
                             'class' => 'yii\grid\ActionColumn',
-                            'template' => '{view} {update} {delete}',
+                            'template' => '{view} {delete}',
                             'buttons' => [
                                 'view' => function ($url, $model) {
                                     return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
-                                },
-                                'update' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn-icon']);
                                 },
                                 'delete' => function ($url, $model) {
                                     return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
@@ -330,7 +327,7 @@ use yii\helpers\Url;
               </div>
             </div>
           </div>
-      </div>
+         </div>
       </div>
     </div>
   </div>
