@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Feedbacks;
+use app\models\User;
+use yii\filters\AccessControl;
 use app\models\FeedbacksSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -19,17 +21,26 @@ class FeedbacksController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index','view','delete','update'],
+                        'roles' => ['@'], // '@' represents authenticated users
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['?'], // '?' represents unauthenticated users
                     ],
                 ],
-            ]
-        );
+                'denyCallback' => function ($rule, $action) {
+                    return Yii::$app->response->redirect(['site/login']);
+                },
+            ],
+        ];
     }
 
     /**
@@ -41,10 +52,14 @@ class FeedbacksController extends Controller
     {
         $searchModel = new FeedbacksSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'userProfileImage' => $userProfileImage,
         ]);
     }
 
@@ -56,8 +71,12 @@ class FeedbacksController extends Controller
      */
     public function actionView($id)
     {
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'userProfileImage' => $userProfileImage,
         ]);
     }
 
@@ -75,7 +94,7 @@ class FeedbacksController extends Controller
                 $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(Yii::$app->request->referrer);
             }
         } else {
             $model->loadDefaultValues();
@@ -96,13 +115,20 @@ class FeedbacksController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+            $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id,'userProfileImage' => $userProfileImage]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'userProfileImage' => $userProfileImage,
         ]);
     }
 
