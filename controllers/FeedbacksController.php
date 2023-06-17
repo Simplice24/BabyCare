@@ -27,7 +27,7 @@ class FeedbacksController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','view','delete','update'],
+                        'actions' => ['index','view','delete','update','activate'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                     [
@@ -93,6 +93,7 @@ class FeedbacksController extends Controller
             if ($model->load($this->request->post())) {
                 $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->status = 0;
                 $model->save();
                 return $this->redirect(Yii::$app->request->referrer);
             }
@@ -130,6 +131,23 @@ class FeedbacksController extends Controller
             'model' => $model,
             'userProfileImage' => $userProfileImage,
         ]);
+    }
+
+    public function actionActivate($id)
+    {
+        $model = $this->findModel($id);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
+        $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+        $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+        if($model->status==0){
+            $model->status = 1;
+        }else{
+            $model->status =0;
+        }
+        $model->save();
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**

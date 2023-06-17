@@ -7,7 +7,7 @@ use app\models\Feedbacks;
 use yii\web\Controller;
 use Yii;
 $model = new Feedbacks();
-$feedbacks = Feedbacks::find()->all();
+$feedbacks = Feedbacks::find()->where(['status'=>1])->all();
 ?>
 <!DOCTYPE html>
 <html lang="en">

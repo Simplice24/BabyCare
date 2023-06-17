@@ -305,11 +305,15 @@ use yii\helpers\Url;
                         ],
                         [
                             'class' => 'yii\grid\ActionColumn',
-                            'template' => '{view} {delete}',
+                            'template' => '{view} {activate} {delete}',
                             'buttons' => [
                                 'view' => function ($url, $model) {
                                     return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
                                 },
+                                'activate' => function ($url, $model) {
+                                  $iconClass = $model->status == 1 ? 'fa-share-alt text-success' : 'fa-share-alt text-danger';
+                                  return \yii\helpers\Html::a('<i class="fa ' . $iconClass . '"></i>', ['activate', 'id' => $model->id], ['class' => 'btn-icon']);
+                                },                              
                                 'delete' => function ($url, $model) {
                                     return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
                                         'class' => 'btn-icon',
