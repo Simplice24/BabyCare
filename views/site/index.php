@@ -7,6 +7,7 @@ use app\models\Feedbacks;
 use yii\web\Controller;
 use Yii;
 $model = new Feedbacks();
+$feedbacks = Feedbacks::find()->all();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -255,111 +256,30 @@ $model = new Feedbacks();
                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="blog_taital"><span class="tes_text">Tes</span>timonial</h1>
-                     <div class="client_section_2 layout_padding">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="client_box active">
-                                 <div class="left_main">
-                                    <div class="image_6"><img src="images/img-6.png"></div>
-                                 </div>
-                                 <div class="right_main">
-                                    <h6 class="magna_text active">Magna</h6>
-                                    <p class="consectetur_text active">Consectetur adipiscing</p>
-                                    <div class="quote_icon active"></div>
-                                 </div>
-                                 <p class="ipsum_text active">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum</p>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="client_box">
-                                 <div class="left_main">
-                                    <div class="image_6"><img src="images/img-6.png"></div>
-                                 </div>
-                                 <div class="right_main">
-                                    <h6 class="magna_text">Magna</h6>
-                                    <p class="consectetur_text">Consectetur adipiscing</p>
-                                    <div class="quote_icon"></div>
-                                 </div>
-                                 <p class="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum</p>
+               <?php $active = true; ?>
+               <?php foreach (array_chunk($feedbacks, 2) as $chunk) : ?>
+                  <div class="carousel-item <?= $active ? 'active' : '' ?>">
+                        <div class="container">
+                           <h1 class="blog_taital"><span class="tes_text">Tes</span>timonial</h1>
+                           <div class="client_section_2 layout_padding">
+                              <div class="row">
+                                    <?php foreach ($chunk as $feedback) : ?>
+                                       <div class="col-md-6">
+                                          <div class="client_box <?= $active ? 'active' : '' ?>">
+                                                <div class="right_main">
+                                                   <h6 class="magna_text <?= $active ? 'active' : '' ?>"><?php echo $feedback->names; ?></h6>
+                                                   <div class="quote_icon <?= $active ? 'active' : '' ?>"></div>
+                                                </div>
+                                                <p class="ipsum_text <?= $active ? 'active' : '' ?>"><?php echo $feedback->message; ?></p>
+                                          </div>
+                                       </div>
+                                    <?php endforeach; ?>
                               </div>
                            </div>
                         </div>
-                     </div>
                   </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="blog_taital"><span class="tes_text">Tes</span>timonial</h1>
-                     <div class="client_section_2 layout_padding">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="client_box active">
-                                 <div class="left_main">
-                                    <div class="image_6"><img src="images/img-6.png"></div>
-                                 </div>
-                                 <div class="right_main">
-                                    <h6 class="magna_text active">Magna</h6>
-                                    <p class="consectetur_text active">Consectetur adipiscing</p>
-                                    <div class="quote_icon active"></div>
-                                 </div>
-                                 <p class="ipsum_text active">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum</p>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="client_box">
-                                 <div class="left_main">
-                                    <div class="image_6"><img src="images/img-6.png"></div>
-                                 </div>
-                                 <div class="right_main">
-                                    <h6 class="magna_text">Magna</h6>
-                                    <p class="consectetur_text">Consectetur adipiscing</p>
-                                    <div class="quote_icon"></div>
-                                 </div>
-                                 <p class="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="blog_taital"><span class="tes_text">Tes</span>timonial</h1>
-                     <div class="client_section_2 layout_padding">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="client_box active">
-                                 <div class="left_main">
-                                    <div class="image_6"><img src="images/img-6.png"></div>
-                                 </div>
-                                 <div class="right_main">
-                                    <h6 class="magna_text active">Magna</h6>
-                                    <p class="consectetur_text active">Consectetur adipiscing</p>
-                                    <div class="quote_icon active"></div>
-                                 </div>
-                                 <p class="ipsum_text active">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum</p>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="client_box">
-                                 <div class="left_main">
-                                    <div class="image_6"><img src="images/img-6.png"></div>
-                                 </div>
-                                 <div class="right_main">
-                                    <h6 class="magna_text">Magna</h6>
-                                    <p class="consectetur_text">Consectetur adipiscing</p>
-                                    <div class="quote_icon"></div>
-                                 </div>
-                                 <p class="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                  <?php $active = false; ?>
+               <?php endforeach; ?>
             </div>
          </div>
       </div>
