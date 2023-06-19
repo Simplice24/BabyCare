@@ -40,7 +40,7 @@ $feedbacks = Feedbacks::find()->where(['status'=>1])->all();
       <!-- owl stylesheets --> 
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesheet" href="css/owl.theme.default.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">  
    </head>
    <body>
       <!--header section start -->
@@ -157,36 +157,53 @@ $feedbacks = Feedbacks::find()->where(['status'=>1])->all();
       <!--about section end -->
       <!--services section start -->
       <div class="services_section layout_padding">
-         <div class="container">
-            <h1 class="service_taital"><span class="our_text">Our</span> Services</h1>
-            <p class="service_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered </p>
+      <div class="container">
+         <h1 class="service_taital"><span class="our_text">Our</span> Services</h1>
+         <p class="service_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered</p>
             <div class="services_section_2">
-               <div class="row">
-                  <div class="col-sm-4">
-                     <div class="icon_1"><img src="images/icon-1.png"></div>
-                     <h4 class="design_text">Logo Design</h4>
-                     <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing </p>
-                     <div class="icon_1"><img src="images/icon-2.png"></div>
-                     <h4 class="design_text">Web Development</h4>
-                     <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing </p>
-                  </div>
-                  <div class="col-sm-4">
-                     <div class="icon_3"><img src="images/icon-3.png"></div>
-                     <h4 class="design_text">Web Design</h4>
-                     <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing </p>
-                     <div class="read_bt_2"><a href="#">Read More</a></div>
-                  </div>
-                  <div class="col-sm-4">
-                     <div class="icon_1"><img src="images/icon-4.png"></div>
-                     <h4 class="design_text">Banner Design</h4>
-                     <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing </p>
-                     <div class="icon_1"><img src="images/icon-5.png"></div>
-                     <h4 class="design_text">Social Media Work</h4>
-                     <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing </p>
-                  </div>
-               </div>
+               <?php
+               $services = \app\models\Services::find()->all(); // Assuming the Services model represents the services table
+
+               $serviceChunks = array_chunk($services, 3); // Split the services into chunks of three for each row
+
+               foreach ($serviceChunks as $serviceChunk) {
+                  echo '<div class="row">';
+                  foreach ($serviceChunk as $service) {
+                     echo '<div class="col-sm-4">';
+                     echo '<h4 class="design_text">' . $service->service . '</h4>';
+                     
+                     // Limit the number of words displayed in the description
+                     $words = explode(' ', $service->description);
+                     $limitedDescription = implode(' ', array_slice($words, 0, 10)); // Change 10 to the desired number of words
+                     
+                     echo '<p class="lorem_text">' . $limitedDescription . '</p>';
+                     echo '<div class="read_bt_2"><a href="#" data-toggle="modal" data-target="#serviceModal' . $service->id . '">Read More</a></div>';
+                     
+                     // Modal for the full description
+                     echo '<div class="modal fade" id="serviceModal' . $service->id . '" tabindex="-1" role="dialog" aria-labelledby="serviceModalLabel' . $service->id . '" aria-hidden="true">';
+                     echo '<div class="modal-dialog modal-dialog-centered" role="document">';
+                     echo '<div class="modal-content">';
+                     echo '<div class="modal-header">';
+                     echo '<h5 class="modal-title" style="color: black; font-weight: bold;" id="serviceModalLabel' . $service->id . '">' . $service->service . '</h5>';
+                     echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+                     echo '<span aria-hidden="true">&times;</span>';
+                     echo '</button>';
+                     echo '</div>';
+                     echo '<div class="modal-body">';
+                     echo '<p class="lorem_text" style="color: black; font-weight: bold;">' . $service->description . '</p>';
+                     echo '</div>';
+                     echo '</div>';
+                     echo '</div>';
+                     echo '</div>';
+                     echo '</div>';
+                  }
+                  echo '</div>';
+               }
+               ?>
             </div>
-         </div>
+      </div>
+
+      </div>
       </div>
       <!--services section end -->
       <!--blog section start -->
