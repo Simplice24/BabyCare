@@ -238,6 +238,46 @@ use yii\grid\GridView;
         </nav>
       </header>
       <!--  Header End -->
+      <div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Username</h5>
+              <div class="card">
+                <div class="card-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Username</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </form>
+                </div>
+              </div>
+              <h5 class="card-title fw-semibold mb-4">Change password</h5>
+              <div class="card mb-0">
+                <div class="card-body">
+                  <form>
+                      <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">New password</label>
+                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Create new password">
+                      </div>
+                      <div class="mb-3">
+                        <label for="disabledSelect" class="form-label">Confirm new password</label>
+                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Confirm your password">
+                      </div>
+                      <div class="mb-3">
+                        <label for="disabledSelect" class="form-label">Current password</label>
+                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Current password">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Change</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>

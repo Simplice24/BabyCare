@@ -29,7 +29,7 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','ban','update','delete','view'],
+                        'actions' => ['index','create','ban','update','delete','view','profile'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                     [
@@ -227,7 +227,7 @@ class UserController extends Controller
         $userProfileImage = $userDetails->profile;
         
         
-        return $this->render('profile/index', [
+        return $this->render('profile', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'userProfileImage' => $userProfileImage,
