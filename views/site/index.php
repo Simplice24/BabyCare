@@ -63,11 +63,11 @@ $feedbacks = Feedbacks::find()->where(['status'=>1])->all();
                         <a class="nav-link" href="#">About us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="#">Services</a>
                      </li>
-                     <!-- <li class="nav-item">
-                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['user/create'])?>">Register</a>
-                     </li> -->
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Feedback</a>
+                     </li>
                      <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>">Login</a>
                      </li>
@@ -159,7 +159,7 @@ $feedbacks = Feedbacks::find()->where(['status'=>1])->all();
       <div class="services_section layout_padding">
       <div class="container">
          <h1 class="service_taital"><span class="our_text">Our</span> Services</h1>
-         <p class="service_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered</p>
+         <p class="service_text">Our services include, but are not limited to,</p>
             <div class="services_section_2">
                <?php
                $services = \app\models\Services::find()->all(); // Assuming the Services model represents the services table
@@ -206,42 +206,6 @@ $feedbacks = Feedbacks::find()->where(['status'=>1])->all();
       </div>
       </div>
       <!--services section end -->
-      <!--blog section start -->
-      <div class="blog_section layout_padding">
-         <div class="container">
-            <h1 class="blog_taital"><span class="our_text">Our</span> Blog</h1>
-            <p class="blog_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered </p>
-            <div class="services_section_2 layout_padding">
-               <div class="row">
-                  <div class="col-md-4">
-                     <div class="box_main">
-                        <div class="student_bg"><img src="images/img-3.png" class="student_bg"></div>
-                        <div class="image_15">19<br>Feb</div>
-                        <h4 class="hannery_text">There are many variations</h4>
-                        <p class="fact_text">dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="box_main">
-                        <div class="student_bg"><img src="images/img-4.png" class="student_bg"></div>
-                        <div class="image_15">19<br>Feb</div>
-                        <h4 class="hannery_text">There are many variations</h4>
-                        <p class="fact_text">dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="box_main">
-                        <div><img src="images/img-5.png" class="student_bg"></div>
-                        <div class="image_15">19<br>Feb</div>
-                        <h4 class="hannery_text">There are many variations</h4>
-                        <p class="fact_text">dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!--blog section end -->
       <!--newsletter section start -->
       <div class="newsletter_section">
          <div class="container">
@@ -253,9 +217,9 @@ $feedbacks = Feedbacks::find()->where(['status'=>1])->all();
                <div class="col-md-6">
                   <?php $form = ActiveForm::begin(['action' => ['feedbacks/create']]); ?>
                   <div class="mail_bt_main">
-                     <?= $form->field($model, 'names')->label(false)->textInput(['type' =>'text', 'class' =>'mail_text mt-3','placeholder' => 'Enter your name','maxlength' => true]) ?>
-                     <?= $form->field($model, 'email')->label(false)->textInput(['type' =>'text', 'class' =>'mail_text mt-3','placeholder' => 'Enter your E-mail','maxlength' => true]) ?>
-                     <?= $form->field($model, 'message')->label(false)->textarea(['type' => 'text','class' =>'mail_text mt-3','rows' => 5, 'cols' => 5,'placeholder' => 'Write down your feedback']) ?>
+                     <?= $form->field($model, 'names')->label(false)->textInput(['type' =>'text', 'class' =>'mail_text mt-3','placeholder' => 'Enter your name','maxlength' => true, 'style' => 'border: 2px solid #334bbb; border-radius: 30px;'])->error(['class' => 'error-text'])->label(false) ?>
+                     <?= $form->field($model, 'email')->label(false)->textInput(['type' =>'text', 'class' =>'mail_text mt-3','placeholder' => 'Enter your E-mail','maxlength' => true, 'style' => 'border: 2px solid #334bbb; border-radius: 30px;'])->error(['class' => 'error-text'])->label(false) ?>
+                     <?= $form->field($model, 'message')->label(false)->textarea(['type' => 'text','class' =>'mail_text mt-3','rows' => 5, 'cols' => 5,'placeholder' => 'Write down your feedback', 'style' => 'border: 2px solid #334bbb; border-radius: 30px;'])->error(['class' => 'error-text'])->label(false) ?>
                   </div>
                   <?= Html::submitButton('Send', ['class' => 'subscribe_bt mt-3']) ?>
                   <?php ActiveForm::end(); ?>

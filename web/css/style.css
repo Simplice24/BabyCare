@@ -556,7 +556,7 @@ img {
 .newsletter_section {
     width: 100%;
     float: left;
-    background-color: #2e4dbc;
+    background-color: #ffffff;
     height: auto;
     padding: 40px 0px;
 }
@@ -564,14 +564,14 @@ img {
 .newsletter_text {
     width: 100%;
     float: left;
-    color: #ffffff;
+    color: #030303;
     font-size: 40px;
 }
 
 .tempor_text {
     width: 100%;
     float: left;
-    color: #ffffff;
+    color: #333333;
     font-size: 16px;
     margin-left: 0px;
     margin-top: 0px;
