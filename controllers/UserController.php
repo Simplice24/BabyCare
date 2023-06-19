@@ -218,4 +218,20 @@ class UserController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    public function actionProfile()
+    {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
+        
+        
+        return $this->render('profile/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'userProfileImage' => $userProfileImage,
+        ]);
+    }
+
 }
