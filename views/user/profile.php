@@ -210,20 +210,21 @@ use yii\grid\GridView;
                             </h5>
                             Username<h5 class="card-title d-flex align-items-center">
                             <?php echo $username; ?>
-                            <button type="button" class="btn btn-primary btn-sm ms-2"><i class="ti ti-pencil me-1"></i>Edit</button>
+                            <button type="button" id="username_update" class="btn btn-primary btn-sm ms-2"><i class="ti ti-pencil me-1"></i>Edit</button>
                             </h5>
                         </div>
                         </div>
                         <div class="row mt-3">
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-outline-primary btn-sm">Change Password</button>
-                            <button type="button" class="btn btn-outline-primary btn-sm ml-md-2">Update Bio</button>
+                            <button type="button" id="password_update" class="btn btn-outline-primary btn-sm">Change Password</button>
+                            <button type="button" id="bio_update" class="btn btn-outline-primary btn-sm ml-md-2">Update Bio</button>
                         </div>
                         </div>
                     </div>
                 </div>
                 </div>
               </div>
+              <div id="username_form" style="display: none;">
               <h5 class="card-title fw-semibold mb-4">Username</h5>
               <div class="card">
                 <div class="card-body">
@@ -236,6 +237,8 @@ use yii\grid\GridView;
                   </form>
                 </div>
               </div>
+              </div>
+              <div id="password_form" style="display: none;">
               <h5 class="card-title fw-semibold mb-4">Change password</h5>
               <div class="card ">
                 <div class="card-body">
@@ -256,10 +259,12 @@ use yii\grid\GridView;
                   </form>
                 </div>
               </div>
+              </div>
               <?php 
               if($userRole == "Babysitter")
               {
               ?>
+              <div id="bio_form" style="display: none;">
               <h5 class="card-title fw-semibold mb-4">Babysitter's information</h5>
               <div class="card mb-0">
                 <div class="card-body">
@@ -289,6 +294,7 @@ use yii\grid\GridView;
                   </form>
                 </div>
               </div>
+              </div>
               <?php
               }
               ?>
@@ -307,5 +313,16 @@ use yii\grid\GridView;
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  document.getElementById("username_update").addEventListener("click", function() {
+    document.getElementById("username_form").style.display = "block";
+  });
+  document.getElementById("password_update").addEventListener("click", function() {
+    document.getElementById("password_form").style.display = "block";
+  });
+  document.getElementById("bio_update").addEventListener("click", function() {
+    document.getElementById("bio_form").style.display = "block";
+  });
+</script>
 </body>
 </html>
