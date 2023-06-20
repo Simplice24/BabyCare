@@ -5,6 +5,7 @@ use app\models\Services;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 ?>
 <!doctype html>
 <html lang="en">
@@ -228,10 +229,14 @@ use yii\grid\GridView;
               <h5 class="card-title fw-semibold mb-4">Username</h5>
               <div class="card">
                 <div class="card-body">
-                  <form>
+                  <form method="post" action="<?= Yii::$app->urlManager->createUrl(['user/username']) ?>">
+                    <?php
+                            $csrf = Yii::$app->request->csrfToken;
+                            echo "<input type='hidden' name='_csrf' value='$csrf'>";
+                    ?>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Username</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New username">
+                      <input type="text" name="new_username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $username ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                   </form>
