@@ -188,19 +188,29 @@ use yii\grid\GridView;
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title fw-semibold mb-4">Profile</h5>
+              <h5 class="card-title fw-semibold mb-4">User profile</h5>
               <div class="card">
                 <div class="card-body">
-                    <div class="row align-items-center">
+                  <div class="row align-items-center">
                     <div class="col-md-3 text-center">
-                        <img src="profile-image.jpg" alt="Profile Image" class="rounded-circle profile-image">
+                      <div class="position-relative">
+                        <img src="<?= Yii::getAlias('@web/' . $userProfileImage) ?>" alt="Profile Image" class="rounded-circle profile-image">
+                        <label for="profile-image-input" class="btn btn-primary btn-sm position-absolute bottom-0 end-0 translate-middle">
+                          <i class="ti ti-plus"></i>
+                          <input type="file" id="profile-image-input" class="visually-hidden">
+                        </label>
+                      </div>
                     </div>
                     <div class="col-md-9">
                         <div class="row align-items-center">
                         <div class="col-md-6">
-                            <h5 class="card-title d-flex align-items-center">
-                            John Doe
-                            <button type="button" class="btn btn-primary btn-sm ms-2"><i class="bi bi-pencil-fill me-1"></i>Edit</button>
+                            Full name<h5 class="card-title d-flex align-items-center">
+                            <?php echo $fullname; ?>
+                            <!-- <button type="button" class="btn btn-primary btn-sm ms-2"><i class="ti ti-pencil me-1"></i>Edit</button> -->
+                            </h5>
+                            Username<h5 class="card-title d-flex align-items-center">
+                            <?php echo $username; ?>
+                            <button type="button" class="btn btn-primary btn-sm ms-2"><i class="ti ti-pencil me-1"></i>Edit</button>
                             </h5>
                         </div>
                         </div>

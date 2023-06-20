@@ -227,6 +227,8 @@ class UserController extends Controller
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
         $userRole = $userDetails->role;
+        $username = $userDetails->username;
+        $fullname = $userDetails->fullname;
         $languages= Languages::find()->all();
 
         
@@ -237,6 +239,8 @@ class UserController extends Controller
             'userProfileImage' => $userProfileImage,
             'languages' => $languages,
             'userRole' => $userRole,
+            'username' => $username,
+            'fullname' => $fullname,
         ]);
     }
 
