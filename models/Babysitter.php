@@ -9,8 +9,6 @@ use Yii;
  *
  * @property int $id
  * @property int $user_id
- * @property string $languages
- * @property float|null $ratings
  * @property string|null $date_of_birth
  * @property int|null $created_at
  * @property int|null $updated_at

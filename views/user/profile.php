@@ -18,60 +18,6 @@ use yii\grid\GridView;
   <link rel="stylesheet" href="css/styles.min.css" />
   <link rel="stylesheet" href="Dash/assets/css/styles.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    .username {
-        margin-top: 15px; /* Adjust the value as per your requirements */
-    }
-    .dropdown {
-    position: relative;
-    display: inline-block;
-    }
-
-    .dropbtn {
-    background-color: transparent;
-    color: gray;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    }
-
-    .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    width: 200px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    padding: 8px;
-    z-index: 1;
-    }
-    .description-cell {
-    max-width: 700px;
-    overflow: hidden;
-    white-space: normal;
-    word-wrap: break-word;
-    }
-    .dropdown-content a {
-    color: gray;
-    display: block;
-    padding: 6px 0;
-    text-decoration: none;
-    }
-
-    .dropdown-content a:hover {
-    background-color: rgba(135, 206, 250, 0.1);
-    width: 100%;
-    }
-
-    .dropdown:hover .dropdown-content {
-    display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-    background-color: transparent;
-    }
-  </style>
 </head>
 
 <body>
@@ -255,9 +201,13 @@ use yii\grid\GridView;
                 </div>
               </div>
               <h5 class="card-title fw-semibold mb-4">Change password</h5>
-              <div class="card mb-0">
+              <div class="card ">
                 <div class="card-body">
                   <form>
+                      <div class="mb-3">
+                        <label for="disabledSelect" class="form-label">Current password</label>
+                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Current password">
+                      </div>
                       <div class="mb-3">
                         <label for="disabledTextInput" class="form-label">New password</label>
                         <input type="password" id="disabledTextInput" class="form-control" placeholder="Create new password">
@@ -266,11 +216,36 @@ use yii\grid\GridView;
                         <label for="disabledSelect" class="form-label">Confirm new password</label>
                         <input type="password" id="disabledTextInput" class="form-control" placeholder="Confirm your password">
                       </div>
-                      <div class="mb-3">
-                        <label for="disabledSelect" class="form-label">Current password</label>
-                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Current password">
-                      </div>
                       <button type="submit" class="btn btn-primary">Change</button>
+                  </form>
+                </div>
+              </div>
+              <h5 class="card-title fw-semibold mb-4">Babysitter's information</h5>
+              <div class="card mb-0">
+                <div class="card-body">
+                  <form>
+                      <div class="mb-3">
+                        <label class="form-label">Languages</label><br>
+                        <div id="languages" class="checkbox-container">
+                          <div class="checkbox-option">
+                            <input type="checkbox" id="language1" value="1">
+                            <label for="language1">Ikinyarwanda</label>
+                          </div>
+                          <div class="checkbox-option">
+                            <input type="checkbox" id="language2" value="2">
+                            <label for="language2">English</label>
+                          </div>
+                          <div class="checkbox-option">
+                            <input type="checkbox" id="language3" value="3">
+                            <label for="language3">French</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Date of birth</label>
+                        <input type="date" id="disabledTextInput" class="form-control" placeholder="Create new password">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Save</button>
                   </form>
                 </div>
               </div>

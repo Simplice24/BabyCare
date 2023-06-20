@@ -16,63 +16,7 @@ use yii\grid\ActionColumn;
   <link rel="stylesheet" href="css/styles.min.css" />
   <link rel="stylesheet" href="Dash/assets/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
-  <style>
-    .username {
-        margin-top: 15px; /* Adjust the value as per your requirements */
-    }
-    .dropdown {
-    position: relative;
-    display: inline-block;
-    }
-
-    .dropbtn {
-    background-color: transparent;
-    color: gray;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    }
-
-    .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    width: 200px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    padding: 8px;
-    z-index: 1;
-    }
-
-    .dropdown-content a {
-    color: gray;
-    display: block;
-    padding: 6px 0;
-    text-decoration: none;
-    }
-
-    .dropdown-content a:hover {
-    background-color: rgba(135, 206, 250, 0.1);;
-    width: 100%;
-    }
-
-    .dropdown:hover .dropdown-content {
-    display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-    background-color: transparent;
-    }
-    .table-height {
-    height: 100%;
-    }
-    table.inputs td {
-    padding: 5px;
-    }
-  </style>
 </head>
-
 <body>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
