@@ -188,13 +188,39 @@ use yii\grid\GridView;
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Profile</h5>
+              <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                    <div class="col-md-3 text-center">
+                        <img src="profile-image.jpg" alt="Profile Image" class="rounded-circle profile-image">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h5 class="card-title d-flex align-items-center">
+                            John Doe
+                            <button type="button" class="btn btn-primary btn-sm ms-2"><i class="bi bi-pencil-fill me-1"></i>Edit</button>
+                            </h5>
+                        </div>
+                        </div>
+                        <div class="row mt-3">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-outline-primary btn-sm">Change Password</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm ml-md-2">Update Bio</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
               <h5 class="card-title fw-semibold mb-4">Username</h5>
               <div class="card">
                 <div class="card-body">
                   <form>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Username</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New username">
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                   </form>
@@ -220,6 +246,10 @@ use yii\grid\GridView;
                   </form>
                 </div>
               </div>
+              <?php 
+              if($userRole == "Babysitter")
+              {
+              ?>
               <h5 class="card-title fw-semibold mb-4">Babysitter's information</h5>
               <div class="card mb-0">
                 <div class="card-body">
@@ -227,18 +257,18 @@ use yii\grid\GridView;
                       <div class="mb-3">
                         <label class="form-label">Languages</label><br>
                         <div id="languages" class="checkbox-container">
-                          <div class="checkbox-option">
-                            <input type="checkbox" id="language1" value="1">
-                            <label for="language1">Ikinyarwanda</label>
-                          </div>
-                          <div class="checkbox-option">
-                            <input type="checkbox" id="language2" value="2">
-                            <label for="language2">English</label>
-                          </div>
-                          <div class="checkbox-option">
-                            <input type="checkbox" id="language3" value="3">
-                            <label for="language3">French</label>
-                          </div>
+                          <?php
+                          foreach ($languages as $language) {
+                            $languageId = $language['id'];
+                            $languageName = $language['language'];
+                          ?>
+                            <div class="checkbox-option">
+                              <input type="checkbox" id="language<?php echo $languageId; ?>" value="<?php echo $languageId; ?>">
+                              <label for="language<?php echo $languageId; ?>"><?php echo $languageName; ?></label>
+                            </div>
+                          <?php
+                          }
+                          ?>
                         </div>
                       </div>
                       <div class="mb-3">
@@ -249,6 +279,9 @@ use yii\grid\GridView;
                   </form>
                 </div>
               </div>
+              <?php
+              }
+              ?>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\User;
+use app\models\Languages;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -225,12 +226,17 @@ class UserController extends Controller
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
+        $userRole = $userDetails->role;
+        $languages= Languages::find()->all();
+
         
         
         return $this->render('profile', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'userProfileImage' => $userProfileImage,
+            'languages' => $languages,
+            'userRole' => $userRole,
         ]);
     }
 
