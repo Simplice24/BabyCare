@@ -31,7 +31,7 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','username','password','create','ban','update','delete','view','profile'],
+                        'actions' => ['index','create','ban','update','delete','view','profile'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                     [
@@ -246,68 +246,5 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
-
-    public function actionPassword()
-    {
-        $model = new User(); // Replace 'User' with your actual model class name
-
-        if ($model->load(Yii::$app->request->post())) {
-            // Retrieve the current user
-            $user = User::findOne(Yii::$app->user->id); // Replace 'User' with your actual model class name
-        
-            // Get the entered current password, new password, and confirm password from the form
-            $currentPassword = Yii::$app->request->post('current_password');
-            $newPassword = Yii::$app->request->post('new_password');
-            $confirmPassword = Yii::$app->request->post('confirm_password');
-        
-            // Validate if the current password matches the stored password hash
-            if (Yii::$app->security->validatePassword($currentPassword, $user->password_hash)) {
-                // Check if the new password and confirm password are equal
-                if ($newPassword === $confirmPassword) {
-                    // Hash the new password
-                    $hashedPassword = Yii::$app->security->generatePasswordHash($newPassword);
-        
-                    // Update the password hash in the user model
-                    $user->password_hash = $hashedPassword;
-        
-                    // Save the user model
-                    if ($user->save()) {
-                        // Password updated successfully
-                        Yii::$app->session->setFlash('success', 'Password updated successfully.');
-                    } else {
-                        // Error saving the user model
-                        Yii::$app->session->setFlash('error', 'Failed to update password.');
-                    }
-                } else {
-                    // New password and confirm password do not match
-                    Yii::$app->session->setFlash('error', 'New password and confirm password do not match.');
-                }
-            } else {
-                // Current password is incorrect
-                Yii::$app->session->setFlash('error', 'Current password is incorrect.');
-            }
-        
-            // Redirect to a relevant page or render the view as needed
-        }
-        
-
-        // Render the view or redirect as needed
-    }
-
-    public function actionUsername()
-    {
-        $newUsername = Yii::$app->request->post('new_username');
-        $model = User::findOne(Yii::$app->user->id);
-        $model->username = $newUsername;
-        if ($model->save()) {
-                     Yii::$app->session->setFlash('success', 'Username updated successfully.');
-                     return $this->redirect(Yii::$app->request->referrer);
-                } else {
-                    Yii::$app->session->setFlash('error', 'Failed to update username.');
-                    return $this->redirect(Yii::$app->request->referrer);
-           }
-        
-    }
-
 
 }
