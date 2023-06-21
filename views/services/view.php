@@ -137,14 +137,6 @@ use yii\widgets\DetailView;
             <li class="sidebar-item">
               <a class="sidebar-link" href="#" aria-expanded="false">
                 <span>
-                   <i class="fas fa-comments"></i>
-                </span>
-                <span class="hide-menu">Reviews</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
-                <span>
                   <i class="fas fa-undo"></i>
                 </span>
                 <span class="hide-menu">Cancellation/Refund</span>
@@ -155,7 +147,7 @@ use yii\widgets\DetailView;
                 <span>
                    <i class="fas fa-comment"></i>
                 </span>
-                <span class="hide-menu">Feedback/Support</span>
+                <span class="hide-menu">Feedback</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -164,14 +156,6 @@ use yii\widgets\DetailView;
                    <i class="fas fa-calendar-alt"></i>
                 </span>
                 <span class="hide-menu">Availability Calendar</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
-                <span>
-                  <i class="fas fa-heart"></i>
-                </span>
-                <span class="hide-menu">Favorites</span>
               </a>
             </li>
             <li class="sidebar-item">
