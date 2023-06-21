@@ -188,6 +188,17 @@ use yii\widgets\ActiveForm;
       <div class="container-fluid">
         <div class="container-fluid">
           <div class="card">
+            <?php if (isset($successMessage)): ?>
+                <div class="alert alert-success">
+                    <?= $successMessage ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($errorMessage)): ?>
+                <div class="alert alert-danger">
+                    <?= $errorMessage ?>
+                </div>
+            <?php endif; ?>
             <div class="card-body">
               <h5 class="card-title fw-semibold mb-4">User profile</h5>
               <div class="card">
@@ -229,7 +240,7 @@ use yii\widgets\ActiveForm;
               <h5 class="card-title fw-semibold mb-4">Username</h5>
               <div class="card">
                 <div class="card-body">
-                  <form method="post" action="<?= Yii::$app->urlManager->createUrl(['user/username']) ?>">
+                  <form method="post" action="<?= Yii::$app->urlManager->createUrl(['profile/username']) ?>">
                     <?php
                             $csrf = Yii::$app->request->csrfToken;
                             echo "<input type='hidden' name='_csrf' value='$csrf'>";
@@ -247,18 +258,22 @@ use yii\widgets\ActiveForm;
               <h5 class="card-title fw-semibold mb-4">Change password</h5>
               <div class="card ">
                 <div class="card-body">
-                  <form>
+                  <form method="post" action="<?= Yii::$app->urlManager->createUrl(['profile/password']) ?>">
+                      <?php
+                              $csrf = Yii::$app->request->csrfToken;
+                              echo "<input type='hidden' name='_csrf' value='$csrf'>";
+                      ?>
                       <div class="mb-3">
                         <label for="disabledSelect" class="form-label">Current password</label>
-                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Current password">
+                        <input type="password" name="current_password" id="disabledTextInput" class="form-control" placeholder="Current password">
                       </div>
                       <div class="mb-3">
                         <label for="disabledTextInput" class="form-label">New password</label>
-                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Create new password">
+                        <input type="password" name="new_password" id="disabledTextInput" class="form-control" placeholder="Create new password">
                       </div>
                       <div class="mb-3">
                         <label for="disabledSelect" class="form-label">Confirm new password</label>
-                        <input type="password" id="disabledTextInput" class="form-control" placeholder="Confirm your password">
+                        <input type="password" name="confirm_password" id="disabledTextInput" class="form-control" placeholder="Confirm your password">
                       </div>
                       <button type="submit" class="btn btn-primary">Change</button>
                   </form>
