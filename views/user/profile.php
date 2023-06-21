@@ -229,7 +229,13 @@ use yii\widgets\ActiveForm;
                         <div class="row mt-3">
                         <div class="col-md-6">
                             <button type="button" id="password_update" class="btn btn-outline-primary btn-sm">Change Password</button>
+                            <?php 
+                            if($userRole == "Babysitter"){
+                            ?>
                             <button type="button" id="bio_update" class="btn btn-outline-primary btn-sm ml-md-2">Update Bio</button>
+                            <?php
+                            }
+                            ?>
                         </div>
                         </div>
                     </div>
