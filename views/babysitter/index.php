@@ -164,7 +164,38 @@ use yii\helpers\Html;
         </nav>
       </header>
       <!--  Header End -->
-
+      <div class="container-fluid">
+        <div class="row">
+            <?php foreach ($babysitters as $row): ?>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card overflow-hidden rounded-2">
+                        <div class="position-relative">
+                            <a href="javascript:void(0)"><img src="Dash/assets/images/products/s4.jpg" class="card-img-top rounded-0" alt="..."></a>
+                            <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>
+                        </div>
+                        <div class="card-body pt-3 p-4">
+                            <h6 class="fw-semibold fs-4"><?php echo $row['fullname']; ?></h6>
+                            <div class="d-flex ">
+                            Languages:<p class="fw-normal mb-2"><?php echo implode(', ', $row['languages']); ?></p>
+                            </div>
+                            <div class="d-flex ">
+                            Age:<p class="fw-normal mb-2"><?php echo calculateAge($row['birthdate']); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <?php
+            function calculateAge($birthdate)
+            {
+                $birthDate = new DateTime($birthdate);
+                $currentDate = new DateTime();
+                $age = $currentDate->diff($birthDate)->y;
+                return $age;
+            }
+            ?>
+        </div>
+      </div>
     </div>
   </div>
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>

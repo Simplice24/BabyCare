@@ -50,11 +50,34 @@ class BabysitterController extends Controller
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
+        $query = Yii::$app->db->createCommand('
+        SELECT u.id, u.fullname, l.language, u.birthdate
+        FROM user u
+        INNER JOIN languages_babysitter lb ON u.id = lb.babysitter_id
+        INNER JOIN languages l ON lb.language_id = l.id
+        WHERE u.role = "Babysitter"
+        ')->queryAll();
+
+        $babysitters = [];
+        foreach ($query as $row) {
+            $babysitterId = $row['id'];
+            if (!isset($babysitters[$babysitterId])) {
+                $babysitters[$babysitterId] = [
+                    'fullname' => $row['fullname'],
+                    'languages' => [],
+                    'birthdate' => $row['birthdate'],
+                ];
+            }
+            $babysitters[$babysitterId]['languages'][] = $row['language'];
+        }
+
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'userProfileImage' => $userProfileImage,
+            'babysitters' => $babysitters,
         ]);
     }
 
