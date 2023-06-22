@@ -3,11 +3,13 @@
 namespace app\controllers;
 
 use app\models\BabySitter;
+use app\models\User;
 use yii\filters\AccessControl;
 use app\models\BabysitterSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * BabysitterController implements the CRUD actions for BabySitter model.
@@ -45,10 +47,14 @@ class BabysitterController extends Controller
     {
         $searchModel = new BabysitterSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'userProfileImage' => $userProfileImage,
         ]);
     }
 

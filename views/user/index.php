@@ -61,7 +61,7 @@ use yii\grid\ActionColumn;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['babysitters/index']) ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['babysitter/index']) ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-child"></i>
                 </span>

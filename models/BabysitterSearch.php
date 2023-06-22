@@ -18,8 +18,7 @@ class BabysitterSearch extends BabySitter
     {
         return [
             [['id', 'user_id', 'created_at', 'updated_at'], 'integer'],
-            [['languages', 'date_of_birth'], 'safe'],
-            [['ratings'], 'number'],
+            [['date_of_birth'], 'safe'],
         ];
     }
 
@@ -61,13 +60,12 @@ class BabysitterSearch extends BabySitter
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'ratings' => $this->ratings,
             'date_of_birth' => $this->date_of_birth,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'languages', $this->languages]);
+        // $query->andFilterWhere(['like', 'languages', $this->languages]);
 
         return $dataProvider;
     }

@@ -65,7 +65,7 @@ use yii\widgets\ActiveForm;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['babysitter/index'])  ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-child"></i>
                 </span>

@@ -31,11 +31,9 @@ class Babysitter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'languages'], 'required'],
+            [['user_id'], 'required'],
             [['user_id', 'created_at', 'updated_at'], 'integer'],
-            [['ratings'], 'number'],
             [['date_of_birth'], 'safe'],
-            [['languages'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -48,8 +46,6 @@ class Babysitter extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'languages' => 'Languages',
-            'ratings' => 'Ratings',
             'date_of_birth' => 'Date Of Birth',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
