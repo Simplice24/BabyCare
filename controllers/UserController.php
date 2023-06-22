@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\User;
 use app\models\Languages;
+use app\models\LanguagesBabysitter;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -233,9 +234,11 @@ class UserController extends Controller
         $username = $userDetails->username;
         $fullname = $userDetails->fullname;
         $birthdate = $userDetails->birthdate;
+        $languageIds = LanguagesBabysitter::find()
+        ->select('language_id')
+        ->where(['babysitter_id' => $user_id])
+        ->column();
         $languages= Languages::find()->all();
-
-        
         
         return $this->render('profile', [
             'searchModel' => $searchModel,
@@ -247,6 +250,7 @@ class UserController extends Controller
             'fullname' => $fullname,
             'model' => $model,
             'birthdate' => $birthdate,
+            'languageIds' => $languageIds,
         ]);
     }
 

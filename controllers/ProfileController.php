@@ -69,7 +69,10 @@ public function actionPassword()
             
             if ($user->birthdate != $birthdate) {
                 $user->birthdate = $birthdate;
-                $user->save();
+                $rowsAffected = Yii::$app->db->createCommand()
+                ->update('user', ['birthdate' => $birthdate], ['id' => $userId])
+                ->execute();
+
             }
             
             $babysitterId = $userId;
@@ -81,11 +84,10 @@ public function actionPassword()
                 $model->save();
             }
             
-            // Redirect or display success message
+            
         }
         
-        // Render the bio view
-        return $this->redirect(Yii::$app->request->referrer);
+        return $this->redirect('user/profile');
     }
 
 

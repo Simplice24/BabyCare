@@ -286,18 +286,19 @@ use yii\widgets\ActiveForm;
                   <div class="mb-3">
                     <label class="form-label">Languages</label><br>
                     <div id="languages" class="checkbox-container">
-                      <?php
-                      foreach ($languages as $language) {
+                    <?php
+                    foreach ($languages as $language) {
                         $languageId = $language['id'];
                         $languageName = $language['language'];
-                      ?>
+                        $isChecked = in_array($languageId, $languageIds) ? 'checked' : '';
+                    ?>
                         <div class="checkbox-option">
-                          <input type="checkbox" id="language<?php echo $languageId; ?>" name="languages[]" value="<?php echo $languageId; ?>">
-                          <label for="language<?php echo $languageId; ?>"><?php echo $languageName; ?></label>
+                            <input type="checkbox" id="language<?php echo $languageId; ?>" name="languages[]" value="<?php echo $languageId; ?>" <?php echo $isChecked; ?>>
+                            <label for="language<?php echo $languageId; ?>"><?php echo $languageName; ?></label>
                         </div>
-                      <?php
-                      }
-                      ?>
+                    <?php
+                    }
+                    ?>
                     </div>
                   </div>
                   <div class="mb-3">
