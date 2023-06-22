@@ -175,10 +175,10 @@ use yii\helpers\Html;
                         </div>
                         <div class="card-body pt-3 p-4">
                             <h6 class="fw-semibold fs-4"><?php echo $row['fullname']; ?></h6>
-                            <div class="d-flex ">
+                            <div class="d-flex">
                             Languages:<p class="fw-normal mb-2"><?php echo implode(', ', $row['languages']); ?></p>
                             </div>
-                            <div class="d-flex ">
+                            <div class="d-flex">
                             Age:<p class="fw-normal mb-2"><?php echo calculateAge($row['birthdate']); ?></p>
                             </div>
                         </div>
