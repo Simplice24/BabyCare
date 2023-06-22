@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 use app\models\User;
+use app\models\LanguagesBabysitter;
 use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
 use Yii;
@@ -56,6 +57,36 @@ public function actionPassword()
 
     return $this->redirect('user/index');
 }
+
+    public function actionBio()
+    {
+        if (Yii::$app->request->isPost) {
+            $birthdate = Yii::$app->request->post('birthdate');
+            $selectedLanguages = Yii::$app->request->post('languages', []);
+            
+            $userId = Yii::$app->user->id; 
+            $user = User::findOne($userId);
+            
+            if ($user->birthdate != $birthdate) {
+                $user->birthdate = $birthdate;
+                $user->save();
+            }
+            
+            $babysitterId = $userId;
+            
+            foreach ($selectedLanguages as $languageId) {
+                $model = new LanguagesBabysitter();
+                $model->language_id = $languageId;
+                $model->babysitter_id = $babysitterId;
+                $model->save();
+            }
+            
+            // Redirect or display success message
+        }
+        
+        // Render the bio view
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 
 
 }

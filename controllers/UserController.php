@@ -232,6 +232,7 @@ class UserController extends Controller
         $userRole = $userDetails->role;
         $username = $userDetails->username;
         $fullname = $userDetails->fullname;
+        $birthdate = $userDetails->birthdate;
         $languages= Languages::find()->all();
 
         
@@ -245,7 +246,9 @@ class UserController extends Controller
             'username' => $username,
             'fullname' => $fullname,
             'model' => $model,
+            'birthdate' => $birthdate,
         ]);
     }
+
 
 }

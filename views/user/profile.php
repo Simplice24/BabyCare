@@ -278,30 +278,34 @@ use yii\widgets\ActiveForm;
               <h5 class="card-title fw-semibold mb-4">Babysitter's information</h5>
               <div class="card mb-0">
                 <div class="card-body">
-                  <form>
-                      <div class="mb-3">
-                        <label class="form-label">Languages</label><br>
-                        <div id="languages" class="checkbox-container">
-                          <?php
-                          foreach ($languages as $language) {
-                            $languageId = $language['id'];
-                            $languageName = $language['language'];
-                          ?>
-                            <div class="checkbox-option">
-                              <input type="checkbox" id="language<?php echo $languageId; ?>" value="<?php echo $languageId; ?>">
-                              <label for="language<?php echo $languageId; ?>"><?php echo $languageName; ?></label>
-                            </div>
-                          <?php
-                          }
-                          ?>
+                <form method="post" action="<?= Yii::$app->urlManager->createUrl(['profile/bio']) ?>">
+                  <?php
+                      $csrf = Yii::$app->request->csrfToken;
+                      echo "<input type='hidden' name='_csrf' value='$csrf'>";
+                  ?>
+                  <div class="mb-3">
+                    <label class="form-label">Languages</label><br>
+                    <div id="languages" class="checkbox-container">
+                      <?php
+                      foreach ($languages as $language) {
+                        $languageId = $language['id'];
+                        $languageName = $language['language'];
+                      ?>
+                        <div class="checkbox-option">
+                          <input type="checkbox" id="language<?php echo $languageId; ?>" name="languages[]" value="<?php echo $languageId; ?>">
+                          <label for="language<?php echo $languageId; ?>"><?php echo $languageName; ?></label>
                         </div>
-                      </div>
-                      <div class="mb-3">
-                        <label for="disabledTextInput" class="form-label">Date of birth</label>
-                        <input type="date" id="disabledTextInput" class="form-control" placeholder="Create new password">
-                      </div>
-                      <button type="submit" class="btn btn-primary">Save</button>
-                  </form>
+                      <?php
+                      }
+                      ?>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Date of birth</label>
+                    <input type="date" id="disabledTextInput" class="form-control" name="birthdate" value="<?php echo $birthdate; ?>">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
                 </div>
               </div>
               </div>
