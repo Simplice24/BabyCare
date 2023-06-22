@@ -36,7 +36,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['fullname', 'username', 'profile', 'email', 'password_hash','confirm_password', 'role', 'auth_key', 'status'], 'required'],
+            [['fullname', 'username', 'profile', 'email', 'password_hash','confirm_password', 'role', 'auth_key', 'status', 'birthdate'], 'required'],
             [['status'], 'integer'],
             [['created_at', 'updated_at','status','username'], 'safe'],
             [['fullname', 'username', 'email', 'password_hash', 'role', 'auth_key'], 'string', 'max' => 255],
@@ -55,6 +55,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Username',
             'profile' => 'Profile',
             'email' => 'Email',
+            'birthdate' => 'Birthdate',
             'password_hash' => 'Password Hash',
             'role' => 'Role',
             'auth_key' => 'Auth Key',

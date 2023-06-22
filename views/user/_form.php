@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
+  <title>BabyCare</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
@@ -47,6 +47,17 @@ use yii\widgets\ActiveForm;
                     <label for="exampleInputEmail1" class="form-label">Email Address</label>
                     <?= $form->field($model, 'email')->label(false)->textInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
                   </div>
+                  <?php
+                  if($role == "Babysitter")
+                  {
+                  ?>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Date of birth</label>
+                    <?= $form->field($model, 'birthdate')->label(false)->textInput(['type'=>'date','class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
+                  </div>
+                  <?php
+                  }
+                  ?>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <?= $form->field($model, 'password_hash')->label(false)->passwordInput(['class' => 'form-control', 'aria-describedby' => 'textHelp']) ?>
