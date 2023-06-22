@@ -77,13 +77,17 @@ class ProfileController extends \yii\web\Controller
             
             $babysitterId = $userId;
             
+            // Delete existing records for the authenticated user
+            LanguagesBabysitter::deleteAll(['babysitter_id' => $babysitterId]);
+
+            // Create new records for selected languages
             foreach ($selectedLanguages as $languageId) {
                 $model = new LanguagesBabysitter();
                 $model->language_id = $languageId;
                 $model->babysitter_id = $babysitterId;
                 $model->save();
             }
-            
+
             
         }
         
