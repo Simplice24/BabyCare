@@ -4,6 +4,7 @@ namespace app\controllers;
 use yii\filters\AccessControl;
 use app\models\User;
 use app\models\Bookings;
+use app\models\Feedbacks;
 use yii\db\Expression;
 use yii\db\Query;
 use Yii;
@@ -36,6 +37,7 @@ class DashboardController extends \yii\web\Controller
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
         $bookings = Bookings::find()->count(); 
+        $feedbacks = Feedbacks::find()->count();
         $parents= User::find()->where(['role' => 'Parent'])->count();
         $babysitters= User::find()->where(['role' => 'Babysitter'])->count();
         $query = Bookings::find()
@@ -167,6 +169,36 @@ class DashboardController extends \yii\web\Controller
             $ParentspercentageIncrease = 100;
         }
 
+
+        $FeedbackspreviousYearCount = (new Query())
+        ->select('COUNT(*)')
+        ->from('feedbacks')
+        ->where([
+            'and',
+            ['between', 'created_at', $previousYearStart, $previousYearEnd]
+        ])
+        ->scalar();
+
+        // Query the database to count the number of babysitters created in the current year
+        $FeedbackscurrentYearCount = (new Query())
+        ->select('COUNT(*)')
+        ->from('feedbacks')
+        ->where([
+            'and',
+            ['between', 'created_at', $currentYearStart, $currentYearEnd]
+        ])
+        ->scalar();
+
+        // Calculate the percentage increase if the previous year's count is not zero
+        if ($FeedbackspreviousYearCount !== 0) {
+            // Calculate the percentage increase
+            $FeedbackspercentageIncrease = (($FeedbackscurrentYearCount - $FeedbackspreviousYearCount) / $FeedbackspreviousYearCount) * 100;
+
+        } else {
+            // Handle the division by zero error
+            $FeedbackspercentageIncrease = 100;
+        }
+
         $currentYearStart = strtotime('first day of January');
         $currentYearEnd = strtotime('last day of December');
 
@@ -199,8 +231,8 @@ class DashboardController extends \yii\web\Controller
 
         
         return $this->render('index',['userProfileImage' => $userProfileImage,
-         'babysitters' => $babysitters,'parents' => $parents,
-        'bookings' => $bookings,'mostFrequentAgeRange' => $mostFrequentAgeRange,
+         'babysitters' => $babysitters,'parents' => $parents,'FeedbackspercentageIncrease'=> $FeedbackspercentageIncrease,
+        'bookings' => $bookings,'mostFrequentAgeRange' => $mostFrequentAgeRange,'feedbacks' => $feedbacks,
          'mostFrequentGender' => $mostFrequentGender, 'mostFrequentLanguages' => $mostFrequentLanguages,
          'labels' => $labels, 'data' => $data,'BabySitterspercentageIncrease' => $BabySitterspercentageIncrease,
         'ParentspercentageIncrease' => $ParentspercentageIncrease, 'bookingsPercentageIncrease' => $bookingsPercentageIncrease]);

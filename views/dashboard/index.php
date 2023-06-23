@@ -197,16 +197,15 @@ use yii\helpers\Html;
                 <!-- Yearly Breakup -->
                 <div class="card overflow-hidden">
                   <div class="card-body p-4">
-                    <h5 class="card-title mb-9 fw-semibold">Cancellations</h5>
+                    <h5 class="card-title mb-9 fw-semibold">Feedbacks</h5>
                     <div class="row align-items-center">
                       <div class="col-8">
-                        <h4 class="fw-semibold mb-3">0</h4>
+                        <h4 class="fw-semibold mb-3"><?= $feedbacks; ?></h4>
                         <div class="d-flex align-items-center mb-3">
-                          <span
-                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-up-left text-success"></i>
+                          <span class="me-1 rounded-circle <?= ($FeedbackspercentageIncrease >= 0) ? 'bg-light-success' : 'bg-light-danger' ?> round-20 d-flex align-items-center justify-content-center">
+                            <i class="<?= ($FeedbackspercentageIncrease >= 0) ? 'ti ti-arrow-up-left text-success' : 'ti ti-arrow-down-left text-danger' ?>"></i>
                           </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                          <p class="text-dark me-1 fs-3 mb-0"><?php echo $FeedbackspercentageIncrease; ?>%</p>
                           <p class="fs-3 mb-0">This year</p>
                         </div>
                       </div>

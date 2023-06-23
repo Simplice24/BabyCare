@@ -51,7 +51,7 @@ class BabysitterController extends Controller
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
         $query = Yii::$app->db->createCommand('
-        SELECT u.id, u.fullname, l.language, u.birthdate
+        SELECT u.id, u.profile, u.fullname, l.language, u.birthdate
         FROM user u
         LEFT JOIN languages_babysitter lb ON u.id = lb.babysitter_id
         LEFT JOIN languages l ON lb.language_id = l.id
@@ -66,6 +66,7 @@ class BabysitterController extends Controller
                     'fullname' => $row['fullname'],
                     'languages' => [],
                     'birthdate' => $row['birthdate'],
+                    'profile' => $row['profile'],
                 ];
             }
             if ($row['language'] !== null) {
