@@ -76,19 +76,11 @@ use yii\helpers\Html;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
-                <span>
-                  <i class="fas fa-undo"></i>
-                </span>
-                <span class="hide-menu">Cancellation/Refund</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['feedbacks/index'])  ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-comment"></i>
                 </span>
-                <span class="hide-menu">Feedback</span>
+                <span class="hide-menu">Feedbacks</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -207,11 +199,6 @@ use yii\helpers\Html;
                           </span>
                           <p class="text-dark me-1 fs-3 mb-0"><?php echo $FeedbackspercentageIncrease; ?>%</p>
                           <p class="fs-3 mb-0">This year</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex justify-content-center">
-                          <!-- <div id="breakup"></div> -->
                         </div>
                       </div>
                     </div>

@@ -143,19 +143,11 @@ use yii\widgets\DetailView;
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['cancellations/index']) ?>" aria-expanded="false">
-                <span>
-                  <i class="fas fa-undo"></i>
-                </span>
-                <span class="hide-menu">Cancellation/Refund</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['feedbacks/index']) ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-comment"></i>
                 </span>
-                <span class="hide-menu">Feedback</span>
+                <span class="hide-menu">Feedbacks</span>
               </a>
             </li>
             <li class="sidebar-item">
