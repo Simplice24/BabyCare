@@ -190,19 +190,6 @@ use yii\grid\ActionColumn;
             <div class="card w-100">
               <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">All System users</h5>
-                <!-- <table class="inputs">
-                  <tbody>
-                    <tr>
-                      <td>Starting date:</td>
-                      <td><input type="date" id="min" name="min"></td>
-                    </tr>
-                    <tr>
-                      <td>Ending date:</td>
-                      <td><input type="date" id="max" name="max"></td>
-                    </tr>
-                  </tbody>
-                </table> -->
-                <div style="max-height: 500px;">
                   <?php
                   echo \yii\grid\GridView::widget([
                     'id' => 'my-gridview',
@@ -283,7 +270,6 @@ use yii\grid\ActionColumn;
                   ]);
                   ?>
                 </div>
-              </div>
             </div>
           </div>
         </div>

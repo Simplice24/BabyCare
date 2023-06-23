@@ -242,18 +242,6 @@ use yii\grid\ActionColumn;
                 <div class="card w-100">
                       <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">All Bookings</h5>
-                        <!-- <table class="inputs">
-                          <tbody><tr>
-                              <td>Starting date:</td>
-                              <td><input type="date" id="min" name="min"></td>
-                          </tr>
-                          <tr>
-                              <td>Ending date:</td>
-                              <td><input type="date" id="max" name="max"></td>
-                          </tr>
-                          </tbody>
-                        </table> -->
-                        
                           <?php
                           echo \yii\grid\GridView::widget([
                             'id' => 'my-gridview',
