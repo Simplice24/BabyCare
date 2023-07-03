@@ -112,12 +112,25 @@ class BookingsController extends Controller
         }
 
         
-
         return $this->render('assign', [
             'babysitters' => $babysitters,
             'userProfileImage' => $userProfileImage,
+            'id' => $id,
         ]);
     }
+
+    public function actionAssign($id, $selectedBabysitters)
+    {
+        
+        foreach ($selectedBabysitters as $babysitterId) {
+            $assignment = new Assignment();
+            $assignment->babysitter_id = $babysitterId;
+            $assignment->booking_id = $id;
+            $assignment->save();
+        }
+
+    }
+
 
 
     /**
