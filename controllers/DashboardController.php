@@ -90,6 +90,15 @@ class DashboardController extends \yii\web\Controller
         ->limit(1)
         ->scalar();
 
+        //Query to find most frequent service booked
+        $mostFrequentService = Bookings::find()
+        ->select('service')
+        ->groupBy('service')
+        ->orderBy(['COUNT(*)' => SORT_DESC])
+        ->limit(1)
+        ->scalar();
+
+
         //Percentage calculation
         // Get the current year
         $currentYear = date('Y');
@@ -231,11 +240,12 @@ class DashboardController extends \yii\web\Controller
 
         
         return $this->render('index',['userProfileImage' => $userProfileImage,
-         'babysitters' => $babysitters,'parents' => $parents,'FeedbackspercentageIncrease'=> $FeedbackspercentageIncrease,
+        'babysitters' => $babysitters,'parents' => $parents,'FeedbackspercentageIncrease'=> $FeedbackspercentageIncrease,
         'bookings' => $bookings,'mostFrequentAgeRange' => $mostFrequentAgeRange,'feedbacks' => $feedbacks,
-         'mostFrequentGender' => $mostFrequentGender, 'mostFrequentLanguages' => $mostFrequentLanguages,
-         'labels' => $labels, 'data' => $data,'BabySitterspercentageIncrease' => $BabySitterspercentageIncrease,
-        'ParentspercentageIncrease' => $ParentspercentageIncrease, 'bookingsPercentageIncrease' => $bookingsPercentageIncrease]);
+        'mostFrequentGender' => $mostFrequentGender, 'mostFrequentLanguages' => $mostFrequentLanguages,
+        'labels' => $labels, 'data' => $data,'BabySitterspercentageIncrease' => $BabySitterspercentageIncrease,
+        'ParentspercentageIncrease' => $ParentspercentageIncrease, 'bookingsPercentageIncrease' => $bookingsPercentageIncrease,
+        'mostFrequentService' => $mostFrequentService]);
     }
 
 }
