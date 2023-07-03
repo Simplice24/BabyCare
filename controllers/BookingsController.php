@@ -107,7 +107,7 @@ class BookingsController extends Controller
             $babysitters = 'No available babysitter for such criteria!';
         }
 
-        var_dump($babysitters);
+
     }
 
 
