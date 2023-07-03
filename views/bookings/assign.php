@@ -263,12 +263,12 @@ use yii\helpers\ArrayHelper;
         </div>
         <?php if (!empty($babysitters)) { ?>
           <div id="assignButtonContainer" style="display: none;">
-          <?= Html::beginForm(['assign'], 'post'); ?>
-          <?= Html::hiddenInput('id', $id); ?>
-          <input type="hidden" name="selectedBabysitters" id="selectedBabysittersInput">
-          <?= Html::submitButton('Assign', ['class' => 'btn btn-primary', 'name' => 'assign-button', 'id' => 'assignButton']); ?>
-          <?= Html::endForm(); ?>
-        </div>
+            <?= Html::beginForm(['assign'], 'post'); ?>
+            <?= Html::hiddenInput('id', $id); ?>
+            <input type="hidden" name="selectedBabysitters" id="selectedBabysittersInput" value="">
+            <?= Html::submitButton('Assign', ['class' => 'btn btn-primary', 'name' => 'assign-button', 'id' => 'assignButton']); ?>
+            <?= Html::endForm(); ?>
+          </div>
         <?php } ?>
       </div>
     </div>
@@ -281,11 +281,12 @@ function toggleAssignButton(checkbox) {
   var assignButtonContainer = document.getElementById('assignButtonContainer');
   var selectedBabysittersInput = document.getElementById('selectedBabysittersInput');
   
-  if (checkbox.checked) {
-    selectedBabysittersInput.value += checkbox.value + ',';
-  } else {
-    selectedBabysittersInput.value = selectedBabysittersInput.value.replace(checkbox.value + ',', '');
-  }
+  var selectedBabysitters = [];
+  checkboxes.forEach(function(checkbox) {
+    selectedBabysitters.push(checkbox.value);
+  });
+  
+  selectedBabysittersInput.value = selectedBabysitters.join(',');
   
   if (checkboxes.length > 0) {
     assignButtonContainer.style.display = 'block';
@@ -295,22 +296,6 @@ function toggleAssignButton(checkbox) {
 }
 </script>
 
-
-
-
-
-<script>
-function toggleAssignButton() {
-  var checkboxes = document.querySelectorAll('input[name="selectedBabysitters[]"]:checked');
-  var assignButtonContainer = document.getElementById('assignButtonContainer');
-  
-  if (checkboxes.length > 0) {
-    assignButtonContainer.style.display = 'block';
-  } else {
-    assignButtonContainer.style.display = 'none';
-  }
-}
-</script>
 
                   
 
