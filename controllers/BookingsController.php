@@ -29,7 +29,7 @@ class BookingsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','delete','update'],
+                        'actions' => ['index','create','view','delete','update','assign'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                     [
@@ -63,36 +63,52 @@ class BookingsController extends Controller
     ->select(['created_at', 'number_of_babysitters','languages_spoken','babysitter_age_range'])
     ->limit(6)
     ->all();
-
-
-    $age_range='20-25';
-    $language= 'English';
-    $ageRangeArray = explode('-', $age_range);
-    $lowerAge = $ageRangeArray[0];
-    $upperAge = $ageRangeArray[1];
-
-    $babysitters = User::find()
-    ->select('u.fullname')
-    ->from('user u')
-    ->leftJoin('languages_babysitter lb', 'lb.babysitter_id = u.id')
-    ->leftJoin('languages l', 'l.id = lb.language_id')
-    ->where(['u.role' => 'Babysitter'])
-    ->andWhere(['BETWEEN', 'u.birthdate', date("Y-m-d", strtotime("-{$upperAge} years")), date("Y-m-d", strtotime("-{$lowerAge} years"))])
-    ->andWhere(['l.language' => $language])
-    ->column();
-
-    var_dump($babysitters);
     
     $dataProvider = $searchModel->search($this->request->queryParams);
     $dataProvider->pagination->pageSize = 10; // Customize the number of records per page
     
-    // return $this->render('index', [
-    //     'searchModel' => $searchModel,
-    //     'dataProvider' => $dataProvider,
-    //     'userProfileImage' => $userProfileImage,
-    //     'recentBookings' => $recentBookings,
-    // ]);
+    return $this->render('index', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+        'userProfileImage' => $userProfileImage,
+        'recentBookings' => $recentBookings,
+    ]);
 }
+
+    public function actionAssign($id)
+    {
+
+        $booking = Bookings::findOne($id);
+
+        $age_range = $booking->babysitter_age_range;
+        $language = $booking->languages_spoken;
+        $date = $booking->date;
+        $starting_time = $booking->starting_time;
+        $ending_time = $booking->ending_time;
+        $ageRangeArray = explode('-', $age_range);
+        $lowerAge = $ageRangeArray[0];
+        $upperAge = $ageRangeArray[1];
+
+        $babysitters = User::find()
+        ->select('u.fullname')
+        ->from('user u')
+        ->leftJoin('languages_babysitter lb', 'lb.babysitter_id = u.id')
+        ->leftJoin('languages l', 'l.id = lb.language_id')
+        ->leftJoin('availability av', 'av.user_id = u.id')
+        ->where(['u.role' => 'Babysitter'])
+        ->andWhere(['BETWEEN', 'u.birthdate', date("Y-m-d", strtotime("-{$upperAge} years")), date("Y-m-d", strtotime("-{$lowerAge} years"))])
+        ->andWhere(['l.language' => $language])
+        ->andWhere(['av.date' => $date])
+        ->andWhere(['>=', 'av.starting_time', $starting_time])
+        ->andWhere(['<=', 'av.ending_time', $ending_time])
+        ->column();
+
+        if (empty($babysitters)) {
+            $babysitters = 'No available babysitter for such criteria!';
+        }
+
+        var_dump($babysitters);
+    }
 
 
     /**
