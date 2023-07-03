@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\User;
 use app\models\Services;
+use yii\db\Expression;
 use Yii;
 
 /**
@@ -63,17 +64,34 @@ class BookingsController extends Controller
     ->limit(6)
     ->all();
 
-   
+
+    $age_range='20-25';
+    $language= 'English';
+    $ageRangeArray = explode('-', $age_range);
+    $lowerAge = $ageRangeArray[0];
+    $upperAge = $ageRangeArray[1];
+
+    $babysitters = User::find()
+    ->select('u.fullname')
+    ->from('user u')
+    ->leftJoin('languages_babysitter lb', 'lb.babysitter_id = u.id')
+    ->leftJoin('languages l', 'l.id = lb.language_id')
+    ->where(['u.role' => 'Babysitter'])
+    ->andWhere(['BETWEEN', 'u.birthdate', date("Y-m-d", strtotime("-{$upperAge} years")), date("Y-m-d", strtotime("-{$lowerAge} years"))])
+    ->andWhere(['l.language' => $language])
+    ->column();
+
+    var_dump($babysitters);
     
     $dataProvider = $searchModel->search($this->request->queryParams);
     $dataProvider->pagination->pageSize = 10; // Customize the number of records per page
     
-    return $this->render('index', [
-        'searchModel' => $searchModel,
-        'dataProvider' => $dataProvider,
-        'userProfileImage' => $userProfileImage,
-        'recentBookings' => $recentBookings,
-    ]);
+    // return $this->render('index', [
+    //     'searchModel' => $searchModel,
+    //     'dataProvider' => $dataProvider,
+    //     'userProfileImage' => $userProfileImage,
+    //     'recentBookings' => $recentBookings,
+    // ]);
 }
 
 
