@@ -1,9 +1,16 @@
 <?php
-/** @var yii\web\View $this */
+
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
+use yii\helpers\Url;
+
+/** @var yii\web\View $this */
+/** @var app\models\Bookings $model */
+
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -127,13 +134,13 @@ use yii\grid\ActionColumn;
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['services/index']) ?>" aria-expanded="false">
                 <span>
-                  <i class="fa fa-assistive-listening-systems"></i>
+                  <i class="fas fa-bell"></i>
                 </span>
                 <span class="hide-menu">Services</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['feedbacks/index'])  ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['feedbacks/index']) ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-comment"></i>
                 </span>
@@ -196,7 +203,7 @@ use yii\grid\ActionColumn;
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="<?= Yii::getAlias('@web/' . $userProfileImage) ?>" alt="" width="35" height="35" class="rounded-circle">
+                  <img src="<?= Yii::getAlias('@web/' . Yii::$app->user->identity->profile) ?>" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
@@ -205,7 +212,7 @@ use yii\grid\ActionColumn;
                       <p class="mb-0 fs-3">My Profile</p>
                     </a>
                     <?= Html::a('Logout', ['site/logout'], ['class' => 'btn btn-outline-primary mx-3 mt-2 d-block', 'data' => ['method' => 'post']]) ?>
-                  </div>
+                  </div> 
                 </div>
               </li>
             </ul>
@@ -214,136 +221,51 @@ use yii\grid\ActionColumn;
       </header>
       <!--  Header End -->
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch">
+      <div class="row">
+          <div class="col-lg-12 d-flex align-items-center justify-content-center"> 
             <div class="card w-100">
-              <div class="card-body p-4 " >
-                <div class="mb-4">
-                  <h5 class="card-title fw-semibold">Recent Bookings</h5>
-                </div>
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Available babysitters</h5>
                 <div class="table-responsive">
-                <ul class="timeline-widget mb-0 position-relative mb-n5">
-                    <?php foreach ($recentBookings as $booking) : ?>
-                        <li class="timeline-item d-flex position-relative overflow-hidden">
-                            <div class="timeline-time text-dark flex-shrink-0 text-end"><?php echo date('Y-m-d H:i', $booking['created_at']); ?></div>
-                            <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
-                                <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                            </div>
-                            <div class="timeline-desc fs-3 text-dark mt-n1"><?php echo $booking['number_of_babysitters']; ?> Babysitters between <?php echo $booking['babysitter_age_range']; ?> years old, who speaks <?php echo $booking['languages_spoken']; ?></div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                <?php if (is_array($babysitters)) { ?>
+                  <table class="table text-nowrap mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">#</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Fullname</h6>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($babysitters as $index => $babysitter) { ?>
+                      <tr>
+                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><?= $index + 1 ?></h6></td>
+                        <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1"><?= $babysitter->fullname ?></h6>                       
+                        </td>
+                        <td class="border-bottom-0">
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="selectedBabysitters[]" value="<?= $babysitter['id'] ?>">
+                          </div>
+                        </td>
+                      </tr>   
+                      <?php } ?>                   
+                    </tbody>
+                  </table>
+                  <?php } else { ?>
+                    <p><?= $babysitters ?></p>
+                  <?php } ?>
                 </div>
               </div>
             </div>
           </div>
-              <div class="col-lg-8 d-flex align-items-stretch">
-                <div class="card w-100">
-                      <div class="card-body p-4">
-                        <h5 class="card-title fw-semibold mb-4">All Bookings</h5>
-                          <?php
-                          echo \yii\grid\GridView::widget([
-                            'id' => 'my-gridview',
-                            'dataProvider' => $dataProvider,
-                            'filterModel' => $searchModel, // Add your search model here
-                            'options' => [
-                              'class' => 'table text-nowrap mb-0 align-middle table-height',
-                            ],
-                            'tableOptions' => [
-                              'class' => 'table text-nowrap mb-0 align-middle',
-                            ],
-                            'headerRowOptions' => [
-                              'class' => 'text-dark fs-4',
-                            ],
-                            'columns' => [
-                              [
-                                'class' => 'yii\grid\SerialColumn',
-                                'header' => '<h6 class="fw-semibold mb-0">#</h6>',
-                              ],
-                              [
-                                'attribute' => 'date',
-                                'header' => '<h6 class="fw-semibold mb-0">Date</h6>',
-                                'value' => function ($model) {
-                                  // Modify this to return the appropriate value for the 'date' attribute of your model
-                                  return $model->date;
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'attribute' => 'number_of_babysitters',
-                                'header' => 'babysitters',
-                                'header' => '<h6 class="fw-semibold mb-0">Babysitters</h6>',
-                                'value' => function ($model) {
-                                  // Modify this to return the appropriate value for the 'babysitters' attribute of your model
-                                  return $model->number_of_babysitters;
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'attribute' => 'languages_spoken',
-                                'header' => 'languages',
-                                'header' => '<h6 class="fw-semibold mb-0">Languages</h6>',
-                                'value' => function ($model) {
-                                  // Modify this to return the appropriate value for the 'languages' attribute of your model
-                                  return $model->languages_spoken;
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'attribute' => 'babysitter_age_range',
-                                'header' => 'Age range',
-                                'header' => '<h6 class="fw-semibold mb-0">Age range</h6>',
-                                'value' => function ($model) {
-                                  // Modify this to return the appropriate value for the 'age_range' attribute of your model
-                                  return $model->babysitter_age_range;
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'attribute' => 'gender',
-                                'header' => '<h6 class="fw-semibold mb-0">Gender</h6>',
-                                'value' => function ($model) {
-                                  // Modify this to return the appropriate value for the 'gender' attribute of your model
-                                  return $model->gender;
-                                },
-                                'format' => 'raw',
-                              ],
-                              [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => '',
-                                'template' => '{view} {assign} {delete}',
-                                'buttons' => [
-                                  'view' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn-icon']);
-                                  },
-                                  'update' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn-icon']);
-                                  },
-                                  'assign' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-child"></i>', ['babysitters', 'id' => $model->id], ['class' => 'btn-icon']);
-                                  },
-                                  'delete' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [
-                                      'class' => 'btn-icon',
-                                      'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
-                                        'method' => 'post',
-                                      ],
-                                    ]);
-                                  },
-                                ],
-                              ],
-                            ],
-                          ]);
-                          ?>
-                      </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-  </div>
+      </div>
+      </div>
+                  
+
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="Dash/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
@@ -352,6 +274,14 @@ use yii\grid\ActionColumn;
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('#assign').click(function() {
+      $('#role').css('display', 'block');
+    });
+  });
+  </script>
 </body>
 <script>
 // Optional: Close the dropdown menu if the user clicks outside of it
@@ -369,3 +299,8 @@ window.onclick = function(event) {
 };
 </script>
 </html>
+
+</div>
+
+
+

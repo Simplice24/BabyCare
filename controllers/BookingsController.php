@@ -29,7 +29,7 @@ class BookingsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','delete','update','assign'],
+                        'actions' => ['index','create','view','delete','update','babysitters'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                     [
@@ -75,8 +75,12 @@ class BookingsController extends Controller
     ]);
 }
 
-    public function actionAssign($id)
+    public function actionBabysitters($id)
     {
+
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
 
         $booking = Bookings::findOne($id);
 
@@ -90,7 +94,7 @@ class BookingsController extends Controller
         $upperAge = $ageRangeArray[1];
 
         $babysitters = User::find()
-        ->select('u.fullname')
+        ->select(['u.id', 'u.fullname'])
         ->from('user u')
         ->leftJoin('languages_babysitter lb', 'lb.babysitter_id = u.id')
         ->leftJoin('languages l', 'l.id = lb.language_id')
@@ -101,13 +105,18 @@ class BookingsController extends Controller
         ->andWhere(['av.date' => $date])
         ->andWhere(['>=', 'av.starting_time', $starting_time])
         ->andWhere(['<=', 'av.ending_time', $ending_time])
-        ->column();
+        ->all();
 
         if (empty($babysitters)) {
             $babysitters = 'No available babysitter for such criteria!';
         }
 
+        
 
+        return $this->render('assign', [
+            'babysitters' => $babysitters,
+            'userProfileImage' => $userProfileImage,
+        ]);
     }
 
 
