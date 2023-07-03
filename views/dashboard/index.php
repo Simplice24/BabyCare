@@ -70,7 +70,7 @@ use yii\helpers\Html;
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['services/index']) ?>" aria-expanded="false">
                 <span>
-                  <i class="fas fa-bell"></i>
+                  <i class="fa fa-assistive-listening-systems"></i>
                 </span>
                 <span class="hide-menu">Services</span>
               </a>
