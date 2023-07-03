@@ -5,6 +5,8 @@ use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+
 
 /** @var yii\web\View $this */
 /** @var app\models\Bookings $model */
@@ -222,71 +224,94 @@ use yii\helpers\Url;
       <!--  Header End -->
       <div class="container-fluid">
       <div class="row">
-      <div class="col-lg-12 d-flex align-items-center justify-content-center"> 
-        <div class="card w-100">
-          <div class="card-body p-4">
-            <h5 class="card-title fw-semibold mb-4">Available babysitters</h5>
-            <?php
-            $selectedBabysitters = [];
-            if (isset($_POST['selectedBabysitters'])) {
-                $selectedBabysitters = $_POST['selectedBabysitters'];
-            }
-            ?>
-            <div id="assignButtonContainer" style="display: none;">
-              <?= Html::a('Assign', ['assign', 'id' => $id, 'selectedBabysitters' => $selectedBabysitters], ['id' => 'assignButton', 'class' => 'btn btn-primary']) ?>
-            </div>
-            <div class="table-responsive">
-            <?php if (is_array($babysitters)) { ?>
-              <table class="table text-nowrap mb-0 align-middle">
-                <thead class="text-dark fs-4">
-                  <tr>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">#</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">Fullname</h6>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($babysitters as $index => $babysitter) { ?>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><?= $index + 1 ?></h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1"><?= $babysitter->fullname ?></h6>                       
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="selectedBabysitters[]" value="<?= $babysitter->id ?>" onchange="toggleAssignButton()">
-                      </div>
-                    </td>
-                  </tr>   
-                  <?php } ?>                   
-                </tbody>
-              </table>
-              <?php } else { ?>
-                <p><?= $babysitters ?></p>
-              <?php } ?>
-            </div>
-          </div>
+  <div class="col-lg-12 d-flex align-items-center justify-content-center"> 
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">Available babysitters</h5>
+        <div class="table-responsive">
+        <?php if (is_array($babysitters)) { ?>
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">#</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Fullname</h6>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($babysitters as $index => $babysitter) { ?>
+              <tr>
+                <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><?= $index + 1 ?></h6></td>
+                <td class="border-bottom-0">
+                    <h6 class="fw-semibold mb-1"><?= $babysitter->fullname ?></h6>                       
+                </td>
+                <td class="border-bottom-0">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="selectedBabysitters[]" value="<?= $babysitter->id ?>" onchange="toggleAssignButton(this)">
+                  </div>
+                </td>
+              </tr>   
+              <?php } ?>                   
+            </tbody>
+          </table>
+          <?php } else { ?>
+            <p><?= $babysitters ?></p>
+          <?php } ?>
         </div>
+        <?php if (!empty($babysitters)) { ?>
+          <div id="assignButtonContainer" style="display: none;">
+          <?= Html::beginForm(['assign'], 'post'); ?>
+          <?= Html::hiddenInput('id', $id); ?>
+          <input type="hidden" name="selectedBabysitters" id="selectedBabysittersInput">
+          <?= Html::submitButton('Assign', ['class' => 'btn btn-primary', 'name' => 'assign-button', 'id' => 'assignButton']); ?>
+          <?= Html::endForm(); ?>
+        </div>
+        <?php } ?>
       </div>
     </div>
+  </div>
+</div>
 
-    <script>
-    function toggleAssignButton() {
-      var checkboxes = document.querySelectorAll('input[name="selectedBabysitters[]"]:checked');
-      var assignButtonContainer = document.getElementById('assignButtonContainer');
-      
-      if (checkboxes.length > 0) {
-        assignButtonContainer.style.display = 'block';
-      } else {
-        assignButtonContainer.style.display = 'none';
-      }
-    }
-    </script>
+<script>
+function toggleAssignButton(checkbox) {
+  var checkboxes = document.querySelectorAll('input[name="selectedBabysitters[]"]:checked');
+  var assignButtonContainer = document.getElementById('assignButtonContainer');
+  var selectedBabysittersInput = document.getElementById('selectedBabysittersInput');
+  
+  if (checkbox.checked) {
+    selectedBabysittersInput.value += checkbox.value + ',';
+  } else {
+    selectedBabysittersInput.value = selectedBabysittersInput.value.replace(checkbox.value + ',', '');
+  }
+  
+  if (checkboxes.length > 0) {
+    assignButtonContainer.style.display = 'block';
+  } else {
+    assignButtonContainer.style.display = 'none';
+  }
+}
+</script>
 
-      </div>
+
+
+
+
+<script>
+function toggleAssignButton() {
+  var checkboxes = document.querySelectorAll('input[name="selectedBabysitters[]"]:checked');
+  var assignButtonContainer = document.getElementById('assignButtonContainer');
+  
+  if (checkboxes.length > 0) {
+    assignButtonContainer.style.display = 'block';
+  } else {
+    assignButtonContainer.style.display = 'none';
+  }
+}
+</script>
+
                   
 
   <script src="Dash/assets/libs/jquery/dist/jquery.min.js"></script>

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Bookings;
+use app\models\Assignment;
 use yii\filters\AccessControl;
 use app\models\BookingsSearch;
 use yii\web\Controller;
@@ -29,7 +30,7 @@ class BookingsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','create','view','delete','update','babysitters'],
+                        'actions' => ['index','view','delete','assign','babysitters'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                     [
@@ -119,16 +120,28 @@ class BookingsController extends Controller
         ]);
     }
 
-    public function actionAssign($id, $selectedBabysitters)
+    public function actionAssign()
     {
-        
-        foreach ($selectedBabysitters as $babysitterId) {
-            $assignment = new Assignment();
-            $assignment->babysitter_id = $babysitterId;
-            $assignment->booking_id = $id;
-            $assignment->save();
+        if (Yii::$app->request->isPost) {
+            $id = Yii::$app->request->post('id');
+            $selectedBabysitters = Yii::$app->request->post('selectedBabysitters');
+            $selectedBabysittersArray = explode(',', $selectedBabysitters);
+            
+            // Process the data and create records in the assignment table
+            foreach ($selectedBabysittersArray  as $babysitterId) {
+                $assignment = new Assignment();
+                $assignment->booking_id = $id;
+                $assignment->babysitter_id = $babysitterId;
+                $assignment->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $assignment->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $assignment->save();
+            }
+            
+            // Redirect to the desired page
+            return $this->redirect(['bookings/index']);
         }
-
+        
+        
     }
 
 
