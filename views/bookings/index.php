@@ -321,7 +321,10 @@ use yii\grid\ActionColumn;
                                     return \yii\helpers\Html::a('<i class="fas fa-pencil-alt"></i>', ['update', 'id' => $model->id], ['class' => 'btn-icon']);
                                   },
                                   'assign' => function ($url, $model) {
-                                    return \yii\helpers\Html::a('<i class="fas fa-child"></i>', ['babysitters', 'id' => $model->id], ['class' => 'btn-icon']);
+                                    if ($model->status == 0) {
+                                        return \yii\helpers\Html::a('<i class="fas fa-child"></i>', ['babysitters', 'id' => $model->id], ['class' => 'btn-icon']);
+                                    }
+                                    return '';
                                   },
                                   'delete' => function ($url, $model) {
                                     return \yii\helpers\Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->id], [

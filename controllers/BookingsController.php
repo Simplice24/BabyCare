@@ -126,6 +126,9 @@ class BookingsController extends Controller
             $id = Yii::$app->request->post('id');
             $selectedBabysitters = Yii::$app->request->post('selectedBabysitters');
             $selectedBabysittersArray = explode(',', $selectedBabysitters);
+            $booking = Bookings::findOne($id);
+            $booking->status = 1;
+            $booking->save();
             
             // Process the data and create records in the assignment table
             foreach ($selectedBabysittersArray  as $babysitterId) {
@@ -173,6 +176,7 @@ class BookingsController extends Controller
             if ($model->load($this->request->post())) {
                 $model->created_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
                 $model->updated_at = Yii::$app->formatter->asTimestamp(date('Y-m-d h:m:s'));
+                $model->status = 0;
                 $model->save();
                 return $this->redirect(['site/index']);
             }

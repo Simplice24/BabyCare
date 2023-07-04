@@ -64,6 +64,7 @@ class BookingsSearch extends Bookings
             'service' => $this->service,
             'starting_time' => $this->starting_time,
             'ending_time' => $this->ending_time,
+            'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
