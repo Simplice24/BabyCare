@@ -196,7 +196,7 @@ use yii\grid\ActionColumn;
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel, // Add your search model here
                     'options' => [
-                      'class' => 'table text-nowrap mb-0 align-middle table-height',
+                      'class' => 'table-responsive', // Added 'table-responsive' class
                     ],
                     'tableOptions' => [
                       'class' => 'table text-nowrap mb-0 align-middle',
