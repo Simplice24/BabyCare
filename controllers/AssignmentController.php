@@ -28,7 +28,7 @@ class AssignmentController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => Yii::$app->user->can('Admin'),
+                        'allow' => Yii::$app->user->can('Babysitter'),
                         'actions' => ['index','create','view','delete','update'],
                         'roles' => ['@', 'Admin'], // '@' represents authenticated users
                     ],

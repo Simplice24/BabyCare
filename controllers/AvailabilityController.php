@@ -27,7 +27,7 @@ class AvailabilityController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => Yii::$app->user->can('Admin'),
+                        'allow' => Yii::$app->user->can('Babysitter'),
                         'actions' => ['index','create','update','delete','view'],
                         'roles' => ['@','Admin'], // '@' represents authenticated users
                     ],
