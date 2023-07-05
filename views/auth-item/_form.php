@@ -121,6 +121,14 @@ use yii\widgets\ActiveForm;
               </a>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['assignment/index']) ?>" aria-expanded="false">
+                <span>
+                  <i class="fas fa-book"></i>
+                </span>
+                <span class="hide-menu">Assignments</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['babysitter/index'])  ?>" aria-expanded="false">
                 <span>
                   <i class="fas fa-child"></i>
