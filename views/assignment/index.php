@@ -250,15 +250,13 @@ use yii\grid\GridView;
                                           <h6 class="fw-semibold mb-1"><?= $model->booking->service ?></h6>
                                       </td>
                                       <td class="border-bottom-0">
-                                          <p class="mb-0 fw-normal"><?= $model->booking->date ?></p>
+                                          <h6 class="fw-semibold mb-1"><?= $model->booking->date ?></h6>
                                       </td>
                                       <td class="border-bottom-0">
-                                          <div class="d-flex align-items-center gap-2">
-                                              <span class="badge bg-primary rounded-3 fw-semibold"><?= $model->booking->starting_time ?></span>
-                                          </div>
+                                          <h6 class="fw-semibold mb-1"><?= $model->booking->starting_time ?></h6>
                                       </td>
                                       <td class="border-bottom-0">
-                                          <h6 class="fw-semibold mb-0 fs-4"><?= $model->booking->ending_time ?></h6>
+                                          <h6 class="fw-semibold mb-1"><?= $model->booking->ending_time ?></h6>
                                       </td>
                                       <td class="border-bottom-0">
                                           <a href="<?= \yii\helpers\Url::to(['view', 'id' => $model->id]) ?>" class="btn-icon"><i class="fas fa-eye"></i></a>
