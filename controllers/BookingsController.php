@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Bookings;
 use app\models\Assignment;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use app\models\BookingsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -29,9 +30,9 @@ class BookingsController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => true,
+                        'allow' => Yii::$app->user->can('Admin'),
                         'actions' => ['index','view','delete','assign','babysitters'],
-                        'roles' => ['@'], // '@' represents authenticated users
+                        'roles' => ['@','Admin'], // '@' represents authenticated users
                     ],
                     [
                         'allow' => true,
@@ -40,7 +41,11 @@ class BookingsController extends Controller
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                    return Yii::$app->response->redirect(['site/login']);
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
                 },
             ],
         ];

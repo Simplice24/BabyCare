@@ -6,6 +6,8 @@ use app\models\Assignment;
 use app\models\User;
 use app\models\Bookings;
 use app\models\AssignmentSearch;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,17 +23,25 @@ class AssignmentController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => Yii::$app->user->can('Admin'),
+                        'actions' => ['index','create','view','delete','update'],
+                        'roles' => ['@', 'Admin'], // '@' represents authenticated users
                     ],
                 ],
-            ]
-        );
+                'denyCallback' => function ($rule, $action) {
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
+                },
+            ],
+        ];
     }
 
     /**

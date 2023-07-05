@@ -10,6 +10,7 @@ use app\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 use Yii;
 
 /**
@@ -27,13 +28,17 @@ class AuthItemController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => true,
-                        'actions' => ['index','create','view','delete','update'],
-                        'roles' => ['@'], // '@' represents authenticated users
+                        'allow' => Yii::$app->user->can('Admin'),
+                        'actions' => ['index','create','view','delete','update','assign','revoke'],
+                        'roles' => ['@', 'Admin'], // '@' represents authenticated users
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                    return Yii::$app->response->redirect(['site/login']);
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
                 },
             ],
         ];

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Availability;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use app\models\User;
 use app\models\AvailabilitySearch;
 use yii\web\Controller;
@@ -26,13 +27,17 @@ class AvailabilityController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => true,
+                        'allow' => Yii::$app->user->can('Admin'),
                         'actions' => ['index','create','update','delete','view'],
-                        'roles' => ['@'], // '@' represents authenticated users
+                        'roles' => ['@','Admin'], // '@' represents authenticated users
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                    return Yii::$app->response->redirect(['site/login']);
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
                 },
             ],
         ];
