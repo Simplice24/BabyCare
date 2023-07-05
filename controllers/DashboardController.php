@@ -20,9 +20,9 @@ class DashboardController extends \yii\web\Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => Yii::$app->user->can('Admin'),
+                        'allow' => true,
                         'actions' => ['index'],
-                        'roles' => ['@','Admin'], // '@' represents authenticated users
+                        'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {

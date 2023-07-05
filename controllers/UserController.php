@@ -26,32 +26,34 @@ class UserController extends Controller
      * @inheritDoc
      */
     public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => Yii::$app->user->can('Admin'),
-                        'actions' => ['index','create','ban','update','delete','view','profile'],
-                        'roles' => ['@'], // '@' represents authenticated users
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['create'],
-                        'roles' => ['?'], // '?' represents unauthenticated users
-                    ],
+{
+    return [
+        'access' => [
+            'class' => AccessControl::class,
+            'rules' => [
+                [
+                    'allow' => true,
+                    'actions' => ['index', 'create', 'ban', 'update', 'delete', 'view', 'profile'],
+                    'roles' => ['Admin'],
                 ],
-                'denyCallback' => function ($rule, $action) {
-                    if (\Yii::$app->user->isGuest) {
-                        return $action->controller->redirect(['site/login']);
-                    } else {
-                        throw new ForbiddenHttpException('You are not allowed to access this page.');
-                    }
-                },
+                [
+                    'allow' => true,
+                    'actions' => ['create', 'profile'],
+                    'roles' => ['Babysitter', 'Parent'],
+                    'verbs' => ['GET', 'POST'],
+                    'denyCallback' => function ($rule, $action) {
+                        if (Yii::$app->user->isGuest) {
+                            return $action->controller->redirect(['site/login']);
+                        } else {
+                            throw new ForbiddenHttpException('You are not allowed to access this page.');
+                        }
+                    },
+                ],
             ],
-        ];
-    }
+        ],
+    ];
+}
+
 
     /**
      * Lists all User models.
