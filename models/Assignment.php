@@ -1,7 +1,6 @@
 <?php
 
 namespace app\models;
-use yii\behaviors\TimestampBehavior;
 
 use Yii;
 
@@ -38,7 +37,6 @@ class Assignment extends \yii\db\ActiveRecord
             [['babysitter_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['babysitter_id' => 'id']],
         ];
     }
-
 
     /**
      * {@inheritdoc}
