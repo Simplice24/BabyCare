@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Assignment;
 use app\models\User;
+use app\models\Bookings;
 use app\models\AssignmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -76,10 +77,21 @@ class AssignmentController extends Controller
      */
     public function actionView($id)
     {
+        $user_id = Yii::$app->user->id;
+        $userDetails = User::findOne($user_id);
+        $userProfileImage = $userDetails->profile;
+    
+        $assignment = $this->findModel($id);
+        $bookingId = $assignment->booking_id;
+        $booking = Bookings::findOne($bookingId);
+    
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'assignment' => $assignment,
+            'booking' => $booking,
+            'userProfileImage' => $userProfileImage,
         ]);
     }
+    
 
     /**
      * Creates a new Assignment model.
