@@ -260,6 +260,9 @@ use yii\grid\GridView;
                                       <td class="border-bottom-0">
                                           <h6 class="fw-semibold mb-0 fs-4"><?= $model->booking->ending_time ?></h6>
                                       </td>
+                                      <td class="border-bottom-0">
+                                          <a href="<?= \yii\helpers\Url::to(['view', 'id' => $model->id]) ?>" class="btn-icon"><i class="fas fa-eye"></i></a>
+                                      </td>
                                   </tr>
                               <?php endforeach; ?>
                           </tbody>
