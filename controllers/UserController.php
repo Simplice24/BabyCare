@@ -7,6 +7,7 @@ use app\models\Languages;
 use app\models\LanguagesBabysitter;
 use app\models\UserSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -31,7 +32,7 @@ class UserController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => true,
+                        'allow' => Yii::$app->user->can('Admin'),
                         'actions' => ['index','create','ban','update','delete','view','profile'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
@@ -42,7 +43,11 @@ class UserController extends Controller
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                    return Yii::$app->response->redirect(['site/login']);
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
                 },
             ],
         ];

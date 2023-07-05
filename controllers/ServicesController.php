@@ -7,6 +7,7 @@ use app\models\User;
 use app\models\ServicesSearch;
 use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
@@ -26,13 +27,17 @@ class ServicesController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => true,
+                        'allow' => Yii::$app->user->can('Admin'),
                         'actions' => ['index','create','update','delete','view'],
                         'roles' => ['@'], // '@' represents authenticated users
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                    return Yii::$app->response->redirect(['site/login']);
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
                 },
             ],
         ];

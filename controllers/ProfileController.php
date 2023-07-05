@@ -4,12 +4,36 @@ namespace app\controllers;
 use app\models\User;
 use app\models\LanguagesBabysitter;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use yii\helpers\FileHelper;
 use Yii;
 
 class ProfileController extends \yii\web\Controller
 {
    
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' =>true,
+                        'actions' => ['username','password','bio'],
+                        'roles' => ['@'], // '@' represents authenticated users
+                    ],
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
+                },
+            ],
+        ];
+    }
 
     public function actionUsername()
     {

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use app\models\User;
 use app\models\Bookings;
 use app\models\Feedbacks;
@@ -19,13 +20,17 @@ class DashboardController extends \yii\web\Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => true,
-                        'actions' => ['index','create','view','delete','update'],
-                        'roles' => ['@'], // '@' represents authenticated users
+                        'allow' => Yii::$app->user->can('Admin'),
+                        'actions' => ['index'],
+                        'roles' => ['@','Admin'], // '@' represents authenticated users
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                    return Yii::$app->response->redirect(['site/login']);
+                    if (\Yii::$app->user->isGuest) {
+                        return $action->controller->redirect(['site/login']);
+                    } else {
+                        throw new ForbiddenHttpException('You are not allowed to access this page.');
+                    }
                 },
             ],
         ];
