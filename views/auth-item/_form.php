@@ -96,6 +96,7 @@ use yii\widgets\ActiveForm;
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
+            <?php if(\Yii::$app->user->can('Admin')) {?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['dashboard/index']) ?>" aria-expanded="false">
                 <span>
@@ -104,6 +105,8 @@ use yii\widgets\ActiveForm;
                 <span class="hide-menu">Home</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Admin')) {?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['user/index']) ?>" aria-expanded="false">
                 <span>
@@ -112,6 +115,8 @@ use yii\widgets\ActiveForm;
                 <span class="hide-menu">User management</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Admin')) {?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['bookings/index']) ?>" aria-expanded="false">
                 <span>
@@ -120,6 +125,8 @@ use yii\widgets\ActiveForm;
                 <span class="hide-menu">Bookings</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Babysitter')) {?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['assignment/index']) ?>" aria-expanded="false">
                 <span>
@@ -128,6 +135,8 @@ use yii\widgets\ActiveForm;
                 <span class="hide-menu">Assignments</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Admin')) {?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['babysitter/index'])  ?>" aria-expanded="false">
                 <span>
@@ -136,30 +145,38 @@ use yii\widgets\ActiveForm;
                 <span class="hide-menu">Babysitters</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Admin')) {?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['services/index']) ?>" aria-expanded="false">
                 <span>
-                  <i class="fas fa-bell"></i>
+                  <i class="fa fa-assistive-listening-systems"></i>
                 </span>
                 <span class="hide-menu">Services</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Admin')) {?>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['feedbacks/index']) ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['feedbacks/index'])  ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-comment"></i>
                 </span>
                 <span class="hide-menu">Feedbacks</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Babysitter')) {?>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['availability/index']) ?>" aria-expanded="false">
+              <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['availability/index'])  ?>" aria-expanded="false">
                 <span>
                    <i class="fas fa-calendar-alt"></i>
                 </span>
                 <span class="hide-menu">Availability Calendar</span>
               </a>
             </li>
+            <?php } ?>
+            <?php if(\Yii::$app->user->can('Admin')) {?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['auth-item/index']) ?>" aria-expanded="false">
                 <span>
@@ -168,6 +185,7 @@ use yii\widgets\ActiveForm;
                 <span class="hide-menu">Role | Permissions</span>
               </a>
             </li>
+            <?php } ?>
           </ul>
         </nav>
         <!-- End Sidebar navigation -->
