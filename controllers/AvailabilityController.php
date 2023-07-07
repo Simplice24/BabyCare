@@ -51,8 +51,11 @@ class AvailabilityController extends Controller
     public function actionIndex()
     {
         $searchModel = new AvailabilitySearch();
-        $model =new Availability();
+        $searchModel->user_id = Yii::$app->user->id; // Set the user_id attribute in the search model
         $dataProvider = $searchModel->search($this->request->queryParams);
+
+        $model = new Availability();
+
         $user_id = Yii::$app->user->id;
         $userDetails = User::findOne($user_id);
         $userProfileImage = $userDetails->profile;
@@ -64,6 +67,7 @@ class AvailabilityController extends Controller
             'userProfileImage' => $userProfileImage,
         ]);
     }
+
 
     /**
      * Displays a single Availability model.

@@ -36,7 +36,7 @@ use yii\grid\ActionColumn;
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
-            <?php if(\Yii::$app->user->can('Admin')) {?>
+            <?php if (\Yii::$app->user->can('Babysitter') || \Yii::$app->user->can('Admin')) { ?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['dashboard/index']) ?>" aria-expanded="false">
                 <span>
