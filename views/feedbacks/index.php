@@ -101,7 +101,7 @@ use yii\helpers\Url;
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
-            <?php if (\Yii::$app->user->can('Babysitter') || \Yii::$app->user->can('Admin')) { ?>
+            <?php if (\Yii::$app->user->can('Babysitter') || \Yii::$app->user->can('Admin') || \Yii::$app->user->can('Parent')) { ?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['dashboard/index']) ?>" aria-expanded="false">
                 <span>
@@ -121,7 +121,7 @@ use yii\helpers\Url;
               </a>
             </li>
             <?php } ?>
-            <?php if (\Yii::$app->user->can('Babysitter') || \Yii::$app->user->can('Admin')) { ?>
+            <?php if (\Yii::$app->user->can('Parent') || \Yii::$app->user->can('Admin')) { ?>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?= Yii::$app->urlManager->createUrl(['bookings/index']) ?>" aria-expanded="false">
                 <span>
